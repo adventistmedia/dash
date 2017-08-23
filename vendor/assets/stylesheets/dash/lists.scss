@@ -1,0 +1,36 @@
+.dash-list{
+  list-style:none;
+  padding: 0;
+  li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.25rem 0;
+    .list-img{
+      flex: 0 0 50px;
+      padding: 0 0.5rem 0 0;
+      img{
+        border-radius: 50%;
+      }
+    }
+    .list-icon{
+      flex: 0 0 20px;
+      padding: 0 0.5rem 0 0;
+    }
+    .list-body{
+      flex: 1;
+      padding: 0.5rem;
+      .subtitle{
+        line-height: 1;
+        font-size: 0.9rem;
+        display:block;
+        color: $gray-600;
+      }
+    }
+  }
+}
+.dash-list-lines{
+  .list-body{
+    border-bottom: 1px solid $gray-200;
+  }
+}

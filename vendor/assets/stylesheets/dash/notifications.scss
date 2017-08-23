@@ -1,0 +1,46 @@
+.notification-list{
+  height: 250px;
+  overflow-y: scroll;
+  list-style:none;
+  padding: 0;
+}
+
+.notification-item{
+  display: flex;
+  flex-direction: row;
+  padding: 0.7rem;
+  .icon{
+    flex: 0 0 auto;
+    background-color: $gray-200;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    i{
+      vertical-align: bottom;
+    }
+  }
+  .content{
+    flex: 1;
+    padding: 0 0.6rem;
+    border-bottom: 1px solid $gray-200;
+    h5{
+      font-size: 1rem;
+      line-height: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .subtitle{
+      line-height: 1;
+      font-size: 0.8rem;
+      display: block;
+      color: $text-muted;
+    }
+    p{
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+    }
+  }
+  .links{
+    margin-bottom: 0.5rem;
+  }
+}

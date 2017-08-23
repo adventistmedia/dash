@@ -1,0 +1,22 @@
+.btn{
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.btn:hover{
+  box-shadow: 0 1px 1px $gray-600;
+}
+.btn-default{
+  background-color: $white;
+}
+.btn-secondary, .btn-secondary:hover{
+  border-color: $gray-300 !important;
+  color: $gray-800;
+  background-color: $gray-200;
+}
+.btn-secondary:hover{
+  box-shadow: 0 1px 1px $gray-500;
+}
+
+.btn-primary, .btn-primary:hover{
+  border: none !important;
+}

@@ -3,15 +3,17 @@ class PopScroller {
   constructor(options) {
     var _this = this;
     this.parent = options.parent;
-    this.url = options.url;
+    this.url = $(options.parent).data('url');
     this.currentPage = 0;
     this.lastPage = false;
     this.loadTriggerPos = 150;
     this.loading = false;
+    this.initialLoad = false;
+    this.renderContent = options.renderContent;
     $(this.parent).on('scroll', function(){
       _this.scrollCheck();
     })
-    this.loadItems();
+
   }
 
   scrollCheck(){
@@ -23,6 +25,13 @@ class PopScroller {
     var posToBottom = scrollHeight - (scrollTop + parentHeight);
     if(!this.loading && posToBottom < this.loadTriggerPos){
       this.loadItems();
+    }
+  }
+
+  intialItemLoad(){
+    if(!this.initialLoad){
+      this.loadItems();
+      this.initialLoad = true;
     }
   }
 
@@ -42,7 +51,7 @@ class PopScroller {
           _this.allDone();
         }
         _this.currentPage = page;
-        _this.populateContent(data.content);
+        $(_this.parent).append( _this.renderContent(data.data) );
       },
       complete: function(){
         _this.endLoading();
@@ -61,19 +70,7 @@ class PopScroller {
     $(this.parent + ' .loading').remove();
   }
 
-  populateContent(data){
-    $(this.parent).append(data);
-  }
-
   allDone(){
     $(this.parent).off('scroll');
   }
 };
-$(document).ready(function(){
-  $('.pop-scroller').each(function(){
-    new PopScroller({
-      parent: '#'+$(this).attr('id'),
-      url: $(this).data('url')
-    })
-  })
-})

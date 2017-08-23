@@ -1,0 +1,133 @@
+// body{
+//   background-color: #f6f6f6;
+// }
+body.no-scroll{
+  overflow: hidden;
+}
+.page{
+  display: flex;
+  flex-direction: row;
+}
+.page-nav{
+  flex: 0 0 auto;
+  width: 250px;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #424249;
+}
+.page-body{
+  flex: 1 1 auto;
+}
+
+// Menu
+.page-nav{
+  .nav-group{
+    list-style: none;
+    padding:0;
+  }
+  .nav-group-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.8rem 0;
+    color: #94979e;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    .icon{
+      text-align: center;
+      font-size: 1.2rem;
+      flex: 0 0 50px;
+    }
+    .expand{
+      font-size: 1.2rem;
+      flex: 0 0 30px;
+      margin-left: auto !important;
+      transition-duration: 0.8s;
+      transition-property: transform;
+      transform-origin: 6px 50%;
+    }
+  }
+  .nav-subgroup{
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 0;
+  }
+  .nav-subgroup-item{
+    padding: 0 1rem 0 3.1rem;
+    display: block;
+
+    color: #94979e;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    span{
+      padding: 0.25rem 0;
+      display:block;
+    }
+  }
+  .nav-subgroup li:last-child .nav-subgroup-item span{
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  li.active{
+    .expand{
+      transform: rotate(180deg);
+    }
+    .nav-subgroup{
+      display: block;
+    }
+  }
+  .nav-group-item:hover, .nav-group-item.active, .nav-subgroup-item:hover, .nav-subgroup-item.active{
+    background-color: rgba(255,255,255,0.1);
+  }
+}
+
+.team-nav{
+  padding: 1.5rem 1rem 0rem 1rem;
+  margin-bottom: 0.5rem;
+  color: #94979e;
+  .wrapper{
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .team-nav-content{
+    padding: 0rem 0rem 1.5rem 0rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+  }
+  .avatar{
+    flex: 0 0 50px;
+    img{
+      border-radius: 50%;
+    }
+  }
+  .content{
+    .name{
+      display: inline-block;
+      line-height: 1.1rem;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+  }
+  .team-toggle{
+    color: #94979e;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    i{
+      transition-duration: 0.8s;
+      transition-property: transform;
+      transform-origin: 6px 50%;
+    }
+  }
+}
+.page-nav .team-nav .team-list{
+  display:none;
+}
+.page-nav .team-nav.active{
+  .team-list{
+    display:block;
+  }
+  .team-toggle i{
+    transform: rotate(180deg);
+  }
+}

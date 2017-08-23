@@ -13,3 +13,13 @@ $(document).on('click', '.pop-return', function(e){
 $(document).on('click', '.nav-popper', function(e){
   e.stopPropagation();
 })
+$(document).on('show.bs.dropdown', '.navbar-dash .dropdown', function(){
+  if(window.outerWidth < 575){
+    $('body').addClass('no-scroll');
+  }
+})
+$(document).on('hide.bs.dropdown', '.navbar-dash .dropdown', function(){
+  if(window.outerWidth < 575){
+    $('body').removeClass('no-scroll');
+  }
+})
