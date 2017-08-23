@@ -2,9 +2,9 @@ $(document).on('click', '.toggle-menu', function(e){
   e.preventDefault();
   var closed = $('#page-nav').width() == 0
   if(closed){
-    $('#page-nav').animate({width: 250}, 250);
+    $('#page-nav').animate({'flex-basis': 250}, 250);
   }else{
-    $('#page-nav').animate({width: 0}, 250);
+    $('#page-nav').animate({'flex-basis': 0}, 250);
   }
 })
 // $(window).on('resize', function(){

@@ -1,0 +1,62 @@
+.table-features .table{
+  margin-bottom: 0;
+}
+.table{
+  border: 1px solid $gray-200;
+  background: $white;
+  thead{
+    th{
+      border-bottom: none;
+      font-size: 0.9rem;
+      color: $gray-600;
+      a{
+        display:block;
+        color:inherit;
+        span{
+          float: right;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+  tbody{
+    tr:hover td{
+      background-color: $gray-200;
+    }
+    td:not(:last-child){
+      cursor: pointer;
+    }
+    td:last-child{
+      text-align: right;
+    }
+  }
+}
+.table-pagination{
+  text-align: right;
+  border: 1px solid $gray-200;
+  background: $white;
+  border-width: 0 1px 1px 1px;
+  padding: 0.75rem;
+  color: $gray-600;
+  .pag-link{
+    // padding: 0 0.75rem;
+    font-size: 1rem;
+    color: $gray-600;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    padding: 0;
+    text-align: center;
+    transition: all 200;
+    margin: 0 0.5rem;
+  }
+  .pag-link:hover{
+    background-color: $gray-200;
+  }
+
+  .pag-info{
+    display: inline-block;
+    margin-right: 2rem;
+  }
+}

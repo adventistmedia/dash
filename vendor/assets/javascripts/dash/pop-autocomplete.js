@@ -142,11 +142,11 @@ class PopAutocomplete {
     return '<li class="item"><i class="fa fa-'+icon+'"></i> <span><a href="'+item.url+'">'+item.label+'</a></span></li>';
   }
 }
-
-$(document).ready(function(){
+function loadPopAutocomplete(){
   $('.pop-autocomplete').each(function(){
     new PopAutocomplete({
       form: '#'+$(this).attr('id'),
     })
   })
-})
+}
+$(document).on('turbolinks:load', loadPopAutocomplete);
