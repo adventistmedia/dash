@@ -1,0 +1,24 @@
+.modal-content{
+  border: none;
+  border-radius: 2px;
+  .info-line{
+    .label{
+      display: inline-block;
+      min-width: 150px;
+    }
+  }
+}
+.modal-header{
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.modal-header-primary{
+  background-color: theme-color('primary');
+  color: $white;
+  border-bottom: none;
+}
+.modal-loading{
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1rem;
+}

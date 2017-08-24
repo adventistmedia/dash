@@ -20,3 +20,31 @@
 .btn-primary, .btn-primary:hover{
   border: none !important;
 }
+
+.btn-icon-secondary{
+
+}
+
+// Icon Buttons
+.btn-icon{
+  display:inline-block;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: $gray-600;
+  cursor: pointer;
+}
+.btn-icon:hover{
+  background-color: $gray-400;
+  color: $gray-600;
+}
+.btn-icon-light{
+  color: $white;
+}
+.btn-icon-light:hover{
+  background: rgba(0,0,0,0.2);
+  color: $white;
+}

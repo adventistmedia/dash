@@ -1,0 +1,18 @@
+<p class="info-line"><span class="label">ID</span><span class="text-muted"><%= @about_object.id %></span></p>
+<p class="info-line"><span class="label">Created</span><span class="text-muted"><%= l(@about_object.created_at.to_date) %><%= " by #{@about_object.created_by&.name}" if @about_object.respond_to?(:created_by) %></span></p>
+<p class="info-line"><span class="label">Updated</span><span class="text-muted"><%= l(@about_object.updated_at.to_date) %><%= " by #{@about_object.updated_by&.name}" if @about_object.respond_to?(:updated_by) %></span></p>
+<% if @about_object.respond_to?(:audits) %>
+<h5>Recent History</h5>
+<ul class="dash-list dash-list-lines">
+  <% @about_object.audits.order('created_at DESC').limit(10).each do |audit| %>
+  <li>
+    <div class="list-icon">
+      <%= content_tag(:i, '', class: "fa fa-#{audit_action_icon(audit.action)}") %>
+    </div>
+    <div class="list-body">
+      <%= audit_summary(audit) %> <span class="subtitle"><%= l(audit.created_at.to_date) %><%= " by #{audit.username}" if audit.username.present? %></span>
+    </div>
+  </li>
+  <% end %>
+</ul>
+<% end %>

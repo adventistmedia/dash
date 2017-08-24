@@ -1,0 +1,18 @@
+.dropdown-menu{
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0 1px 6px $box-shadow-color;
+  padding: 0;
+}
+.dropdown-item{
+  padding: 0.5rem 1rem;
+  color: $gray-700;
+}
+.dropdown-menu-icons{
+  .dropdown-item{
+    i{
+      width: 30px;
+      display: inline-block;
+    }
+  }
+}

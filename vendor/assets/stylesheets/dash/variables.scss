@@ -10,6 +10,10 @@ $link-decoration:       none;
 $link-hover-color:      theme-color('primary');
 $link-hover-decoration: underline;
 
+// Defaults
+$box-shadow-color: $gray-600;
+
 // Nav
 $nav-bg-color: #0f9d58;
-$nav-box-shadow-color: $gray-600;
+$nav-box-shadow-color: $box-shadow-color;
+
