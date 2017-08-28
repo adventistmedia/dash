@@ -32,6 +32,7 @@ $(document).on('click', '.bulk-selector-toggle', function(e){
   if( $(this).hasClass('bulk-selector-all') ){
     bulkToggleAll( input.prop('checked') );
   }
+  updateBulkTogglePane();
 })
 
 function bulkToggleAll(selected){
@@ -43,3 +44,43 @@ function bulkToggleAll(selected){
     $('.bulk-selector-item input').prop('checked', false);
   }
 }
+
+function updateBulkTogglePane(){
+  var numSelected = $('.bulk-selector-item input:checked').length;
+  $('#table-bulk-options.active').length == 1;
+  $('#items-selected').html(numSelected);
+  if(numSelected == 0){
+    $('#table-bulk-options').removeClass('active');
+  }else{
+    $('#table-bulk-options').addClass('active');
+  }
+}
+
+$(document).on('click', '.table-batch-submit', function(e){
+  e.preventDefault();
+  var ids = $('.bulk-selector-item input:checked').map(function(){ return $(this).val() }).get();
+  $(this).parents('.modal').find('.batch-ids').val(ids);
+  $(this).parents('.modal').find('form').submit();
+  (this).prop('disabled', true);
+})
+
+// Table Filters
+$(document).on('click', '.table-filters-toggle', function(e){
+  e.preventDefault();
+  $('.table-filters').slideToggle().toggleClass('active');
+  $(this).toggleClass('active');
+})
+// Table Search
+$(document).on('click', '.table-search:not(.active) .search-btn', function(e){
+  e.preventDefault();
+  $('.table-search').addClass('active');
+  $('.table-header').addClass('focus-search');
+})
+$(document).on('click', '.table-search .search-close', function(e){
+  if( $(this).data('reload') == '0' ){
+    e.preventDefault();
+    $('.table-search').removeClass('active');
+    $('.table-header').removeClass('focus-search');
+  }
+  $('.table-search .search-input').val('');
+})

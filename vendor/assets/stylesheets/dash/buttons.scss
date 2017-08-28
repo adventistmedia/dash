@@ -21,10 +21,6 @@
   border: none !important;
 }
 
-.btn-icon-secondary{
-
-}
-
 // Icon Buttons
 .btn-icon{
   display:inline-block;
@@ -34,12 +30,16 @@
   width: 30px;
   height: 30px;
   text-align: center;
-  color: $gray-600;
+  color: $gray-700;
   cursor: pointer;
 }
-.btn-icon:hover{
+.btn-icon:hover, .btn-icon.active{
   background-color: $gray-400;
   color: $gray-600;
+}
+.btn-icon:focus{
+  box-shadow: none;
+  outline: none;
 }
 .btn-icon-light{
   color: $white;

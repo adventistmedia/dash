@@ -1,3 +1,15 @@
+// Colors
+$theme-colors: (
+  primary: $blue,
+  secondary: $gray-600,
+  success: $green,
+  info: $blue,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
+) !default;
+
 // Body
 $body-bg: #f6f6f6;
 

@@ -1,0 +1,6 @@
+<% if @success %>
+window.location.reload();
+<% else %>
+$('.table-batch-submit').prop('disabled', false);
+alert('Unable to complete');
+<% end %>

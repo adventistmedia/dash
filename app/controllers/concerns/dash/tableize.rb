@@ -3,12 +3,36 @@ module Dash::Tableize
 
   included do
     before_action :about_modal_path, only: [:about]
+    before_action :find_selection, only: [:batch_destroy, :batch_update]
   end
 
   # GET
+  ## About card showing audit history if one exists and other basic details
   def about
     @about_object = instance_variable_get("@#{controller_name.singularize}")
     render file: '/dash/base/about'
+  end
+
+  # POST
+  # delete multiple objects
+  def batch_destroy
+    @success = @selected.destroy_all
+    render file: '/dash/base/batch_destroy'
+  end
+
+  # POST
+  # edit multiple objects
+  def batch_update
+    @success = true
+    ActiveRecord::Base.transaction do
+      @selected.each do |selected|
+        unless selected.update_attributes(batch_update_params)
+          @success = false
+          raise ActiveRecord::Rollback
+        end
+      end
+    end
+    render file: '/dash/base/batch_update'
   end
 
   private
@@ -16,4 +40,15 @@ module Dash::Tableize
   def about_modal_path
     @about_modal_path = '/dash/base/about_modal'
   end
+
+  def find_selection
+    ids = params[:batch][:ids].to_s.split(',')
+    @selected = "#{controller_name.singularize.classify}".constantize.where(id: ids)
+  end
+
+  def batch_update_params
+    # override
+    params[:batch].permit(:last_name)
+  end
+
 end
