@@ -1,0 +1,16 @@
+.breadcrumb{
+  background: none;
+  margin: 0.25rem 0 0.25rem 0;
+  padding: 0;
+  a,span{
+    display:inline-block;
+    font-size: 0.9rem;
+  }
+}
+.breadcrumb-item+.breadcrumb-item::before{
+  display: inline-block;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  color: #818a91;
+  content: "/";
+}

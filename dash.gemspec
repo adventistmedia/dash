@@ -30,9 +30,18 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  # UI
   spec.add_dependency "bootstrap", "~> 4.0.0.beta"
   spec.add_dependency "kaminari", "~> 1.0.1"
-  spec.add_dependency "simple_form", '~> 3.5.0'
+  spec.add_dependency "simple_form", "~> 3.5.0"
+  # Email and Notifications
+  spec.add_dependency "slack-notifier", "~> 2.3"
+  spec.add_dependency "mandrill_dm", "~> 1.3.4"
+  # Authentication and Authorization
+  spec.add_dependency "cancancan", "~> 2.0.0"
+  spec.add_dependency "omniauth-myadventist"
+  # Auditing
+  spec.add_dependency "audited", "4.5.0"
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"

@@ -1,0 +1,6 @@
+en:
+  flash:
+    save_success: Successfully saved
+    save_failed: Unable to save. Please review any error messages.
+    delete_success: Successfully deleted
+    delete_failed: Unable to delete

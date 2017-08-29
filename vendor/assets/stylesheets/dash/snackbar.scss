@@ -1,0 +1,22 @@
+.snackbar{
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $gray-700;
+  padding: 1rem;
+  color: $white;
+  box-shadow: 0 0 10px 0 rgba($black, .5);
+  cursor: pointer;
+  z-index: 999999;
+}
+.snackbar-success{
+  background: theme-color("success");
+}
+.snackbar-danger{
+  background: theme-color("danger");
+}
+.snackbar-warning{
+  background: theme-color("warning");
+}

@@ -1,0 +1,42 @@
+ul.nav-tabs{
+  background: $white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  li{
+    display: inline-block;
+    margin-bottom: -1px;
+  }
+  a{
+    color: rgba($black, 0.6);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+  }
+  a.active, a:hover{
+    color: $text-color;
+    border-bottom: 2px solid theme-color("primary");
+  }
+}
+
+// Page Banner with nav tab
+.page-banner{
+  background-color: $white;
+  margin: 1rem 0;
+  padding: 1rem 1rem 0 1rem;
+  border-bottom: 1px solid $gray-200;
+  .nav-tabs{
+    margin-top: 1rem;
+  }
+  .body{
+    display: flex;
+    .avatar{
+      margin-right: 1rem;
+    }
+    .content{
+      p{
+        margin-bottom: 0;
+      }
+    }
+  }
+}

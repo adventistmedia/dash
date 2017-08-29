@@ -99,6 +99,7 @@ body.no-scroll{
     }
   }
   .content{
+    flex: 1;
     .name{
       display: inline-block;
       line-height: 1.1rem;
@@ -109,7 +110,7 @@ body.no-scroll{
   .team-toggle{
     color: #94979e;
     font-size: 1.2rem;
-    padding-left: 0.5rem;
+    flex: 0 0 25px;
     i{
       transition-duration: 0.8s;
       transition-property: transform;
@@ -119,6 +120,7 @@ body.no-scroll{
 }
 .page-nav .team-nav .team-list{
   display:none;
+  margin-left: -15px;
 }
 .page-nav .team-nav.active{
   .team-list{
@@ -127,4 +129,64 @@ body.no-scroll{
   .team-toggle i{
     transform: rotate(180deg);
   }
+}
+
+
+// Menu Light
+.page-nav-light{
+  background-color: transparent;
+  .nav-group-item{
+    color: rgba($black, 0.7);
+    font-family: "Open Sans";
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    text-transform: none;
+    .icon{
+      flex: 0 0 60px;
+      font-size: 1.2rem;
+    }
+    .expand{
+      flex: 0 0 25px;
+    }
+  }
+  .nav-group-item:hover, .nav-group-item.active, .nav-subgroup-item:hover, .nav-subgroup-item.active{
+    background-color: rgba($black ,0.05);
+  }
+  .nav-subgroup-item{
+    padding: 0 1rem 0 4.2rem;
+    color: rgba($black, 0.7);
+    font-family: "Open Sans";
+    font-size: 0.9rem;
+    text-transform: none;
+  }
+  .extra{
+    font-size: 0.9rem;
+    font-family: "Open Sans";
+    padding: 0 0 0 1.1rem;
+    .content{
+      border-top: 1px solid $gray-300;
+      padding-top: 1rem;
+    }
+    .extra-link{
+      color: $gray-600;
+      display: block;
+      padding: 0.25rem 0;
+    }
+  }
+
+  .team-nav{
+    padding: 1rem 0 0 1rem;
+    margin-bottom: 0.5rem;
+    color: rgba($black, 0.7);
+    .wrapper{
+      border-bottom: 1px solid $gray-300;
+    }
+    .team-toggle{
+      color: rgba($black, 0.7);
+    }
+    .team-nav-content{
+      padding: 0 0 1rem 0;
+    }
+  }
+
 }

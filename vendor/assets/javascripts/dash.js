@@ -3,3 +3,4 @@
 //= require dash/poppers
 //= require dash/layout
 //= require dash/table
+//= require dash/snackbar

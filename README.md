@@ -38,6 +38,27 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-## Code of Conduct
+## Setup
 
-Everyone interacting in the Dash project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/dash/blob/master/CODE_OF_CONDUCT.md).
+Run the setup rake task
+
+```
+rails dash:setup
+```
+### Environment Config
+
+#### Production
+
+```
+config.action_mailer.delivery_method = :mandrill
+```
+
+### Secrets
+
+```
+slack_bot_username: mybotname
+slack_notification_webhook: http://webhook
+mandrill_api_key:
+myadventist_client_key: 
+myadventist_client_secret:
+```

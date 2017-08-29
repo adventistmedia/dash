@@ -11,10 +11,13 @@ $theme-colors: (
 ) !default;
 
 // Body
-$body-bg: #f6f6f6;
+$body-bg:              #f6f6f6;
 
 // Headings
 $headings-font-family: 'Open Sans', sans-serif;
+
+// Text
+$text-color:            $gray-900;
 
 // Links
 $link-color:            $gray-900;
@@ -23,9 +26,9 @@ $link-hover-color:      theme-color('primary');
 $link-hover-decoration: underline;
 
 // Defaults
-$box-shadow-color: $gray-600;
+$box-shadow-color:      $gray-600;
 
 // Nav
-$nav-bg-color: #0f9d58;
-$nav-box-shadow-color: $box-shadow-color;
+$nav-bg-color:          #0f9d58;
+$nav-box-shadow-color:  $box-shadow-color;
 
