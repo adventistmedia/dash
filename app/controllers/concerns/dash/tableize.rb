@@ -42,13 +42,21 @@ module Dash::Tableize
   end
 
   def find_selection
-    ids = params[:batch][:ids].to_s.split(',')
-    @selected = "#{controller_name.singularize.classify}".constantize.where(id: ids)
+    @selected = "#{controller_name.singularize.classify}".constantize.where(id: batch_ids)
+  end
+
+  def batch_ids
+    params[:batch][:ids].to_s.split(',')
   end
 
   def batch_update_params
     # override
     params[:batch].permit(:last_name)
+  end
+
+  def to_csv(scope, options={})
+    options.reverse_merge!(filename: "#{scope.table_name}-export-#{Date.today}.csv")
+    send_data scope.to_csv, filename: options[:filename]
   end
 
 end

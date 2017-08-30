@@ -4,3 +4,5 @@
 //= require dash/layout
 //= require dash/table
 //= require dash/snackbar
+
+//= require plugins/fancybox

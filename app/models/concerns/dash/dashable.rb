@@ -7,6 +7,10 @@ module Dash::Dashable
 
   module ClassMethods
 
+    def paginate(params)
+      page(params[:page]).per(params[:per])
+    end
+
     def to_csv
       exporter ||= "#{self.name}Exporter".constantize
       exporter.new(self).to_csv

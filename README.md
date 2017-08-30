@@ -59,6 +59,41 @@ config.action_mailer.delivery_method = :mandrill
 slack_bot_username: mybotname
 slack_notification_webhook: http://webhook
 mandrill_api_key:
-myadventist_client_key: 
+myadventist_client_key:
 myadventist_client_secret:
+```
+
+
+## Features
+
+### Exporting
+
+Table data can be exported to CSV easily by create an exporter.
+
+The exporter by default should be [model_name]_exporter.rb
+
+```
+/app/exporters/user_exporter.rb
+
+class UserExporter < DashExporter
+  attributes :id, :first_name, :last_name
+end
+```
+
+To export all table columns, pass the attributes as ```*User.column_names```
+
+In a controller you can call the exporter like so
+
+```
+respond_to do |format|
+  format.csv { send_data @users.to_csv, filename: "users-export.csv" }
+end
+```
+
+You can create custom exporters although you'll need to call the exporter directly from the controller.
+
+```
+respond_to do |format|
+  format.csv { send_data CustomUserExporter.new(@users).to_csv, filename: "users-export.csv" }
+end
 ```

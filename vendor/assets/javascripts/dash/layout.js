@@ -7,9 +7,6 @@ $(document).on('click', '.toggle-menu', function(e){
     $('#page-nav').animate({'flex-basis': 0}, 250);
   }
 })
-// $(window).on('resize', function(){
-//   console.log('resized');
-// })
 $(document).on('click', '.nav-group-item.expandable', function(e){
   e.preventDefault();
   $(this).parents('li').toggleClass('active');
@@ -55,6 +52,18 @@ function loadNotifications(){
                     }
   })
 }
+function loadLightbox() {
+  $('.lightbox-iframe').fancybox({
+    type: 'iframe',
+  	toolbar: true,
+    buttons: ['close'],
+  	smallBtn: false,
+  	iframe: {
+  		preload: false
+  	}
+  })
+}
+$(document).on('turbolinks:load', loadLightbox);
 $(document).on('turbolinks:load', loadNotifications);
 
 $(document).on('show.bs.dropdown', '.nav-item-notification .dropdown', function(){

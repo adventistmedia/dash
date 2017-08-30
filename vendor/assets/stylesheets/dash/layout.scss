@@ -19,6 +19,7 @@ body.no-scroll{
 // Menu
 .page-nav{
   .nav-group{
+    margin-top: 0.5rem;
     list-style: none;
     padding:0;
   }
@@ -176,7 +177,6 @@ body.no-scroll{
 
   .team-nav{
     padding: 1rem 0 0 1rem;
-    margin-bottom: 0.5rem;
     color: rgba($black, 0.7);
     .wrapper{
       border-bottom: 1px solid $gray-300;

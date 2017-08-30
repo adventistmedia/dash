@@ -1,0 +1,11 @@
+.page-header{
+  display: flex;
+  margin: 1.5rem 0;
+  h3{
+    margin: 0;
+  }
+  .actions{
+    flex: 1 1 auto;
+    text-align: right;
+  }
+}

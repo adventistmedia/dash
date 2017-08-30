@@ -49,6 +49,17 @@
     }
   }
 
+  // Disabled Input
+  .control-label.disabled{
+    color: $gray-500;
+  }
+  .form-control.disabled{
+    background-color: transparent;
+    border-style: dotted;
+    color: $gray-500;
+    background-image: none;
+  }
+
   // Select
   select.form-control{
     -webkit-appearance: none;
@@ -64,5 +75,10 @@
     display: inline-block;
     width: auto;
     margin-right: 10px;
+  }
+
+  // Textarea
+  textarea.form-control{
+    min-height: 150px;
   }
 }

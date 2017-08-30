@@ -12,7 +12,7 @@ module Dash::TablesHelper
     link_title = ( title + sort_caret(active_sort, column, dir) ).html_safe
     options[:class] ||= ''
     options[:class] += ' sorted' if active_sort
-    content_tag :th, link_to( link_title, url.permit(:col, :dir, :page, :controller, :action)), options
+    content_tag :th, link_to( link_title, url.permit(:col, :dir, :page, :per, :controller, :action)), options
   end
 
   def sort_caret(active_sort, column, dir)
@@ -48,7 +48,7 @@ module Dash::TablesHelper
     end
   end
 
-  def dash_table(scope, options={})
+  def dash_table(scope, options={}, &block)
     options.reverse_merge!(
       search: true,
       table_headers: [],
@@ -57,13 +57,13 @@ module Dash::TablesHelper
       partial: nil,
       table_header_actions: true,
       filters: true,
-      batch: [:destroy],
+      batch: [],
       batch_destroy_url: "#{request.path}/batch_destroy"
     )
     content_tag(:div, class: 'table-features') do
-      concat table_overview(options)
+      concat table_overview(options, &block)
       concat table_filters(scope) if options[:filters]
-      concat batch_pane if options[:batch].any?
+      concat batch_pane(options) if options[:batch].any?
       concat table_wrapper(scope, options)
       concat table_paginate(scope)
       concat table_about
@@ -71,11 +71,9 @@ module Dash::TablesHelper
     end
   end
 
-  def table_overview(options)
+  def table_overview(options, &block)
     content_tag(:div, class: "table-header #{'focus-search' if params[:q].present?}") do
-      content_tag(:div, class: 'info') do
-        link_to('New', '#', class: 'btn btn-primary')
-      end +
+      content_tag(:div, (block_given? ? capture(&block) : ''), class: 'info')+
       content_tag(:div, class: 'actions') do
         concat table_search if options[:search]
         concat link_to(content_tag(:i, '', class: 'fa fa-filter'), '#', class: 'btn-icon btn-secondary table-filters-toggle') if options[:filters]
@@ -202,10 +200,10 @@ module Dash::TablesHelper
   end
 
   def batch_pane(options={})
-    options.reverse_merge!(only: [:update, :destroy])
+    options.reverse_merge!(batch: [:update, :destroy])
     actions = []
-    actions << link_to(content_tag(:i, '', class: 'fa fa-pencil'), '#', class: 'btn-icon btn-secondary', data: {toggle: "modal", target: "#tableBatchUpdateModal"}) if options[:only].include?(:update)
-    actions << link_to(content_tag(:i, '', class: 'fa fa-trash'), '#', class: 'btn-icon btn-secondary', data: {toggle: "modal", target: "#tableBatchDestroyModal"}) if options[:only].include?(:destroy)
+    actions << link_to(content_tag(:i, '', class: 'fa fa-pencil'), '#', class: 'btn-icon btn-secondary', data: {toggle: "modal", target: "#tableBatchUpdateModal"}) if options[:batch].include?(:update)
+    actions << link_to(content_tag(:i, '', class: 'fa fa-trash'), '#', class: 'btn-icon btn-secondary', data: {toggle: "modal", target: "#tableBatchDestroyModal"}) if options[:batch].include?(:destroy)
     actions = actions.join('')
     %{
       <div id="table-bulk-options">
