@@ -1,0 +1,61 @@
+body.layout-session{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.page-wrapper{
+  flex: 1;
+}
+// Footer
+.page-footer{
+}
+.footer-wrapper{
+  padding: 1rem 1rem;
+  display: flex;
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  .pf-right{
+    flex: 1;
+    text-align: right;
+  }
+  .footer-link{
+    display: inline-block;
+    color: $gray-700;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .pf-right .footer-link:last-child{
+    padding-right: 0;
+  }
+  .pf-left .footer-link:first-child{
+    padding-left: 0;
+  }
+}
+
+.standout{
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.session-error{
+  background-color: rgba(theme-color("danger"), 0.3);
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 2px;
+  font-size: 0.9rem;
+}
+.card-session{
+
+  .form-control:focus{
+    background: none;
+    border-bottom: 2px solid theme-color("primary");
+  }
+  .actions{
+    margin-top: 2rem;
+    text-align: right;
+  }
+}
+

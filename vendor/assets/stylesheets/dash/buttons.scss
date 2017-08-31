@@ -1,6 +1,13 @@
+// Links
+.link-highlight{
+  color: $link-hover-color;
+}
+
+// Buttons
 .btn{
   text-transform: uppercase;
   border-radius: 2px;
+  cursor: pointer;
 }
 .btn:hover{
   box-shadow: 0 1px 1px $gray-600;
@@ -21,6 +28,13 @@
   border: none !important;
 }
 
+.btn-transparent, .btn-transparent:hover{
+  background-color: rgba($black, 0.1);
+  color: $white;
+}
+.btn-transparent:hover{
+  box-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
 // Icon Buttons
 .btn-icon{
   display:inline-block;

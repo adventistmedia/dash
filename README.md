@@ -59,8 +59,9 @@ config.action_mailer.delivery_method = :mandrill
 slack_bot_username: mybotname
 slack_notification_webhook: http://webhook
 mandrill_api_key:
-myadventist_client_key:
+myadventist_client_id:
 myadventist_client_secret:
+myadventist_redirect_uri:
 ```
 
 

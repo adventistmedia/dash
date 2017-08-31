@@ -10,3 +10,24 @@ en:
     cancel: Cancel
     save: Save
     saving: Saving...
+    support: Support
+  legal:
+    privacy: Privacy
+    terms: Terms
+  sessions:
+    email_or_username_placeholder: Email or username
+    email_placeholder: Email
+    first_name_placeholder: First name
+    forgot_password: Forgot password?
+    last_name_placeholder: Last name
+    password_placeholder: Password
+    sign_in: Sign in
+    sign_in_title: Sign in with myAdventist
+    sign_in_failed: Email and password do not match.
+    sign_out: Sign out
+    sign_out_success: Successfully signed out
+    sign_up: Sign up
+    sign_up_title: Sign up to myAdventist
+  myadventist_user:
+    validations:
+      password_complexity: requires one digit, symbol, uppercase & lowercase character
