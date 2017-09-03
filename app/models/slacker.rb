@@ -1,22 +1,19 @@
 class Slacker
 
-  def self.post_message(message)
-    if active?
-      notifier.ping message
-      return true
-    end
-    false
+  def initialize(options={})
+    @webhook = options[:webhook] || Rails.application.secrets.slack_notification_webhook
+    @username = options[:username] || Rails.application.secrets.slack_bot_username.to_s
   end
 
-  def self.notifier
-    Slack::Notifier.new webhook.to_s, username: Rails.application.secrets.slack_bot_username
+  def self.post_message(message, options={})
+    slacer = Slacker.new(options)
+    slacer.notifier.ping message
   end
 
-  def self.webhook
-    @webhook ||= Rails.application.secrets.slack_notification_webhook
+  private
+
+  def notifier
+    @notifier ||= Slack::Notifier.new webhook, username: username
   end
 
-  def self.active?
-    notifier.endpoint.class != URI::Generic
-  end
 end
