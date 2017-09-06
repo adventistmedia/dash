@@ -1,13 +1,22 @@
 en:
+  error:
+    page_not_found:
+      title: 404 - Page not found
+      summary: Nothing to see here!
+    server_error:
+      title: 500 - Something went wrong
+      summary: Looks like you found a bug! We've been notified and will check it out.
+      urgent_help_html: If you require urgent help, visit our <a href="%{site}">support site</a>
   flash:
     create_success: Successfully added %{title}
-    create_fail: Unable to add. Please review any error messages.
+    create_failed: Unable to add. Please review any error messages.
     update_success: Successfully saved %{title}
-    update_fail: Unable to save. Please review any error messages.
+    update_failed: Unable to save. Please review any error messages.
     delete_success: Successfully deleted %{title}
     delete_failed: Unable to delete
   text:
     cancel: Cancel
+    next: Next
     save: Save
     saving: Saving...
     support: Support

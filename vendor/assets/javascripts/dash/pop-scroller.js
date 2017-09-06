@@ -16,6 +16,18 @@ class PopScroller {
 
   }
 
+  reset(){
+    this.currentPage = 0;
+    this.lastPage = false;
+    this.initialLoad = false;
+    $(this.parent).html("");
+  }
+
+  reload(){
+    this.reset();
+    this.intialItemLoad();
+  }
+
   scrollCheck(){
     // get position to bottom
     var scrollHeight = $(this.parent).prop('scrollHeight');

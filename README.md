@@ -43,7 +43,14 @@ The gem is available as open source under the terms of the [MIT License](http://
 Run the setup rake task
 
 ```
-rails dash:setup
+rails dash:install
+```
+
+### Migrations
+
+Copy migrations for notifications to your app and then run rails db:migrate
+```
+rails railties:install:migrations
 ```
 ### Environment Config
 
@@ -58,6 +65,7 @@ config.action_mailer.delivery_method = :mandrill
 ```
 slack_bot_username: mybotname
 slack_notification_webhook: http://webhook
+slack_enabled: 1
 mandrill_api_key:
 myadventist_client_id:
 myadventist_client_secret:

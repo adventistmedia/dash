@@ -1,6 +1,6 @@
 $(document).on('click', '.toggle-menu', function(e){
   e.preventDefault();
-  var closed = $('#page-nav').width() == 0
+  var closed = $('#page-nav').width() == 0;
   if(closed){
     $('#page-nav').animate({'flex-basis': 250}, 250);
   }else{
@@ -23,6 +23,10 @@ function loadNotifications(){
                     parent: '#notification-list',
                     renderContent: function(data){
                       var html = '';
+                      if(data.length == 0){
+                        html += `<li><div class="notifications-empty">No news is good news.</div></li>`
+                        return html;
+                      }
                       $.each(data, function(i, item){
                         var icon = item.icon || 'paper-plane';
                         var subtitle = item.subtitle ? '<span class="subtitle">'+item.subtitle+'</span>' : '';
@@ -33,6 +37,10 @@ function loadNotifications(){
                         if(links){
                           links = `<div class="links">${links}</div>`;
                         }
+                        var unread = '';
+                        if(!item.read){
+                          unread = `<div class="unread"><i class="fa fa-circle"></i></div>`;
+                        }
                         html += `
                           <li>
                             <div class="notification-item">
@@ -40,6 +48,7 @@ function loadNotifications(){
                                 <i class="fa fa-${icon}"></i>
                               </div>
                               <div class="content">
+                                ${unread}
                                 <h5>${item.title}</h5>
                                 ${subtitle}
                                 <p>${item.description}</p>

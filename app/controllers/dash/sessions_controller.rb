@@ -1,5 +1,5 @@
 class Dash::SessionsController < ApplicationController
-  layout 'session'
+  layout "dash/session"
 
   # Sign in
   def new
@@ -18,14 +18,14 @@ class Dash::SessionsController < ApplicationController
   def destroy
     signout_user
     flash[:notice] = t("sessions.sign_out_success")
-    redirect_to signin_path
+    redirect_to main_app.signin_path
   end
 
   private
 
   def after_signin_success
     self.current_user = @user
-    redirect_to dashboard_root_path
+    redirect_to main_app.dashboard_root_path
   end
 
   def signin_params

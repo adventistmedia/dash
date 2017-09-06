@@ -66,7 +66,7 @@ module Dash::TablesHelper
       concat batch_pane(options) if options[:batch].any?
       concat table_wrapper(scope, options)
       concat table_paginate(scope)
-      concat table_about
+      concat about_modal
       concat modal_batch_destroy(url: options[:batch_destroy_url]) if options[:batch].include?(:destroy)
     end
   end
@@ -94,14 +94,14 @@ module Dash::TablesHelper
       content_tag(:tr) do
         concat(bulk_selector_all) if options[:batch].present?
         options[:table_headers].each do |header|
-          concat header.is_a?(Array) ? sort_header(*header) : content_tag(:th, header)
+          concat header.is_a?(Array) ? sort_header(*header) : content_tag(:th, header.to_s.titleize)
         end
         concat(content_tag(:th, '')) if options[:table_header_actions]
       end
     end
   end
 
-  def table_about
+  def about_modal
     %{
     <div class="modal fade" id="tableAboutModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">

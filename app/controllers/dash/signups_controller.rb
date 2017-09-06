@@ -1,5 +1,5 @@
 class Dash::SignupsController < ApplicationController
-  layout 'session'
+  layout "dash/session"
   before_action :redirect_if_current_sign_in
 
   def new

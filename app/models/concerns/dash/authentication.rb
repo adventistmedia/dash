@@ -12,7 +12,7 @@ module Dash::Authentication
       return nil unless response.success?
 
       # get current user
-      if user = self.signin_scope.where(myadventist_user_id: response.data[:user_id]).first
+      if user = self.signin_scope.where(adventist_uid: response.data[:user_id]).first
         user.track_sign_in!(options[:ip])
       end
       user

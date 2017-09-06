@@ -12,7 +12,7 @@ module Dash::AuditsHelper
   end
 
   def audit_summary(audit)
-    case action
+    case audit.action
     when "create"
       "Created"
     when "destroy"
@@ -24,9 +24,8 @@ module Dash::AuditsHelper
 
   def audit_update_summary(changes)
 
-    if achanges.length == 1
-      name = changes.keys.first
-      name.gsub!(/_id\Z/, '')
+    if changes.length == 1
+      name = changes.keys.first.gsub(/_id\Z/, '')
       "#{name.titleize} changed"
     else
       "Edited"

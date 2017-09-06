@@ -4,7 +4,10 @@
   list-style:none;
   padding: 0;
 }
-
+.notifications-empty{
+  text-align: center;
+  margin-top: 4rem;
+}
 .notification-item{
   display: flex;
   flex-direction: row;
@@ -18,6 +21,14 @@
     text-align: center;
     i{
       vertical-align: bottom;
+    }
+  }
+  .unread{
+    float: right;
+    i{
+      color: theme-color("danger");
+      font-size: 10px;
+      line-height: 10px;
     }
   }
   .content{
@@ -43,4 +54,13 @@
   .links{
     margin-bottom: 0.5rem;
   }
+}
+.unread-notifications i:after{
+  content: "\f111";
+  font-family: "FontAwesome";
+  font-size: 12px;
+  position: absolute;
+  top: 3px;
+  right: 7px;
+  color: theme-color("danger");
 }
