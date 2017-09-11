@@ -72,9 +72,14 @@ function loadLightbox() {
   	}
   })
 }
+
 $(document).on('turbolinks:load', loadLightbox);
 $(document).on('turbolinks:load', loadNotifications);
 
+$(document).on('click', '.lightbox-close', function(e){
+  e.preventDefault();
+  window.parent.$.fancybox.close();
+})
 $(document).on('show.bs.dropdown', '.nav-item-notification .dropdown', function(){
   notificationScroller.intialItemLoad();
 })

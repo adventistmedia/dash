@@ -7,6 +7,8 @@ require "simple_form"
 require "mandrill_dm"
 require "cancancan"
 require "audited"
+require "record_tag_helper"
+require "worldly"
 module Dash
   mattr_accessor :user_class
   @@user_class = "User"

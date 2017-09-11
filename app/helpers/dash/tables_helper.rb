@@ -56,7 +56,7 @@ module Dash::TablesHelper
       about: true,
       partial: nil,
       table_header_actions: true,
-      filters: true,
+      filters: false,
       batch: [],
       batch_destroy_url: "#{request.path}/batch_destroy"
     )
@@ -137,12 +137,18 @@ module Dash::TablesHelper
     content_tag(:div, class: "dropdown") do
       link_to(title.html_safe + content_tag(:i, '', class: 'fa fa-angle-down'), '#', class: "dropdown-toggle #{'active' if active_field}", data: {toggle: 'dropdown'}) +
       content_tag(:div, class: 'dropdown-menu dropdown-menu-icons') do
-        concat link_to("#{content_tag(:i, '', class: "fa #{'fa-check' if applied_filter.field_active?(filter[:label], nil)}")}Any #{filter[:title]}".html_safe, request.params.deep_merge(filter: {filter[:label] => nil}), class: 'dropdown-item')
+        concat link_to("#{content_tag(:i, '', class: "fa #{'fa-check' if applied_filter.field_active?(filter[:label], nil)}")}Any #{filter[:title]}".html_safe, filter_any_params(filter[:label]), class: 'dropdown-item')
         filter[:fields].each do |field|
           concat link_to(content_tag(:i, '', class: "fa #{'fa-check' if applied_filter.field_active?(filter[:label], field[:value])}") + field[:title], request.params.deep_merge(filter: {filter[:label] => field[:value]}), class: 'dropdown-item')
         end
       end
     end
+  end
+
+  def filter_any_params(field)
+    ps = request.params.deep_dup
+    ps[:filter] && ps[:filter].delete(field)
+    ps
   end
 
   def table_search

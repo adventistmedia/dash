@@ -106,3 +106,28 @@ respond_to do |format|
   format.csv { send_data CustomUserExporter.new(@users).to_csv, filename: "users-export.csv" }
 end
 ```
+
+
+## HTML
+
+### Team Nav
+
+```
+<div class="team-nav">
+  <div class="wrapper">
+    <div class="team-nav-content">
+      <div class="avatar">
+        <%= image_tag "https://site.com/avatar_blue.jpg" %>
+      </div>
+      <div class="content">
+        <span class="name">Wahroonga Church</span>
+      </div>
+      <%= link_to content_tag(:i, "", class: "fa fa-angle-down"), "#", class: "team-toggle" %>
+    </div>
+    <ul class="team-list nav-group">
+      <li><%= link_to content_tag(:i, "", class: "fa fa-fort-awesome icon").html_safe + "Fox Valley Church", "#", class: "nav-group-item" %></li>
+      <li><%= link_to content_tag(:i, "", class: "fa fa-fort-awesome icon").html_safe + "3am Church", "#", class: "nav-group-item" %></li>
+    </ul>
+  </div>
+</div>
+```

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get "/legal/terms", to: "dash/legal#terms", as: :terms_legal
   get "/legal/privacy", to: "dash/legal#privacy", as: :privacy_legal
-  get "support", to: redirect(""), as: :dashboard_support
+  # get "support", to: redirect(""), as: :dashboard_support
 
   get "dashboard/404", to: "dashboard/errors#page_not_found"
   get "dashboard/500", to: "dashboard/errors#server_error"

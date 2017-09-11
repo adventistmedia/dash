@@ -7,3 +7,4 @@
 //= require dash/notifications
 
 //= require plugins/fancybox
+//= require plugins/datetimepicker

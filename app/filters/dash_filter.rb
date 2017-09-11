@@ -36,11 +36,13 @@ class DashFilter
   def self.add_filter(name, options)
     self.filter_options ||= {}
     fields = []
-    options[:fields].each do |field|
+    filter_fields = options[:fields].is_a?(Symbol) ? send(options[:fields]) : options[:fields]
+    filter_fields.each do |field|
       fields << if field.is_a?(Array)
         {title: field[0], value: field[1], condition: field[2]}
       else
-        {title: field.titleize, value: field, condition: {options[:table_name] => {name => field}} }
+        column_name = options[:column] || name
+        {title: field.titleize, value: field, condition: {options[:table_name] => {column_name => field}} }
       end
     end
 

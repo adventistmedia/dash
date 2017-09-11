@@ -58,6 +58,7 @@
     border-style: dotted;
     color: $gray-500;
     background-image: none;
+    cursor: not-allowed;
   }
 
   // Select
@@ -79,4 +80,15 @@
   textarea.form-control{
     min-height: 150px;
   }
+}
+
+.form-toggle{
+  font-size: 1.5rem;
+}
+
+.input-group-addon{
+  border: none;
+  border-bottom: 1px solid $gray-300;
+  background: none;
+  border-radius: 0;
 }
