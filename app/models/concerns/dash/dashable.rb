@@ -33,4 +33,17 @@ module Dash::Dashable
 
   end
 
+  # Instance methods
+  def object_modal_title
+    model_name.human
+  end
+
+  def object_title
+    name
+  end
+
+  def auditable_title
+    "#{object_modal_title} - #{object_title}"
+  end
+
 end

@@ -51,6 +51,7 @@ module Dash::TablesHelper
   def dash_table(scope, options={}, &block)
     options.reverse_merge!(
       search: true,
+      table_overview: true,
       table_headers: [],
       header_actions: [],
       about: true,
@@ -61,7 +62,7 @@ module Dash::TablesHelper
       batch_destroy_url: "#{request.path}/batch_destroy"
     )
     content_tag(:div, class: 'table-features') do
-      concat table_overview(options, &block)
+      concat table_overview(options, &block) if options[:table_overview]
       concat table_filters(scope) if options[:filters]
       concat batch_pane(options) if options[:batch].any?
       concat table_wrapper(scope, options)
@@ -84,8 +85,8 @@ module Dash::TablesHelper
 
   def table_wrapper(scope, options)
     content_tag(:table, class: 'table') do
-      concat table_header(options)
-      concat content_tag(:tbody, render(collection: scope, partial: options[:partial]), id: 'table-body')
+      concat table_header(options) if options[:table_headers].any?
+      concat content_tag(:tbody, render(collection: scope, partial: options[:partial]), id: "table-body")
     end
   end
 

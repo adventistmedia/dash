@@ -2,7 +2,9 @@
 .link-highlight{
   color: $link-hover-color;
 }
-
+.fa-x1-5{
+  font-size: 1.5rem !important;
+}
 // Buttons
 .btn{
   text-transform: uppercase;
@@ -11,6 +13,11 @@
 }
 .btn:hover{
   box-shadow: 0 1px 1px $gray-600;
+}
+.btn-circle{
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
 }
 .btn-default{
   background-color: $white;
