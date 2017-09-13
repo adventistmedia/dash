@@ -1,0 +1,43 @@
+.ia-wrapper{
+  position: relative;
+}
+.ia-results{
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: $white;
+  padding: 0;
+  list-style: none;
+  margin-top: -1px;
+  li{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    .logo{
+      flex: 0 0 35px;
+      img{
+        height: 20px;
+      }
+    }
+    .content{
+      flex: 1;
+    }
+    a{
+      display: block;
+    }
+    .subtitle{
+      display: block;
+      font-size: 0.8rem;
+    }
+  }
+  li:hover, li.selected{
+    background-color: $gray-200;
+  }
+}
+.ia-results.active{
+  box-shadow: 0 3px 4px $nav-box-shadow-color;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: 1px solid $gray-200;
+}

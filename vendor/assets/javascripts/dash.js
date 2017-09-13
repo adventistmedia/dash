@@ -5,6 +5,7 @@
 //= require dash/table
 //= require dash/snackbar
 //= require dash/notifications
+//= require dash/input-autocomplete
 
 //= require plugins/fancybox
 //= require plugins/datetimepicker

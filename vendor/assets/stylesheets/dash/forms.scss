@@ -92,3 +92,10 @@
   background: none;
   border-radius: 0;
 }
+.label-with-link{
+  font-weight: normal !important;
+  font-size: 1rem !important;
+  a{
+    color: $link-color-primary;
+  }
+}

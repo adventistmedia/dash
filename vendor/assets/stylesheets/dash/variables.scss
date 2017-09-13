@@ -21,6 +21,7 @@ $text-color:            $gray-900;
 
 // Links
 $link-color:            $gray-900;
+$link-color-primary:    theme-color('primary');
 $link-decoration:       none;
 $link-hover-color:      theme-color('primary');
 $link-hover-decoration: underline;
