@@ -1,6 +1,9 @@
 .dash-list{
   list-style:none;
   padding: 0;
+  li.slim{
+    padding: 0;
+  }
   li{
     display: flex;
     flex-direction: row;
@@ -36,4 +39,24 @@
   .list-body{
     border-bottom: 1px solid $gray-200;
   }
+}
+.dash-list-item-lines li{
+  border-bottom: 1px solid $gray-200;
+  .list-icon{
+    padding: 0 0.5rem 0 0.75rem;
+  }
+}
+// scrollable
+.dash-list.scrollable{
+  overflow-y: scroll;
+  border: 1px solid $gray-200;
+}
+.dash-list-search{
+  width: 100%;
+  border: none;
+  background-color: $gray-200;
+  padding: 0.25rem 0.75rem;
+}
+.dash-list-search:focus{
+  outline: none;
 }
