@@ -12,10 +12,32 @@ module Dash::Authentication
       return nil unless response.success?
 
       # get current user
-      if user = self.signin_scope.where(adventist_uid: response.data[:user_id]).first
-        user.track_sign_in!(options[:ip])
+      user = self.signin_scope.where(adventist_uid: response.data[:user_id]).first
+      if user
+        if user.active?
+          user.track_sign_in!(options[:ip])
+          return user
+        end
+      else
+        return create_user(response.data) if create_on_signin?
       end
-      user
+      nil
+    end
+
+    def create_user(data)
+      user = User.create(
+        status: "active",
+        first_name: data[:first_name],
+        last_name: data[:last_name],
+        email: data[:primary_email],
+        adventist_uid: data[:user_id]
+      )
+      user.persisted? ? user : nil
+    end
+
+    # create the user on signup if they don't already exist
+    def create_on_signin?
+      true
     end
 
     # scope when querying for the user to sign in, override to customize

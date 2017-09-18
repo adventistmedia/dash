@@ -1,5 +1,6 @@
 class Dash::SessionsController < ApplicationController
   layout "dash/session"
+  before_action :already_signed_in, only: [:new, :create]
 
   # Sign in
   def new
@@ -26,6 +27,12 @@ class Dash::SessionsController < ApplicationController
   def after_signin_success
     self.current_user = @user
     redirect_to main_app.dashboard_root_path
+  end
+
+  def already_signed_in
+    if current_user
+      redirect_to main_app.dashboard_root_path
+    end
   end
 
   def signin_params
