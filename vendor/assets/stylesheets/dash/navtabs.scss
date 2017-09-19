@@ -19,6 +19,13 @@ ul.nav-tabs{
   }
 }
 
+ul.nav-tabs.nav-tabs-simple{
+  background: none;
+  border-bottom: 2px solid $gray-400;
+  li{
+    margin-bottom: -2px;
+  }
+}
 // Page Banner with nav tab
 .page-banner{
   background-color: $white;
