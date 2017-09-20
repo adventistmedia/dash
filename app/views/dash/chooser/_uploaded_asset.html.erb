@@ -1,0 +1,31 @@
+<%= content_tag_for(:div, asset, class: "uploaded-item") do %>
+  <div class="preview">
+    <div class="title"><%= image_tag asset.url(:thumb), class: "preview-img" %> <%= asset.name %></div>
+    <div class="actions">
+      <%= link_to content_tag(:i, "", class: "fa fa-pencil"), "#", class: "btn-icon", data: {toggler: "##{dom_id(asset)} .asset-form"} %>
+      <%= link_to content_tag(:i, "", class: "fa fa-trash"), chooser_path(asset.id), method: :delete, remote: true, class: "btn-icon" %>
+    </div>
+  </div>
+  <div class="asset-form" style="display:none;">
+    <div class="card mt-4">
+      <div class="card-body">
+        <%= simple_form_for asset, url: chooser_path(asset.id), remote: true, method: :patch, html: {class: "compact"} do |f| %>
+          <%= f.input :name %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :credit %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :credit_url %>
+            </div>
+          </div>
+          <%= f.input :tags, hint: "Seperate tags by comma" %>
+          <div class="form-footer">
+            <%= f.submit t("text.save"), class: "btn btn-primary", data: { disable_with: t("text.saving")} %>
+            <%= link_to t("text.cancel"), "#", class: "btn btn-secondary", data: {toggler: "##{dom_id(asset)} .asset-form"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

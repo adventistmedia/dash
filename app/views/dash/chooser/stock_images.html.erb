@@ -1,0 +1,16 @@
+<%= render "/dash/chooser/nav", menu: :stock_images  %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <%= table_overview(filters: true, header_actions: [], search: true) %>
+      <%= table_filters(@assets) %>
+      <div id="asset-image-list">
+        <%= render collection: @assets, partial: "/dash/chooser/image_asset", as: :asset %>
+      </div>
+      <%= table_paginate @assets %>
+    </div>
+  </div>
+</div>
+<%= javascript_tag do %>
+var asset_list = <%= raw(@assets_for_json.to_json) %>;
+<% end %>

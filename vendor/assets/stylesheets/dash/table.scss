@@ -31,6 +31,9 @@
     }
   }
 }
+.table-borderless{
+  border: none;
+}
 .table-pagination{
   text-align: right;
   border: 1px solid $gray-200;

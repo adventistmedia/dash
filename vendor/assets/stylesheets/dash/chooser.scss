@@ -1,0 +1,62 @@
+// Dropzone for uploader
+#dropzone{
+  width: 100%;
+  padding: 30px 0;
+  text-align: center;
+}
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: translate(-300px, 0) scale(4);
+  font-size: 23px;
+  direction: ltr;
+  cursor: pointer;
+}
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+// Image list view
+#asset-image-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  background: $white;
+  padding: 2rem 0;
+  border: 1px solid $gray-200;
+  .asset-image{
+    padding: 0 1rem 2rem 1rem;
+  }
+}
+// File Uploader list
+#upload-list{
+  .upload-item, .uploaded-item{
+    border-bottom: 1px solid $gray-300;
+    padding: 0.5rem 0;
+  }
+  .upload-item, .uploaded-item .preview{
+    display: flex;
+    justify-content: space-around;
+    .title{
+      flex: 2;
+    }
+    .status, .actions{
+      flex: 1;
+      text-align: right;
+    }
+  }
+  .uploaded-item{
+    .preview-img{
+      margin-right: 1rem;
+    }
+  }
+}

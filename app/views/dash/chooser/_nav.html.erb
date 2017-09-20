@@ -1,0 +1,11 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-12">
+      <ul class="nav-tabs nav-tabs-simple">
+        <%= content_tag(:li, link_to("My Images", chooser_path(:images), class: ("active" if menu == :images))) if @chooser_tabs.include?("images") %>
+        <%= content_tag(:li, link_to("Stock Images", chooser_path(:stock_images), class: ("active" if menu == :stock_images))) if @chooser_tabs.include?("images") %>
+        <%= content_tag(:li, link_to("Upload", chooser_path(:upload), class: ("active" if menu == :upload))) if @chooser_tabs.include?("upload") %>
+      </ul>
+    </div>
+  </div>
+</div>

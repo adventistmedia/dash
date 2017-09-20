@@ -7,6 +7,7 @@
 //= require dash/notifications
 //= require dash/input-autocomplete
 //= require dash/list-filter
+//= require dash/chooser
 
 //= require plugins/fancybox
 //= require plugins/datetimepicker
