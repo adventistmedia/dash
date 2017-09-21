@@ -1,0 +1,13 @@
+<%= render "/dash/chooser/nav", menu: :documents %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <%= dash_table @assets, table_headers: [[:name, "Name"], [:created_at, "Uploaded At"]] do %>
+        <%= link_to "Upload Document", chooser_path(:upload_document), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= javascript_tag do %>
+var asset_list = <%= raw(@assets_for_json.to_json) %>;
+<% end %>

@@ -44,4 +44,27 @@ module Dash::ChooserHelper
       (options.key?(:hint) ? content_tag(:p, options[:hint], class: "help-block") : nil)
     end
   end
+
+  def s3_uploader_form(options = {}, &block)
+    uploader = S3Uploader.new(site: @site)
+    form_tag(uploader.url, s3_form_options(options)) do
+      uploader.fields.map do |name, value|
+        hidden_field_tag(name, value)
+      end.join.html_safe + capture(&block)
+    end
+  end
+
+  def s3_form_options(options)
+    {
+      id: "fileupload",
+      class: "document-fileupload",
+      method: "post",
+      authenticity_token: false,
+      multipart: true,
+      data: {
+        as: "file",
+        callback_url: options[:callback_url]
+      }
+    }
+  end
 end

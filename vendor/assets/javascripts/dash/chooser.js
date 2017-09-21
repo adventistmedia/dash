@@ -37,8 +37,83 @@ function bytesToSize(bytes) {
 }
 
 function chooserUploader(){
+  // DOCUMENT UPLOADER
+  $('.document-fileupload').fileupload({
+    dropZone: $('#dropzone'),
+    autoUpload: true,
+    paramName: 'file',
+    dataType: 'xml', // S3 returns xml, so expect xml in return
+    singleFileUploads: false,
+    limitMultiFileUploads: 1,
+    sequentialUploads: true,
+    multipart: true,
+    disableImageMetaDataLoad: true,
+    add: function (e, data) {
+
+      var uploadErrors = [];
+      var maxSize = 3000000; // 3MB
+      var acceptFileTypes = /^application\/(pdf)$/i;
+      data.files[0]['id'] = "u-"+timestamp_id();
+      if(data.files[0]['type'].length && !acceptFileTypes.test(data.files[0]['type'])) {
+          uploadErrors.push('Not an accepted file type');
+      }
+      if(data.files[0]['size'] > maxSize) {
+        uploadErrors.push('File size must be be less than 3MB');
+      }
+      if(uploadErrors.length > 0) {
+        var status = uploadErrors.join("\n");
+      } else {
+        var status = `<div class="progress"><div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div></div>`;
+        data.submit();
+      }
+      var html = $(`<div id="${data.files[0]['id']}" class="upload-item">
+                      <div class="title">${data.files[0].name}</div>
+                      <div class="status">${status}</div>
+                    </div>`);
+      $(html).appendTo('#upload-list');
+    },
+    progress: function (e, data) {
+      var percentage = Math.round((data.loaded * 100.0) / data.total);
+      var bar = $("#"+data.files[0]['id']+" .progress-bar");
+      bar.text(percentage + "%");
+      bar.css("width", percentage + "%");
+      bar.attr("aria-valuenow", percentage);
+    },
+    fail: function (e, data) {
+      $("#"+data.files[0]['id']+" .status").text("Upload failed");
+    }
+  })
+  .off("fileuploaddone").on("fileuploaddone", function (e, data) {
+    var status_el = $("#"+data.files[0]['id']+" .status");
+    status_el.text("Almost there...");
+    var response = $(data.jqXHR.responseText);
+    ajax_data = {
+      file:{
+        name: data.files[0].name,
+        dom_id: data.files[0].id,
+        tag: response.find('eTag').text(),
+        location: response.find('Location').text(),
+        key: response.find('Key').text(),
+        content_type: data.files[0].type,
+        file_size: data.files[0].size
+      }
+    }
+    // $('.upload-field').each(function(index, el){
+    //   ajax_data[$(el).attr('name')] = $(el).val();
+    // })
+    $.ajax({
+      url: $(this).parents("form").attr("action"),
+      type: 'POST',
+      data: ajax_data,
+      dataType: 'script',
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        status_el.text('500 error adding to server')
+      }
+    });
+  })
+
   // IMAGE UPLOADER
-  $(".asset-fileupload")
+  $(".image-fileupload")
   .cloudinary_fileupload({
     // Uncomment the following lines to enable client side image resizing and valiation.
     // Make sure cloudinary/processing is included the js file

@@ -11,3 +11,4 @@
 
 //= require plugins/fancybox
 //= require plugins/datetimepicker
+//= require dash/calendar-pickers

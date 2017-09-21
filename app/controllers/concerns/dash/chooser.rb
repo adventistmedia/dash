@@ -4,7 +4,7 @@ module Dash::Chooser
   included do
     layout "dashboard_lightbox"
     authorize_resource class: false
-    before_action :set_tabs, only: [:upload, :images, :stock_images]
+    before_action :set_tabs, only: [:upload_document, :upload_image, :images, :stock_images, :documents]
     before_action :set_chooser_path
     before_action :find_asset, only: [:update, :destroy]
   end
@@ -21,25 +21,50 @@ module Dash::Chooser
 
   # POST
   # recieve uploaded data to create asset
-  def complete_upload
+  def complete_image_upload
     @dom_id = "##{params[:photo][:dom_id]}"
 
-    @asset = Asset.new(uploaded_asset_attributes.reverse_merge(uploaded_by: current_user))
+    @asset = Image.new(uploaded_asset_attributes.reverse_merge(uploaded_by: current_user))
+    @asset.add_meta(params[:photo])
+    @asset.save
+    render template: "/dash/chooser/complete_upload"
+  end
+
+  # POST
+  # recieve uploaded data to create asset
+  def complete_document_upload
+    @dom_id = "##{params[:photo][:dom_id]}"
+
+    @asset = Document.new(uploaded_asset_attributes.reverse_merge(uploaded_by: current_user))
     @asset.add_meta(params[:photo])
     @asset.save
     render template: "/dash/chooser/complete_upload"
   end
 
   # GET
-  # Upload screen
-  def upload
-    render template: "/dash/chooser/upload"
+  # Upload document screen
+  def upload_document
+    render template: "/dash/chooser/upload_document"
+  end
+
+  # GET
+  # Upload image screen
+  def upload_image
+    render template: "/dash/chooser/upload_image"
+  end
+
+  # GET
+  # Uploaded documents accessible to user
+  def documents
+    @assets = filtered_assets.where(type: "Document").page(params[:page]).order("created_at DESC").per(12)
+    @assets = @assets.search(params[:q], fuzzy: true) if params[:q].present?
+    return_assets
   end
 
   # GET
   # Uploaded images accessible to user
   def images
-    @assets = filtered_assets.page(params[:page]).order("created_at DESC").per(12)
+    @assets = filtered_assets.where(type: "Image").page(params[:page]).order("created_at DESC").per(12)
     @assets = @assets.search(params[:q], fuzzy: true) if params[:q].present?
     return_assets
   end
@@ -47,7 +72,7 @@ module Dash::Chooser
   # GET
   # Stock images
   def stock_images
-    @assets = Asset.stock.paginate(params).filter(params[:filter], filter: StockImageFilter).order("created_at DESC").per(12)
+    @assets = Image.stock.paginate(params).filter(params[:filter], filter: StockImageFilter).order("created_at DESC").per(12)
     @assets = @assets.search(params[:q], fuzzy: true) if params[:q].present?
     return_assets
   end
@@ -59,7 +84,7 @@ module Dash::Chooser
   end
 
   def set_tabs
-    tab_options = ["images", "upload"]
+    tab_options = ["images", "documents", "upload_document", "upload_image"]
     if params[:tabs].present?
       @chooser_tabs = params[:tabs].split(",").reject{|t| !tab_options.include?(t) }
       cookies[:chooser_tabs] = @chooser_tabs
@@ -91,7 +116,8 @@ module Dash::Chooser
   end
 
   def asset_params
-    params.fetch(:asset, {}).permit(:name, :tags, :credit, :credit_url, :stock)
+    params.fetch(:asset, {}).permit(:name, :summary, :tags, :credit,
+      :credit_url, :stock, :published_on)
   end
 
   def set_chooser_path

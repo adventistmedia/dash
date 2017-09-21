@@ -1,0 +1,20 @@
+<%= render "/dash/chooser/nav", menu: :upload_document %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <%= s3_uploader_form do %>
+        <div id="dropzone">
+          <h1>Drop file here</h1>
+          <p>or</p>
+          <span class="btn btn-primary fileinput-button">
+            <i class="fa fa-plus fa fa-white"></i> <span>Select Files</span>
+            <input type="file" name="files[]" multiple>
+          </span>
+        </div>
+      <% end %>
+      <p>Maximum upload file size: 3Mb</p>
+      <div id="upload-list">
+      </div>
+    </div>
+  </div>
+</div>

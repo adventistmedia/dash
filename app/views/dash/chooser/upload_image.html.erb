@@ -1,14 +1,14 @@
-<%= render "/dash/chooser/nav", menu: :upload %>
+<%= render "/dash/chooser/nav", menu: :upload_image %>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <%= form_with(url: chooser_path(:complete_upload), method: :post, local: true) do %>
+      <%= form_with(url: chooser_path(:complete_upload_image), method: :post, local: true) do %>
         <div id="dropzone">
           <h1>Drop file here</h1>
           <p>or</p>
           <span class="btn btn-primary fileinput-button">
             <i class="fa fa-plus fa fa-white"></i> <span>Select Files</span>
-            <%= cl_image_upload_tag(:media_id, use_filename: true, html: {class: "asset-fileupload"}) %>
+            <%= cl_image_upload_tag(:media_id, use_filename: true, html: {class: "image-fileupload"}) %>
           </span>
         </div>
       <% end %>
