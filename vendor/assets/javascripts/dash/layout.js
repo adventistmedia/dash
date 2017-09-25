@@ -69,7 +69,12 @@ function loadLightbox() {
   	smallBtn: false,
   	iframe: {
   		preload: false
-  	}
+  	},
+    afterClose: function (instance) {
+      if(instance.$lastFocus.hasClass("lightbox-reload")){
+        parent.location.reload(true);
+      }
+    }
   })
 }
 

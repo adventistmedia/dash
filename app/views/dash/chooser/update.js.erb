@@ -1,4 +1,6 @@
-$("#<%= dom_id(@asset) %>").replaceWith("<%= j(render(partial: "/dash/chooser/uploaded_asset", locals: {asset: @asset}))%>");
-<% unless @success %>
-$("#<%= dom_id(@asset) %> .asset-form").show();
+<% if @success %>
+  var callback = parent.$.fancybox.getInstance().$lastFocus.data('callback');
+  parent[callback](<%= @asset.id%>);
+<% else %>
+$("#asset-form").html("<%= j(render(partial: "/dash/chooser/form", locals: {asset: @asset}))%>");
 <% end %>

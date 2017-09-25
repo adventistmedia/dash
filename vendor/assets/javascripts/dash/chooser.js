@@ -1,16 +1,19 @@
 
 // default asset inserter
-function assetInsertCallback(el, object){
-  var parentElement = el.parents('.file-asset').first();
-  parentElement.find('.file-value').val(object.id);
+function assetInsertCallback(data){
+  var parentElement = data.chooserTrigger.parents('.file-asset').first();
+  parentElement.find('.file-value').val(data.object.id);
   var preview = parentElement.find('.file-preview');
-  if( object.thumb ){
-    preview.html('<img src="'+object.thumb+'">');
+  if( data.object.thumb ){
+    preview.html('<img src="'+data.object.thumb+'">');
   }else{
-    preview.html("<span class='filename'>"+object.filename+"</span>");
+    preview.html("<span class='filename'>"+data.object.filename+"</span>");
   }
+  parent.$.fancybox.close();
 }
-
+function cleanFilename(filename){
+  return filename.replace(/\s/g, '_').replace(/[^\w.-]/gi, '');
+}
 // click on image to insert
 $(document).on('click', '.chooser-file-insert', function(e){
   e.preventDefault();
@@ -19,9 +22,13 @@ $(document).on('click', '.chooser-file-insert', function(e){
   if( trigger == 'editor' ){
     insertImageToEditor(asset_list[ assetId ], caption );
   }else{
-    parent[trigger.data('callback')](trigger, asset_list[ assetId ] );
+
+    parent[trigger.data('callback')]({
+      chooserTrigger: trigger,
+      object: asset_list[ assetId ],
+      linkTrigger: this,
+    });
   }
-  parent.$.fancybox.close();
 });
 
 //return timestamp as id
@@ -51,14 +58,14 @@ function chooserUploader(){
     add: function (e, data) {
 
       var uploadErrors = [];
-      var maxSize = 3000000; // 3MB
-      var acceptFileTypes = /^application\/(pdf)$/i;
+      var maxSize = 20000000; // 20MB
+      // var acceptFileTypes = /^application\/(pdf)$/i;
       data.files[0]['id'] = "u-"+timestamp_id();
-      if(data.files[0]['type'].length && !acceptFileTypes.test(data.files[0]['type'])) {
-          uploadErrors.push('Not an accepted file type');
-      }
+      // if(data.files[0]['type'].length && !acceptFileTypes.test(data.files[0]['type'])) {
+      //     uploadErrors.push('Not an accepted file type');
+      // }
       if(data.files[0]['size'] > maxSize) {
-        uploadErrors.push('File size must be be less than 3MB');
+        uploadErrors.push('File size must be be less than 20MB');
       }
       if(uploadErrors.length > 0) {
         var status = uploadErrors.join("\n");
@@ -81,7 +88,16 @@ function chooserUploader(){
     },
     fail: function (e, data) {
       $("#"+data.files[0]['id']+" .status").text("Upload failed");
-    }
+    },formData: function (form) {
+      data = form.serializeArray();
+      keyField = $.grep(data, function(f){ return f.name == "key" })
+      if(keyField.length > 0){
+        keyField[0].value = keyField[0].value
+        .replace('{unique_id}', this.files[0].id)
+        .replace('{filename}', cleanFilename(this.files[0].name));
+      }
+      return data;
+    },
   })
   .off("fileuploaddone").on("fileuploaddone", function (e, data) {
     var status_el = $("#"+data.files[0]['id']+" .status");
@@ -102,7 +118,7 @@ function chooserUploader(){
     //   ajax_data[$(el).attr('name')] = $(el).val();
     // })
     $.ajax({
-      url: $(this).parents("form").attr("action"),
+      url: $(this).data('callbackUrl'),
       type: 'POST',
       data: ajax_data,
       dataType: 'script',

@@ -9,7 +9,8 @@
   <div class="asset-form" style="display:none;">
     <div class="card mt-4">
       <div class="card-body">
-        <%= simple_form_for asset, url: chooser_path(asset.id), remote: true, method: :patch, html: {class: "compact"} do |f| %>
+        <%= simple_form_for asset, url: chooser_path(asset.id), as: :asset, remote: true, method: :patch, html: {class: "compact"} do |f| %>
+          <%= hidden_field_tag :inline, 1 %>
           <%= f.input :name %>
           <%= f.input :summary %>
           <div class="row">
@@ -20,6 +21,7 @@
               <%= f.input :credit_url %>
             </div>
           </div>
+          <%= f.input :published_on, as: :pick_date %>
           <%= f.input :tags, hint: "Seperate tags by comma" %>
           <div class="form-footer">
             <%= f.submit t("text.save"), class: "btn btn-primary", data: { disable_with: t("text.saving")} %>

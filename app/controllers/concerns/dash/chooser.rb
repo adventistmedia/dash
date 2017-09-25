@@ -6,12 +6,20 @@ module Dash::Chooser
     authorize_resource class: false
     before_action :set_tabs, only: [:upload_document, :upload_image, :images, :stock_images, :documents]
     before_action :set_chooser_path
-    before_action :find_asset, only: [:update, :destroy]
+    before_action :find_asset, only: [:edit, :update, :destroy]
+  end
+
+  def edit
+    render template: "/dash/chooser/edit"
   end
 
   def update
     @success = @asset.update_attributes( asset_params )
-    render template: "/dash/chooser/update"
+    if params[:inline] == "1"
+      render template: "/dash/chooser/update_inline"
+    else
+      render template: "/dash/chooser/update"
+    end
   end
 
   def destroy
@@ -21,7 +29,7 @@ module Dash::Chooser
 
   # POST
   # recieve uploaded data to create asset
-  def complete_image_upload
+  def complete_upload_image
     @dom_id = "##{params[:photo][:dom_id]}"
 
     @asset = Image.new(uploaded_asset_attributes.reverse_merge(uploaded_by: current_user))
@@ -30,14 +38,17 @@ module Dash::Chooser
     render template: "/dash/chooser/complete_upload"
   end
 
+
   # POST
   # recieve uploaded data to create asset
-  def complete_document_upload
-    @dom_id = "##{params[:photo][:dom_id]}"
+  def complete_upload_document
+    @dom_id = "##{params[:file][:dom_id]}"
 
     @asset = Document.new(uploaded_asset_attributes.reverse_merge(uploaded_by: current_user))
-    @asset.add_meta(params[:photo])
-    @asset.save
+    key = @asset.add_meta(params[:file])
+    if @asset.save
+      @asset.update_columns(media: key)
+    end
     render template: "/dash/chooser/complete_upload"
   end
 

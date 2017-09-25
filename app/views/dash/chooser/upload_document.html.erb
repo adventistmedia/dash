@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <%= s3_uploader_form do %>
+      <%= s3_uploader_form callback_url: complete_upload_document_dashboard_site_chooser_index_path(@site) do %>
         <div id="dropzone">
           <h1>Drop file here</h1>
           <p>or</p>
@@ -12,7 +12,7 @@
           </span>
         </div>
       <% end %>
-      <p>Maximum upload file size: 3Mb</p>
+      <p>Maximum upload file size: 20MB</p>
       <div id="upload-list">
       </div>
     </div>

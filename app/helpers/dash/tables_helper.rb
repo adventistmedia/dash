@@ -59,6 +59,7 @@ module Dash::TablesHelper
       table_header_actions: true,
       filters: false,
       batch: [],
+      paginate: true,
       batch_destroy_url: "#{request.path}/batch_destroy"
     )
     content_tag(:div, class: 'table-features') do
@@ -66,7 +67,7 @@ module Dash::TablesHelper
       concat table_filters(scope) if options[:filters]
       concat batch_pane(options) if options[:batch].any?
       concat table_wrapper(scope, options)
-      concat table_paginate(scope)
+      concat table_paginate(scope) if options[:paginate]
       concat about_modal
       concat modal_batch_destroy(url: options[:batch_destroy_url]) if options[:batch].include?(:destroy)
     end
@@ -86,7 +87,7 @@ module Dash::TablesHelper
   def table_wrapper(scope, options)
     content_tag(:table, class: 'table') do
       concat table_header(options) if options[:table_headers].any?
-      concat content_tag(:tbody, render(collection: scope, partial: options[:partial]), id: "table-body")
+      concat content_tag(:tbody, render(collection: scope, partial: options[:partial], as: options[:as]), id: "table-body")
     end
   end
 

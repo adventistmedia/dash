@@ -1,0 +1,4 @@
+$("#<%= dom_id(@asset) %>").replaceWith("<%= j(render(partial: "/dash/chooser/uploaded_asset", locals: {asset: @asset}))%>");
+<% unless @success %>
+$("#<%= dom_id(@asset) %> .asset-form").show();
+<% end %>
