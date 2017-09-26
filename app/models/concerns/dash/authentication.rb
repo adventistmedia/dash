@@ -12,14 +12,17 @@ module Dash::Authentication
       return nil unless response.success?
 
       # get current user
-      user = self.signin_scope.where(adventist_uid: response.data[:user_id]).first
+      user = self.where(adventist_uid: response.data[:user_id]).first
       if user
         if user.active?
           user.track_sign_in!(options[:ip])
           return user
         end
-      else
-        return create_user(response.data) if create_on_signin?
+      elsif create_on_signin?
+        if user = create_user(response.data)
+          user.track_sign_in!(options[:ip])
+          return user
+        end
       end
       nil
     end
@@ -54,6 +57,7 @@ module Dash::Authentication
 
   # Track the IP address and time the user logged in.
   def track_sign_in!(ip)
+    self.sign_in_count += 1
     self.last_sign_in_ip = self.current_sign_in_ip
     self.last_sign_in_at = self.current_sign_in_at
     self.current_sign_in_ip = ip
