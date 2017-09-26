@@ -9,8 +9,8 @@ class Dash::SignupsController < ApplicationController
   def create
     @myadventist_user = MyadventistUser.new(myadventist_user_params)
     if @myadventist_user.save
-      render :new
-      #redirect_to root_path
+      #render :new
+      redirect_to dashboard_root_path
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Dash::SignupsController < ApplicationController
 
   def redirect_if_current_sign_in
     if @current_user
-      return redirect_to root_path
+      return redirect_to dashboard_root_path
     end
   end
 
