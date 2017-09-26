@@ -61,7 +61,6 @@ class MyadventistApi
   def post_request(path, options)
     conn = Faraday.new(url: @api_host, headers: {"Content-Type" => "application/json"})
     body = default_request_options.reverse_merge(options)
-
     response = conn.post path, body.to_json
     MyadventistResponse.new(response)
   end

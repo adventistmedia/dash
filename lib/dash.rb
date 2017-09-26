@@ -12,6 +12,8 @@ require "worldly"
 module Dash
   mattr_accessor :user_class
   @@user_class = "User"
+  mattr_accessor :site_name
+  @@site_name = "Adventist Church"
 
   # Configuration
   # Dash.setup do |config|
