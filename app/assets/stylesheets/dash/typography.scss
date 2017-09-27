@@ -6,6 +6,9 @@ small, .small{
   font-size: 90%;
 }
 // Links
+a:hover{
+  text-decoration: none !important;
+}
 .link-highlight{
   color: $link-hover-color;
 }
