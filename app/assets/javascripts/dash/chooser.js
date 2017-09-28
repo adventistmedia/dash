@@ -1,7 +1,7 @@
 
 // default asset inserter
 function assetInsertCallback(data){
-  var parentElement = data.chooserTrigger.parents('.file-asset').first();
+  var parentElement = data.chooserTrigger.parents('.asset-selector').first();
   parentElement.find('.file-value').val(data.object.id);
   var preview = parentElement.find('.file-preview');
   if( data.object.thumb ){
@@ -33,7 +33,7 @@ $(document).on('click', '.chooser-file-insert', function(e){
 
 //return timestamp as id
 function timestamp_id(){
-  time = new Date().getTime();
+  var time = new Date().getTime();
   return time & 0xfffffff;
 }
 function bytesToSize(bytes) {

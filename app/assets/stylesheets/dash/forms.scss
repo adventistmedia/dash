@@ -35,15 +35,11 @@
   // Errors
   .error{
     font-size: 0.9rem;
+    color: theme-color('danger');
   }
 
-  .field_with_errors{
-    label.control-label, .error{
-      color: theme-color('danger');
-    }
-    .form-control{
-      // background-color: $gray-200
-    }
+  .field_with_errors .label.control-label{
+    color: theme-color('danger');
   }
   // Footer
   .form-footer{
@@ -105,5 +101,18 @@
   font-size: 1rem !important;
   a{
     color: $link-color-primary;
+  }
+}
+
+// Asset selector
+.asset-selector{
+  .file-preview{
+    margin-right: 0.5rem;
+  }
+  .error{
+    display: block;
+  }
+  .btn{
+    margin-right: 0.5rem;
   }
 }

@@ -22,7 +22,7 @@ module Dash::Dashable
       filter_class ||= "#{self.name}Filter".constantize
 
       # set the applied filter to the scope for use in views
-      self.applied_filter = filter_class.new(self, filter_params)
+      self.applied_filter = filter_class.new(self, filter_params, options[:locals])
 
       # no need to query if params empty
       return all if filter_params.nil?

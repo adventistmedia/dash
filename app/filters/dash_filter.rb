@@ -1,12 +1,14 @@
 class DashFilter
   class_attribute :filter_options
-  attr_accessor :scope, :filters
+  attr_accessor :scope, :filters, :locals
 
   # scope = @users
   # filters = {status: 'published', account: 'active'}
-  def initialize(scope, filters)
+  # locals = {site: @site}
+  def initialize(scope, filters, locals)
     @scope = scope
     @filters = filters || {}
+    @locals = locals || {}
     clean_filters
   end
 

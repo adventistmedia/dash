@@ -6,6 +6,7 @@ class Notification < ApplicationRecord
 
   after_save :update_notifications_count
   after_destroy :update_notifications_count
+  after_create :deliver_notification
 
   validates :user_id, :title, presence: true
 
@@ -32,6 +33,10 @@ class Notification < ApplicationRecord
       read: read,
       links: links
     }
+  end
+
+  def deliver_notification
+    NotificationMailer.delay.notify(id)
   end
 
   private

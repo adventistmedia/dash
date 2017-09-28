@@ -1,0 +1,8 @@
+<p>Hi <%= @user.first_name %>,</p>
+
+<p>You've received a new notification on Adventist Place.</p>
+
+<p><strong><%= @notification.title %></strong></p>
+<p><%= @notification.summary %></p>
+
+<p><%= link_to "Go to Dashboard", "https://dashboard.adventist.place", class: "btn btn-primary" %></p>
