@@ -9,8 +9,4 @@ class PickDatetimeInput < SimpleForm::Inputs::StringInput
     super # leave StringInput to do the real rendering
   end
 
-  def input_html_classes
-    super.push('form-control')
-  end
-
 end
