@@ -20,7 +20,7 @@ module Dash::Searchable
         end
         join_tables = search_fields[options[:profile]].keys - [table_name.to_sym]
         if join_tables.any?
-          query = query.joins(join_tables)
+          query = query.joins(join_tables).distinct
         end
         query
       end
