@@ -1,3 +1,6 @@
+// NOTE modifications were made to fix for bootstrap 4
+// https://github.com/Eonasdan/bootstrap-datetimepicker/issues/1996
+
 //! moment.js
 //! version : 2.18.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
