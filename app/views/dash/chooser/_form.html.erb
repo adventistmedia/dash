@@ -10,7 +10,7 @@
     </div>
   </div>
   <%= f.input :published_on, as: :pick_date %>
-  <%= f.input :tags, hint: "Seperate tags by comma" %>
+  <%= f.input :tag_list, hint: "Seperate tags by comma" %>
   <div class="form-footer">
     <%= f.submit t("text.save"), class: "btn btn-primary", data: { disable_with: t("text.saving")} %>
   </div>

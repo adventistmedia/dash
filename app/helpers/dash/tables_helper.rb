@@ -58,13 +58,14 @@ module Dash::TablesHelper
       partial: nil,
       table_header_actions: true,
       filters: false,
+      filters_show: false,
       batch: [],
       paginate: true,
       batch_destroy_url: "#{request.path}/batch_destroy"
     )
-    content_tag(:div, class: 'table-features') do
+    content_tag(:div, class: "table-features") do
       concat table_overview(options, &block) if options[:table_overview]
-      concat table_filters(scope) if options[:filters]
+      concat table_filters(scope, options) if options[:filters]
       concat batch_pane(options) if options[:batch].any?
       concat table_wrapper(scope, options)
       concat table_paginate(scope) if options[:paginate]
@@ -122,9 +123,9 @@ module Dash::TablesHelper
   }.html_safe
   end
 
-  def table_filters(scope)
+  def table_filters(scope, options={})
     return if scope.applied_filter.nil?
-    active = scope.applied_filter.any?
+    active = scope.applied_filter.any? || options[:filters_show]
     content_tag(:div, class: "table-filters #{'active' if active}") do
       scope.applied_filter.filter_options.each do |_, filter|
         concat table_filter(scope.applied_filter, filter)
