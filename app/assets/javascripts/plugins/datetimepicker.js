@@ -1095,6 +1095,7 @@ return k({},n(this))}function Bc(){return n(this).overflow}function Cc(){return{
                         } else { // otherwise just toggle in class on the two views
                             expanded.removeClass('show');
                             closed.addClass('show');
+                        }
                         if ($this.is('span')) {
                             $this.toggleClass(options.icons.time + ' ' + options.icons.date);
                         } else {
