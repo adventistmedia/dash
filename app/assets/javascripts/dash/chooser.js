@@ -9,7 +9,7 @@ function assetInsertCallback(data){
   }else{
     preview.html("<span class='filename'>"+data.object.filename+"</span>");
   }
-  parent.$.fancybox.close();
+  window.parent.$.fancybox.close();
 }
 function cleanFilename(filename){
   return filename.replace(/\s/g, '_').replace(/[^\w.-]/gi, '');
@@ -18,12 +18,12 @@ function cleanFilename(filename){
 $(document).on('click', '.chooser-file-insert', function(e){
   e.preventDefault();
   var assetId = $(this).data('asset-id');
-  var trigger = parent.$.fancybox.getInstance().$lastFocus;
+  var trigger = window.parent.$.fancybox.getInstance().$lastFocus;
   if( trigger == 'editor' ){
     insertImageToEditor(asset_list[ assetId ], caption );
   }else{
 
-    parent[trigger.data('callback')]({
+    window.parent[trigger.data('callback')]({
       chooserTrigger: trigger,
       object: asset_list[ assetId ],
       linkTrigger: this,
