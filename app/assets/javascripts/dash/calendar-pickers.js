@@ -28,7 +28,7 @@ function calendarPickers() {
 
   $.each( $(".datetimepicker"), function(i,item){
     options = {
-      stepping:30,
+      stepping: 30,
       format: "YYYY/MM/DD hh:mm A",
       icons: datetimeIcons
     };
@@ -37,7 +37,7 @@ function calendarPickers() {
 
   $.each( $(".timepicker"), function(i,item){
     options = {
-      stepping:5,
+      stepping: 5,
       format: "hh:mm A",
       icons: datetimeIcons
     };
