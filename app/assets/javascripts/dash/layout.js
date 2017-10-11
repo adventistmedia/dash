@@ -88,7 +88,3 @@ $(document).on('click', '.lightbox-close', function(e){
 $(document).on('show.bs.dropdown', '.nav-item-notification .dropdown', function(){
   notificationScroller.intialItemLoad();
 })
-$(document).on('click', '[data-toggler]', function(e){
-  e.preventDefault();
-  $( $(this).data('toggler') ).toggle();
-})
