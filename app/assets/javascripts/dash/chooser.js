@@ -9,8 +9,9 @@ function assetInsertCallback(data){
   }else{
     preview.html("<span class='filename'>"+data.object.filename+"</span>");
   }
-  // debugger;
-  window.parent.$.fancybox.close();
+  // this function already exists within the parent,
+  // so don't try call window.parent.$.fancybox
+  $.fancybox.close();
 }
 function cleanFilename(filename){
   return filename.replace(/\s/g, '_').replace(/[^\w.-]/gi, '');
@@ -19,12 +20,10 @@ function cleanFilename(filename){
 $(document).on('click', '.chooser-file-insert', function(e){
   e.preventDefault();
   var assetId = $(this).data('asset-id');
-  // debugger;
   var trigger = window.parent.$.fancybox.getInstance().$lastFocus;
   if( trigger == 'editor' ){
     insertImageToEditor(asset_list[ assetId ], caption );
   }else{
-
     window.parent[trigger.data('callback')]({
       chooserTrigger: trigger,
       object: asset_list[ assetId ],
