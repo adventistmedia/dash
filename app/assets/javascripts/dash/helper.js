@@ -4,6 +4,12 @@ $(document).on('click', '[data-toggler]', function(e){
   $( $(this).data('toggler') ).toggle();
 })
 
+// Boolean Toggler
+$(document).on('change', '[data-boolean-toggler]', function(){
+  var target = $(el).data('booleanToggler');
+  $(target).slideToggle();
+})
+
 // Toggle elements based on select tag
 // <select data-select-toggler=".group"><option value="one"></option>...
 //<div class="group group-one">..</div>
