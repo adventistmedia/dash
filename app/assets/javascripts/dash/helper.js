@@ -6,7 +6,7 @@ $(document).on('click', '[data-toggler]', function(e){
 
 // Boolean Toggler
 $(document).on('change', '[data-boolean-toggler]', function(){
-  var target = $(el).data('booleanToggler');
+  var target = $(this).data('booleanToggler');
   $(target).slideToggle();
 })
 
