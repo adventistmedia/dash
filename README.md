@@ -70,6 +70,7 @@ mandrill_api_key:
 myadventist_client_id:
 myadventist_client_secret:
 myadventist_redirect_uri:
+google_browser_key:
 ```
 
 
@@ -105,6 +106,46 @@ You can create custom exporters although you'll need to call the exporter direct
 respond_to do |format|
   format.csv { send_data CustomUserExporter.new(@users).to_csv, filename: "users-export.csv" }
 end
+```
+## Using Maps
+
+### HTML Markup
+
+```
+<%= content_tag(:div, "", style: "height:250px;", class: "map-canvas", data: {zoom: 15, drag_callback: "mapCardDragCallback", bounds_callback: "mapCardBoundsCallback", markers: [{draggable: true, lat: -33.0, lng: 151.0, content_callback: "mapContentCallback"}].to_json}) %>
+```
+
+### Example JS callbacks
+
+```
+// Maps
+function mapCardDragCallback(googleMap, newLatLng){
+  $('.lat').val( newLatLng.lat() );
+  $('.lng').val( newLatLng.lng() );
+}
+
+function mapCardBoundsCallback(googleMap){
+  $('.zoom').val( googleMap.map.getZoom() );
+}
+function mapContentCallback(marker){
+  return marker.title;
+}
+function addressMapSearchCallback(results){
+  if(results.length > 0){
+    var googlemap = $('.map-canvas').data('googlemap');
+    if(googlemap){
+      googlemap.moveMarker(googlemap.markers[0], results[0]);
+    }
+  }
+  else{
+    alert("Address was not found.");
+  }
+}
+$(document).on('click', '.map-address-search', function(e){
+  e.preventDefault();
+  var address = $('.map-address-field').val();
+  addressMapSearch( { 'address': address }, "addressMapSearchCallback" );
+})
 ```
 
 
