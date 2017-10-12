@@ -20,7 +20,7 @@ $(document).on('click', '.file-btn-remove', function(e){
   e.preventDefault();
   var parent = $(this).parents('.asset-selector');
   parent.find('.file-value').val('');
-  parent.('.file-preview').html('');
+  parent.find('.file-preview').html('');
 })
 // click on image to insert
 $(document).on('click', '.chooser-file-insert', function(e){
