@@ -16,6 +16,12 @@ function assetInsertCallback(data){
 function cleanFilename(filename){
   return filename.replace(/\s/g, '_').replace(/[^\w.-]/gi, '');
 }
+$(document).on('click', '.file-btn-remove', function(e){
+  e.preventDefault();
+  var parent = $(this).parents('.asset-selector');
+  parent.find('.file-value').val('');
+  parent.('.file-preview').html('');
+})
 // click on image to insert
 $(document).on('click', '.chooser-file-insert', function(e){
   e.preventDefault();

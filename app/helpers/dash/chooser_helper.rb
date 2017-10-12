@@ -40,7 +40,7 @@ module Dash::ChooserHelper
       f.hidden_field(options[:attribute], class: "file-value") +
       content_tag(:div, f.label(options[:attribute], label: label, required: options[:required])) +
       content_tag(:span, preview, class: "file-preview file-preview-#{options[:file_type]}") +
-      link_to(content_tag(:span,"", class: "fa fa-plus"), options[:path], class: "file-btn-add btn btn-secondary btn-sm lightbox-iframe", data: {uniq_id: id, callback: options[:callback]}) +
+      link_to(content_tag(:span,"", class: "fa fa-plus"), options[:path], class: "btn btn-secondary btn-sm lightbox-iframe", data: {uniq_id: id, callback: options[:callback]}) +
       link_to(content_tag(:span,"", class: "fa fa-times"), "#", class: "file-btn-remove btn btn-secondary btn-sm remove") +
       (errors.any? ? content_tag(:span, errors.first, class: "error") : nil) +
       (options.key?(:hint) ? content_tag(:p, options[:hint], class: "help") : nil)
