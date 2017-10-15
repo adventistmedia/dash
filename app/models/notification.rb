@@ -3,6 +3,7 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true, optional: true
 
   scope :unread, -> { where(read: false) }
+  scope :admin, -> { where(admin: true) }
 
   after_save :update_notifications_count
   after_destroy :update_notifications_count

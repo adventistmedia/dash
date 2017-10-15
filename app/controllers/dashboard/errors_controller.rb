@@ -1,9 +1,7 @@
-class Dashboard::ErrorsController < Dashboard::BaseController
-  skip_before_action :authenticate_user!
-  skip_authorization_check
+class Dashboard::ErrorsController < ApplicationController
 
   def page_not_found
-    render status: 404
+    render status: 404, layout: "dash/session"
   end
 
   # A 500 error uses the dash error layout as the dashboard layout maybe

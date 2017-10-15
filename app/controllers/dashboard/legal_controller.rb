@@ -1,4 +1,4 @@
-class Dash::LegalController < ApplicationController
+class Dashboard::LegalController < ApplicationController
   layout "dash/session"
 
   def terms

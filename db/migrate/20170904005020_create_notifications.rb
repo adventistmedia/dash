@@ -8,6 +8,7 @@ class CreateNotifications < ActiveRecord::Migration[5.1]
       t.string :summary
       t.string :url
       t.string :category
+      t.boolean :admin, default: false
       t.datetime :expires_at
       t.boolean :read, default: false
       t.timestamps null: false
