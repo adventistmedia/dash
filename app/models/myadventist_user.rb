@@ -6,8 +6,7 @@ class MyadventistUser
   # Password complexity: at least 1 digit, uppercase, lowercase, symbol
   validates :password, length: {minimum: 8, maximum: 12}, format: { with: /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).*/, message: I18n.t("myadventist_user.validations.password_complexity") }
 
-  attr_accessor :first_name, :last_name, :email, :password
-  attr_reader :adventist_uid
+  attr_accessor :first_name, :last_name, :email, :password, :adventist_uid
 
   def save
     return false unless valid?

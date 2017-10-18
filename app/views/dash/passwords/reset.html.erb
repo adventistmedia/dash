@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <h2 class="standout"><%= t("passwords.forgot_password") %></h2>
+      <div class="card card-session">
+        <div class="card-body">
+          <% if @myadventist_password.show_reset_code? %>
+          <p><%= t("passwords.reset_request_success") %></p>
+          <% else %>
+          <p><%= t("passwords.set_new_password") %></p>
+          <% end %>
+          <% if @myadventist_password.errors[:base].any? %>
+            <p class="session-error"><%= @myadventist_password.errors[:base].join(', ') %></p>
+          <% end %>
+          <%= simple_form_for @myadventist_password, url: "/passwords/update_password" do |f| %>
+            <%= f.input_field :reset_token, as: :hidden %>
+            <%= f.input_field :email, as: :hidden %>
+            <% if @myadventist_password.show_reset_code? %>
+            <%= f.input :reset_code, autofocus: true %>
+            <% else %>
+            <%= f.input_field :reset_code, as: :hidden %>
+            <% end %>
+            <%= f.input :password, label: t("passwords.new_password") %>
+            <div class="actions">
+              <%= f.submit t("passwords.reset_password"), class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

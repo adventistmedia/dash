@@ -53,6 +53,10 @@ module Dash::Authentication
       false
     end
 
+    def request_password_reset(email)
+      MyadventistApi.new.request_reset_email(email)
+    end
+
   end
 
   # Track the IP address and time the user logged in.
