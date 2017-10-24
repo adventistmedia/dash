@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "5.1.4"
   # UI
-  s.add_dependency "bootstrap", "~> 4.0.0.beta"
+  s.add_dependency "bootstrap", "4.0.0.beta"
   s.add_dependency "kaminari", "~> 1.0.1"
   s.add_dependency "simple_form", "~> 3.5.0"
   s.add_dependency "record_tag_helper", "~> 1.0"
