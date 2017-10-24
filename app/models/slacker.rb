@@ -16,8 +16,6 @@ class Slacker
     @enabled
   end
 
-  private
-
   def notifier
     @notifier ||= Slack::Notifier.new webhook, username: username
   end

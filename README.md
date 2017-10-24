@@ -50,6 +50,7 @@ rails dash:install
 
 Copy migrations for notifications to your app and then run rails db:migrate
 ```
+rails generate audited:install
 rails railties:install:migrations
 ```
 ### Environment Config
