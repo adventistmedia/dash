@@ -10,6 +10,7 @@ require "audited"
 require "record_tag_helper"
 require "worldly"
 require "faraday"
+require "slack"
 
 module Dash
   mattr_accessor :user_class
