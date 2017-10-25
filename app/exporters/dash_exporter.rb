@@ -2,6 +2,7 @@ require 'csv'
 class DashExporter
   class_attribute :exportable
   attr_reader :scope
+  attr_accessor :object
 
   def initialize(scope)
     @scope = scope
@@ -19,7 +20,14 @@ class DashExporter
     CSV.generate(headers: true) do |csv|
       csv << self.class.exportable.values
       scope.all.each do |item|
-        csv << self.class.exportable.keys.map{ |attr| item.send(attr) }
+        csv << self.class.exportable.keys.map do |attr|
+          if respond_to?(attr)
+            self.object = item
+            self.send(attr)
+          else
+            item.send(attr)
+          end
+        end
       end
     end
   end
