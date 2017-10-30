@@ -81,6 +81,9 @@ class MyadventistApi
     conn = Faraday.new(url: @api_host, headers: {"Content-Type" => "application/json"})
     body = default_request_options.reverse_merge(options)
     response = conn.post path, body.to_json
+    unless response.success?
+      Rails.logger.debug "MyAdventist API request failed: #{response.status} code - #{response.body}"
+    end
     MyadventistResponse.new(response)
   end
 
