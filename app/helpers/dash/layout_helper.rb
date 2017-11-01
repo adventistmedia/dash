@@ -1,9 +1,10 @@
 module Dash::LayoutHelper
 
   def favicon_links
-    tag(:link, rel: "icon", type: "image/png", sizes: "16x16", href: asset_url("/favicon-16x16.png")) +
-    tag(:link, rel: "icon", type: "image/png", sizes: "32x32", href: asset_url("/favicon-32x32.png")) +
-    tag(:link, rel: "apple-touch-icon", type: "image/png", sizes: "180x180", href: asset_url("/apple-touch-icon.png"))
+    version = Rails.application.config.assets.version
+    tag(:link, rel: "icon", type: "image/png", sizes: "16x16", href: asset_url("/favicon-16x16.png?v=#{version}")) +
+    tag(:link, rel: "icon", type: "image/png", sizes: "32x32", href: asset_url("/favicon-32x32.png?v=#{version}")) +
+    tag(:link, rel: "apple-touch-icon", type: "image/png", sizes: "180x180", href: asset_url("/apple-touch-icon.png?v=#{version}"))
   end
 
   def meta_links
