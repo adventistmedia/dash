@@ -101,10 +101,10 @@ class GoogleMap {
     }
   }
 
-  moveMarker(marker, result){
-    this.map.setCenter(result.geometry.location);
+  moveMarker(marker, location){
+    this.map.setCenter(location);
     this.map.setZoom(18);
-    marker.setPosition(result.geometry.location);
+    marker.setPosition(location);
     this.markerDraggedCallback( marker.getPosition() );
   }
 
@@ -121,11 +121,67 @@ class GoogleMap {
   }
 
 }
+// Initialize Autocomplete Search
+function initializeAddressAutocomplete(){
+  // Address autocomplete
+  $('.address-autocomplete').each(function(){
+    var input = $(this)[0];
+    var options = {};
+    var countryRestrictionEl = $(this).data('countryrestriction');
+    if(countryRestrictionEl){
+      options["componentRestrictions"] = {country: $(countryRestrictionEl).val()}
+    };
+    var googleAutocomplete = new google.maps.places.Autocomplete(input, options);
+    googleAutocomplete.trigger = $(this).attr('id');
+    // add callback for country restriction
+    if(countryRestrictionEl){
+      $(this).data('autocomplete', googleAutocomplete);
+      $(document).on('change', countryRestrictionEl, function(){
+        googleAutocomplete.componentRestrictions.country = $(this).val().toLowerCase();
+      })
+    }
+    googleAutocomplete.addListener('place_changed', function(){
+      var place = this.getPlace();
+      var componentForm = {
+        street_number: {name: 'short_name', field: 'address_line1_number'},
+        route: {name: 'long_name', field: 'address_line1_street'},
+        sublocality_level_1:  {name: 'long_name', field: 'city'},
+        locality: {name: 'long_name', field: 'city'},
+        administrative_area_level_1: {name: 'short_name', field: 'region'},
+        country: {name: 'short_name', field: 'country_code'},
+        postal_code: {name: 'short_name', field: 'postcode'}
+      };
+      var address = {lat: null, lng: null};
+      if(place.geometry){
+        address['lat'] = place.geometry.location.lat();
+        address['lng'] = place.geometry.location.lng();
+        address['location'] = place.geometry.location;
+      }
+
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+          var val = place.address_components[i][componentForm[addressType]['name']];
+          address[componentForm[addressType]['field']] = address[componentForm[addressType]['field']] || val;
+        }
+      }
+      // combine address_line1
+      if(address['address_line1_number'] != undefined){
+        address['address_line1'] = address['address_line1_number'] + ' ' + address['address_line1_street'];
+      }else{
+        address['address_line1'] = address['address_line1_street'];
+      }
+
+      window[ $("#" + this.trigger).data('autocompletecallback') ](address, input);
+    })
+  })
+}
 // Initialize maps on page
 function mapInitialize(){
   $('.map-canvas').each(function(){
     new GoogleMap($(this));
   })
+  initializeAddressAutocomplete();
 }
 var googleMapLoadCount = 0;
 if(typeof(google) != 'undefined'){
