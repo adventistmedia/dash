@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12">
       <%= dash_table @assets, table_headers: [[:name, "Name"], [:created_at, "Uploaded At"]], partial: "/dash/chooser/document_asset", as: :asset do %>
-        <%= link_to "Upload Document", chooser_path(:upload_document), class: "btn btn-primary" %>
+        <%= link_to "Upload Document", chooser_path(:upload_document), class: "btn btn-primary", data: {turbolinks: false} %>
       <% end %>
     </div>
   </div>
