@@ -142,22 +142,17 @@ function initializeAddressAutocomplete(){
     }
     googleAutocomplete.addListener('place_changed', function(){
       var place = this.getPlace();
-      var componentForm = {
-        street_number: {name: 'short_name', field: 'address_line1_number'},
-        route: {name: 'long_name', field: 'address_line1_street'},
-        sublocality_level_1:  {name: 'long_name', field: 'city'},
-        locality: {name: 'long_name', field: 'city'},
-        administrative_area_level_1: {name: 'short_name', field: 'region'},
-        country: {name: 'short_name', field: 'country_code'},
-        postal_code: {name: 'short_name', field: 'postcode'}
-      };
-      var address = {lat: null, lng: null};
+      // get country
+      var countryCode = $.grep(place.address_components, function(n,i){ return n.types[0] == "country"})[0].short_name;
+      var componentForm = googleAddressComponents[countryCode.toLowerCase()] || googleAddressComponents.default;
+      var address = {lat: null, lng: null, country_code: countryCode};
       if(place.geometry){
         address['lat'] = place.geometry.location.lat();
         address['lng'] = place.geometry.location.lng();
         address['location'] = place.geometry.location;
       }
 
+      // get elements
       for (var i = 0; i < place.address_components.length; i++) {
         var addressType = place.address_components[i].types[0];
         if (componentForm[addressType]) {
@@ -198,4 +193,28 @@ function addressMapSearch(address, callback){
       console.log("Address search error: " + status);
     }
   });
+}
+var googleAddressComponents = {
+  nz:{
+    street_number: {name: 'short_name', field: 'address_line1_number'},
+    route: {name: 'long_name', field: 'address_line1_street'},
+    sublocality_level_1:  {name: 'long_name', field: 'city'},
+    locality: {name: 'long_name', field: 'region'},
+    country: {name: 'short_name', field: 'country_code'},
+    postal_code: {name: 'short_name', field: 'postcode'}
+  },
+  au:{
+    street_number: {name: 'short_name', field: 'address_line1_number'},
+    route: {name: 'long_name', field: 'address_line1_street'},
+    locality: {name: 'long_name', field: 'city'},
+    administrative_area_level_1: {name: 'short_name', field: 'region'},
+    postal_code: {name: 'short_name', field: 'postcode'}
+  },
+  default:{
+    street_number: {name: 'short_name', field: 'address_line1_number'},
+    route: {name: 'long_name', field: 'address_line1_street'},
+    locality: {name: 'long_name', field: 'city'},
+    administrative_area_level_1: {name: 'short_name', field: 'region'},
+    postal_code: {name: 'short_name', field: 'postcode'}
+  }
 }

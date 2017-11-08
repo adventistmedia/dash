@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "mandrill_dm", "~> 1.3.4"
   # Authentication and Authorization
   s.add_dependency "cancancan", "~> 2.0.0"
-  s.add_dependency "worldly", "~> 1.0.1"
+  s.add_dependency "worldly", "~> 1.0.2"
   # Auditing
   s.add_dependency "audited", "4.5.0"
 
