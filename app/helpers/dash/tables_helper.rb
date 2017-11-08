@@ -179,6 +179,13 @@ module Dash::TablesHelper
     end
   end
 
+  def settings_actions(options={}, &block)
+    content_tag(:div, class: "dropdown #{options[:dropdown_class]}") do
+      link_to(content_tag(:i, '', class: 'fa fa-ellipsis-v'), '#', class: 'btn-icon btn-icon-secondary dropdown-toggle', data: {toggle: 'dropdown'}) +
+      content_tag(:div, capture(&block), class: 'dropdown-menu dropdown-menu-right dropdown-menu-icons')
+    end
+  end
+
   def row_about_link(url, options={})
     options.reverse_merge!(class: 'dropdown-item', data: {toggle: 'modal', target: '#tableAboutModal', title: options[:title]})
     link_to(content_tag(:i, '', class: 'fa fa-history') + 'About', url, options)
