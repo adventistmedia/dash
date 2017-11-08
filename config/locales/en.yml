@@ -11,9 +11,11 @@ en:
     create_success: Successfully added %{title}
     create_failed: Unable to add. Please review any error messages.
     update_success: Successfully saved %{title}
-    update_failed: Unable to save. Please review any error messages.
+    update_failed: Unable to save %{title}. Please review any error messages.
     delete_success: Successfully deleted %{title}
-    delete_failed: Unable to delete
+    delete_failed: Unable to delete %{title}
+    archive_success: Successfully archived %{title}
+    archive_failed: Unable to archive %{title}
   text:
     cancel: Cancel
     next: Next
