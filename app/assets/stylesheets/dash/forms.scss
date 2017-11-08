@@ -82,6 +82,13 @@
   .boolean .hint{
     display:block;
   }
+  .checkbox{
+    display: block;
+    .form-control{
+      display: inline-block;
+      width: 25px;
+    }
+  }
 
   // Textarea
   textarea.form-control{
