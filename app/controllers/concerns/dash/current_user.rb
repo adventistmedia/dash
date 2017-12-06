@@ -8,7 +8,7 @@ module Dash::CurrentUser
   protected
 
   def current_user
-    @current_user ||= User.active.find_by(id: session[:user_id])
+    @current_user ||= Dash.user_class.constantize.active.find_by(id: session[:user_id])
   end
 
   def signed_in?
