@@ -139,7 +139,8 @@ class PopAutocomplete {
 
   renderItem(item){
     var icon = item.icon || 'square-o';
-    return '<li class="item"><i class="fa fa-'+icon+'"></i> <span><a href="'+item.url+'">'+item.label+'</a></span></li>';
+    var description = item.description ? `<span class="description">${item.description}</span>` : '';
+    return '<li class="item"><i class="fa fa-'+icon+'"></i> <span><a href="'+item.url+'">'+item.label + description + '</a></span></li>';
   }
 }
 function loadPopAutocomplete(){

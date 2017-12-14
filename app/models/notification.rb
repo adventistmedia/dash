@@ -1,6 +1,7 @@
 class Notification < ApplicationRecord
   belongs_to :user, class_name: Dash.user_class
   belongs_to :notifiable, polymorphic: true, optional: true
+  belongs_to :notification_subscription, optional: true
 
   scope :unread, -> { where(read: false) }
   scope :admin, -> { where(admin: true) }
@@ -18,6 +19,14 @@ class Notification < ApplicationRecord
       self.where(id: unread_ids).update_all(read: true)
       user.update_columns(notifications_count: user.notifications.unread.count)
     end
+  end
+
+  def self.remove_expired!
+    where("expires_at <= ?", Date.today).destroy_all
+  end
+
+  def can_unsubscribe?
+    notification_subscription_id.present?
   end
 
   def url?
@@ -43,7 +52,7 @@ class Notification < ApplicationRecord
   private
 
   def update_notifications_count
-    user.update_columns(notifications_count: user.notifications.unread.count)
+    user.update_columns(notifications_count: user.notifications.unread.count, updated_at: Time.now)
   end
 
 end

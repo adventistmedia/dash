@@ -1,0 +1,6 @@
+<%= content_tag_for :tr, audit, data: {url: admin_audit_path(audit)} do %>
+  <td><%= link_to l(audit.created_at.to_date), admin_audit_path(audit) %></td>
+  <td><%= "#{audit.auditable_type} ##{audit.auditable_id}" %></td>
+  <td>
+  </td>
+<% end %>

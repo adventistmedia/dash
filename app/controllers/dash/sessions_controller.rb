@@ -7,10 +7,10 @@ class Dash::SessionsController < ApplicationController
   end
 
   def create
-    if @user = User.signin_from_myadventist( signin_params.merge(ip: request.remote_ip) )
+    @signin_response = Dash.user_class.constantize.signin_from_myadventist( signin_params.merge(ip: request.remote_ip) )
+    if @signin_response.success?
       after_signin_success
     else
-      @signin_failed = true
       render :new
     end
   end
@@ -25,7 +25,7 @@ class Dash::SessionsController < ApplicationController
   private
 
   def after_signin_success
-    self.current_user = @user
+    self.current_user = @signin_response.user
     redirect_to dashboard_root_path
   end
 

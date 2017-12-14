@@ -64,8 +64,13 @@
     i{
       flex: 0 0 35px;
     }
-    span{
+    > span{
       width: 100%;
+    }
+    .description{
+      display:inline-block;
+      font-size: 0.9rem;
+      color: $gray-400;
     }
     a{
       display:block;

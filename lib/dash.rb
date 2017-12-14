@@ -18,6 +18,10 @@ module Dash
   mattr_accessor :site_name
   @@site_name = "Adventist Church"
 
+  # Create user account automatically on successfull sign in
+  mattr_accessor :create_user_on_signin
+  @@create_user_on_signin = true
+
   # Configuration
   # Dash.setup do |config|
   #   config.user_class = "User"

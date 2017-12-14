@@ -9,26 +9,39 @@ module Dash::Authentication
       # get myadventist user id
       myadventist = MyadventistApi.new(options[:myadventist])
       response = myadventist.signin(options[:email], options[:password])
-      return nil unless response.success?
+      unless response.success?
+        error_msg =
+        case response.data[:error]
+        when "invalid_grant"
+          "Email and password do not match."
+        else
+          response.data[:error_description]
+        end
+        return SigninResponse.new(false, error: error_msg)
+      end
 
       # get current user
       user = self.where(adventist_uid: response.data[:user_id]).first
       if user
-        if user.active?
+        if user.can_signin?
           user.track_sign_in!(options[:ip])
-          return user
+          return SigninResponse.new(true, user: user)
+        else
+          SigninResponse.new(false, error: "Account has not been activated")
         end
       elsif create_on_signin?
         if user = create_user(response.data)
           user.track_sign_in!(options[:ip])
-          return user
+          return SigninResponse.new(true, user: user)
+        else
+          SigninResponse.new(false, error: "Unable to create account on sign in")
         end
       end
-      nil
+      SigninResponse.new(false, error: "Account does not exist")
     end
 
     def create_user(data)
-      user = User.create(
+      user = create(
         status: "active",
         first_name: data[:first_name],
         last_name: data[:last_name],
@@ -40,7 +53,7 @@ module Dash::Authentication
 
     # create the user on signup if they don't already exist
     def create_on_signin?
-      true
+      Dash.create_user_on_signin
     end
 
     # scope when querying for the user to sign in, override to customize
@@ -67,6 +80,11 @@ module Dash::Authentication
     self.current_sign_in_ip = ip
     self.current_sign_in_at = Time.current
     self.save(validate: false)
+  end
+
+  # override to check if user has an active account for example
+  def can_signin?
+    active?
   end
 
 end

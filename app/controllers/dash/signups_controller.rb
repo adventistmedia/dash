@@ -9,7 +9,6 @@ class Dash::SignupsController < ApplicationController
   def create
     @myadventist_user = MyadventistUser.new(myadventist_user_params)
     if @myadventist_user.save
-      #render :new
       redirect_to dashboard_root_path
     else
       render :new

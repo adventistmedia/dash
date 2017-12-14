@@ -1,0 +1,30 @@
+<% page "Admin Notifications", nav: :admin, nav_active: :admin_notifications %>
+<div class="page-header">
+  <div class="content">
+    <h3>Admin Notifications</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Details</h3>
+        <ul class="dash-list">
+          <li>
+            <div class="list-icon"><i class="fa fa-clock-o"></i></div>
+            <div class="list-body">Sent <span class="subtitle"><%= l @admin_notification.created_at %></span></div>
+          </li>
+          <li>
+            <div class="list-icon"><i class="fa fa-users"></i></div>
+            <div class="list-body">Recipients <span class="subtitle"><%= pluralize @admin_notification.notifications.count, "user" %></span></div>
+          </li>
+        </ul>
+        <hr>
+
+        <h5><%= link_to_if @admin_notification.url.present?, @admin_notification.title, @admin_notification.url, target: "_blank" %></h5>
+        <%= content_tag(:p, @admin_notification.summary) %>
+        <%= content_tag(:p, "Expires #{l(@admin_notification.expires_at)}") if @admin_notification.expires_at %>
+      </div>
+    </div>
+  </div>
+</div>

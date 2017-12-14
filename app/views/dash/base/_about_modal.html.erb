@@ -2,10 +2,10 @@
 <% if @about_object.respond_to?(:audits) %>
 <h5>Recent History</h5>
 <ul class="dash-list dash-list-lines">
-  <% @about_object.audits.order('created_at DESC').includes(:user).limit(5).each do |audit| %>
+  <% @about_object.audits.order("created_at DESC").includes(:user).limit(5).each do |audit| %>
   <li>
     <div class="list-icon">
-      <%= content_tag(:i, '', class: "fa fa-#{audit_action_icon(audit.action)}") %>
+      <%= content_tag(:i, "", class: "fa fa-#{audit_action_icon(audit.action)}") %>
     </div>
     <div class="list-body">
       <%= audit_summary(audit) %> <span class="subtitle"><%= l(audit.created_at.to_date) %><%= " by #{audit.user&.name}" if audit.user %></span>

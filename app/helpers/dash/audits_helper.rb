@@ -2,10 +2,10 @@ module Dash::AuditsHelper
 
   def audit_action_icon(action)
     case action
-    when 'create'
-      'plus'
-    when 'destroy'
-      'trash'
+    when "create"
+      "plus"
+    when "destroy"
+      "trash"
     else # update
       "pencil"
     end
@@ -25,7 +25,7 @@ module Dash::AuditsHelper
   def audit_update_summary(changes)
 
     if changes.length == 1
-      name = changes.keys.first.gsub(/_id\Z/, '')
+      name = changes.keys.first.gsub(/_id\Z/, "")
       "#{name.titleize} changed"
     else
       "Edited"

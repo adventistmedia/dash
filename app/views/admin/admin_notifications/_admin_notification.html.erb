@@ -1,0 +1,9 @@
+<%= content_tag_for :tr, admin_notification, data: {url: admin_admin_notification_path(admin_notification)} do %>
+  <td><%= link_to admin_notification.title, admin_admin_notification_path(admin_notification) %></td>
+  <td><%= l admin_notification.created_at.to_date %></td>
+  <td>
+    <%= row_actions do %>
+      <%= row_about_link about_admin_admin_notification_path(admin_notification), title: admin_notification.title %>
+    <% end %>
+  </td>
+<% end %>

@@ -1,0 +1,24 @@
+<% page "Admin Notifications", nav: :admin, nav_active: :admin_notifications %>
+<div class="page-header">
+  <div class="content">
+    <h3>Admin Notifications</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <%= simple_form_for [:admin, @admin_notification] do |f| %>
+          <%= f.input :title %>
+          <%= f.input :summary %>
+          <%= f.input :url %>
+          <%= f.input :expires_at, as: :pick_date %>
+          <div class="form-footer">
+            <%= f.submit t("text.save"), class: "btn btn-primary", data: { disable_with: t("text.saving") } %>
+            <%= link_to t("text.cancel"), admin_admin_notifications_path, class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,11 +36,11 @@
   // Errors
   .error{
     font-size: 0.9rem;
-    color: theme-color('danger');
+    color: theme-color("danger");
   }
 
   .field_with_errors .label.control-label{
-    color: theme-color('danger');
+    color: theme-color("danger");
   }
   // Footer
   .form-footer{

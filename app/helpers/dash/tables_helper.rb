@@ -201,6 +201,11 @@ module Dash::TablesHelper
     link_to(content_tag(:i, '', class: 'fa fa-trash') + 'Delete', url, options)
   end
 
+  def row_archive_link(url, options={})
+    options.reverse_merge!(method: :delete, remote: true, class: "dropdown-item")
+    link_to(content_tag(:i, "", class: "fa fa-archive") + "Archive", url, options)
+  end
+
   def bulk_selector_all(selected = false)
     content_tag(:th, class: 'bulk-selector-toggle bulk-selector-all') do
       check_box_tag('select_all', 1, selected) +

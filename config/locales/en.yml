@@ -48,6 +48,11 @@ en:
     sign_out_success: Successfully signed out
     sign_up: Sign up
     sign_up_title: Sign up to myAdventist
+  audits:
+    audit_action:
+      create: "Created"
+      update: "Updated"
+      destroy: "Deleted"
   myadventist_user:
     validations:
       password_complexity: requires one digit, symbol, uppercase & lowercase character

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  notificiation_subscription_id: 1
+  active: false
+  updated_by_id: 1
+  reason: MyString
+
+two:
+  user_id: 1
+  notificiation_subscription_id: 1
+  active: false
+  updated_by_id: 1
+  reason: MyString

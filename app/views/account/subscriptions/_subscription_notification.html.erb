@@ -1,0 +1,6 @@
+<%= content_tag_for :tr, subscription_notification do %>
+  <td><%= subscription_notification.name %></td>
+  <td class="action">
+    <%= subscription_toggle(subscription_notification, @subscription_ids.include?(subscription_notification.id)) %>
+  </td>
+<% end %>
