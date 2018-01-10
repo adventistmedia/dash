@@ -1,5 +1,5 @@
 function getFancboxTrigger(){
-  window.parent.$.fancybox.getInstance().slides[0].opts.$orig
+  return window.parent.$.fancybox.getInstance().slides[0].opts.$orig;
 }
 
 // Toggle div on and off
