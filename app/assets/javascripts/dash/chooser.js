@@ -26,7 +26,7 @@ $(document).on('click', '.file-btn-remove', function(e){
 $(document).on('click', '.chooser-file-insert', function(e){
   e.preventDefault();
   var assetId = $(this).data('asset-id');
-  var trigger = window.parent.$.fancybox.getInstance().$lastFocus;
+  var trigger = getFancboxTrigger();
   if( trigger == 'editor' ){
     insertImageToEditor(asset_list[ assetId ], caption );
   }else{

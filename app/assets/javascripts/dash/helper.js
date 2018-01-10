@@ -1,3 +1,7 @@
+function getFancboxTrigger(){
+  window.parent.$.fancybox.getInstance().slides[0].opts.$orig
+}
+
 // Toggle div on and off
 $(document).on('click', '[data-toggler]', function(e){
   e.preventDefault();
