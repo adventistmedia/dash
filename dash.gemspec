@@ -19,17 +19,17 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "5.1.4"
   # UI
   s.add_dependency "bootstrap", "4.0.0.beta"
-  s.add_dependency "kaminari", "~> 1.0.1"
+  s.add_dependency "kaminari", "~> 1.1.1"
   s.add_dependency "simple_form", "~> 3.5.0"
   s.add_dependency "record_tag_helper", "~> 1.0"
   # Email and Notifications
   s.add_dependency "slack-notifier", "~> 2.3"
   s.add_dependency "mandrill_dm", "~> 1.3.4"
   # Authentication and Authorization
-  s.add_dependency "cancancan", "~> 2.0.0"
+  s.add_dependency "cancancan", "~> 2.1.2"
   s.add_dependency "worldly", "~> 1.0.2"
   # Auditing
-  s.add_dependency "audited", "4.5.0"
+  s.add_dependency "audited", "4.6.0"
 
   s.add_dependency "faraday", "~> 0.13.1"
 
