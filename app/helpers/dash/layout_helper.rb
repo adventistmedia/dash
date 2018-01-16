@@ -10,7 +10,7 @@ module Dash::LayoutHelper
   def meta_links
     tag(:meta, charset: "utf-8") +
     tag(:meta, content: "IE=edge", "http-equiv" => "X-UA-Compatible") +
-    tag(:meta, name: "viewpoint", content: "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, shrink-to-fit=no, user-scalable=no")
+    tag(:meta, name: "viewport", content: "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, shrink-to-fit=no, user-scalable=no")
   end
 
   def meta_and_favicon_links

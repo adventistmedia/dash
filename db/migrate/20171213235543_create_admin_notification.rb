@@ -5,6 +5,7 @@ class CreateAdminNotification < ActiveRecord::Migration[5.1]
       t.integer :owner_id
       t.string :user_scope
       t.string :title
+      t.string :summary
       t.string :url
       t.date :expires_at
       t.timestamps
