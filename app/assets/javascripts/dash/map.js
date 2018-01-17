@@ -65,7 +65,7 @@ class GoogleMap {
         return true;
       }
       var markerOptions = {
-        position: new google.maps.LatLng(mark.lat, mark.lng)
+        position: new google.maps.LatLng(mark.lat, mark.lng),
       }
       var marker = new google.maps.Marker(markerOptions);
       marker.setMap(_this.map);
