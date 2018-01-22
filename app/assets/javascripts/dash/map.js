@@ -185,10 +185,10 @@ if(typeof(google) != 'undefined'){
 }
 
 // Google Maps Address Search
-function addressMapSearch(address, callback){
+function addressMapSearch(address, callback, map){
   new google.maps.Geocoder().geocode( address, function(results, status) {
     if(status == google.maps.GeocoderStatus.OK){
-      window[callback](results);
+      window[callback](results, map);
     }else{
       console.log("Address search error: " + status);
     }
