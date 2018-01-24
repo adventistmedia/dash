@@ -173,3 +173,18 @@ $(document).on('click', '.map-address-search', function(e){
   </div>
 </div>
 ```
+
+## Trumbowyn
+
+```
+function addPageCardEditor(){
+  $(".pc-editor").trumbowyg({
+    btns: [['formatting', 'strong', 'em'], ['superscript', 'subscript'], ['unorderedList', 'orderedList'], ['linkChooser','unlink']],
+    autogrow: true,
+    removeformatPasted: true,
+    autogrowOnEnter: true,
+    resetCss: true
+  });
+}
+$(document).on('turbolinks:load', addPageCardEditor);
+```
