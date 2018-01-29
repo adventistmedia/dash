@@ -1,20 +1,16 @@
 class UnsplashUploader < CarrierWave::Uploader::Base
   include Unsplash::CarrierWave
-
+  # default unsplash images
   version :thumb do
-   process resize_to_fill: [60, 60]
+    process resize_to_fit: [200, 200]
   end
 
-  version :fill_200 do
-    process resize_to_fill: [200, 100]
+  version :small do
+    process resize_to_fit: [400, 400]
   end
 
-  version :medium do
-   process resize_to_fit: [700, 320]
-  end
-
-  version :large do
-   process resize_to_fit: [960,440]
+  version :regular do
+    process resize_to_fit: [1080, 1080]
   end
 
 end

@@ -3,7 +3,7 @@
     <div class="col-12">
       <ul class="nav-tabs nav-tabs-simple">
         <%= content_tag(:li, link_to("My Images", chooser_path(:images), class: ("active" if menu == :images))) if @chooser_tabs.include?("images") %>
-        <%= content_tag(:li, link_to("Stock Images", chooser_path(:stock_images), class: ("active" if menu == :stock_images))) if @chooser_tabs.include?("images") %>
+        <%#= content_tag(:li, link_to("Stock Images", chooser_path(:stock_images), class: ("active" if menu == :stock_images))) if @chooser_tabs.include?("images") %>
         <%= content_tag(:li, link_to("Documents", chooser_path(:documents), class: ("active" if menu == :documents))) if @chooser_tabs.include?("documents") %>
         <%= content_tag(:li, link_to("Upload", chooser_path(:upload_document), data: { turbolinks: false }, class: ("active" if menu == :upload_document))) if @chooser_tabs.include?("upload_document") %>
         <%= content_tag(:li, link_to("Upload", chooser_path(:upload_image), data: { turbolinks: false }, class: ("active" if menu == :upload_image))) if @chooser_tabs.include?("upload_image") %>

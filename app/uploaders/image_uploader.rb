@@ -1,12 +1,20 @@
 # encoding: utf-8
 class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
-
   # http://cloudinary.com/blog/advanced_image_transformations_in_the_cloud_with_carrierwave_cloudinary
   version :thumb do
-   process resize_to_fill: [60, 60]
-   #cloudinary_transformation fetch_format: :auto Breaks images
+    process resize_to_fit: [200, 200]
   end
+
+  version :small do
+    process resize_to_fit: [400, 400]
+  end
+
+  version :regular do
+    process resize_to_fit: [1080, 1080]
+  end
+
+  #custom sizes
 
   version :fill_200 do
    process resize_to_fill: [200, 100]
@@ -28,24 +36,10 @@ class ImageUploader < CarrierWave::Uploader::Base
    #cloudinary_transformation fetch_format: :auto
   end
 
-  version :small do
-   process resize_to_fit: [300, 200]
-   #cloudinary_transformation fetch_format: :auto
-  end
 
   version :post_img do
     process resize_to_fit: [340, 220]
     #cloudinary_transformation fetch_format: :auto
-  end
-
-  version :medium do
-   process resize_to_fit: [700, 320]
-   #cloudinary_transformation fetch_format: :auto
-  end
-
-  version :large do
-   process resize_to_fit: [960,440]
-   #cloudinary_transformation fetch_format: :auto
   end
 
   version :col_1 do

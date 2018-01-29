@@ -123,7 +123,9 @@ module Unsplash::CarrierWave
     url_options = {
       fm: "jpg", # format of file
       auto: "format",
-      q: 80 # quality
+      q: 80, # quality,
+      ixlib: "rb-0.3.5",
+      cs: "tinysrgb"
     }
     url_query = url_options.merge!(options).to_query
 

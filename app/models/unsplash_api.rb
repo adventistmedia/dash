@@ -44,12 +44,4 @@ class UnsplashApi
     JSON.parse(response.body)
   end
 
-  def self.utm_params
-    {
-      utm_source:   Unsplash.configuration.utm_source || "api_app",
-      utm_medium:   "referral",
-      utm_campaign: "api-credit"
-    }
-  end
-
 end
