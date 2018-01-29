@@ -21,7 +21,7 @@ module Dash::AssetConcern
       assets.each do |asset|
         details = {url: asset.media.url.to_s, id: asset.id, title: asset.name, filename: asset.media_identifier.to_s}
         if asset.image?
-          [:thumb, :medium, :large].each{|s| details[s] = asset.media.send(s).url.to_s }
+          [:thumb, :regular, :large].each{|s| details[s] = asset.media.send(s).url.to_s }
           details[:original] = asset.media.url.to_s
         end
         assets_for_json[asset.id.to_s] = details
