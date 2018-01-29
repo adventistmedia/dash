@@ -55,7 +55,7 @@ module Dash::UnsplashImageConcern
 
   end
 
-  def url(size = :large)
+  def url(size = :regular)
     media.url(size)
   end
 
@@ -70,7 +70,7 @@ module Dash::UnsplashImageConcern
   def chooser_json
     details = {url: media.url.to_s, id: id, title: name, filename: media_identifier.to_s}
     if image?
-      [:thumb, :regular, :large].each{|s| details[s] = media.send(s).url.to_s }
+      [:thumb, :small, :regular].each{|s| details[s] = media.send(s).url.to_s }
       details[:original] = media.url.to_s
     end
     details
