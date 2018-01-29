@@ -59,13 +59,13 @@ module Dash::AddressThis
         has_attribute?("#{prepend_name}lat")
       end
 
-      define_method("#{prepend_name}address_changed?") do
-        send("#{prepend_name}address_line1_changed?") ||
-        send("#{prepend_name}address_line2_changed?") ||
-        send("#{prepend_name}city_changed?") ||
-        send("#{prepend_name}region_changed?") ||
-        send("#{prepend_name}postcode_changed?") ||
-        send("#{prepend_name}country_code_changed?")
+      define_method("saved_change_to_#{prepend_name}address?") do
+        send("saved_change_to_#{prepend_name}address_line1?") ||
+        send("saved_change_to_#{prepend_name}address_line2?") ||
+        send("saved_change_to_#{prepend_name}city?") ||
+        send("saved_change_to_#{prepend_name}region?") ||
+        send("saved_change_to_#{prepend_name}postcode?") ||
+        send("saved_change_to_#{prepend_name}country_code?")
       end
 
       # 2. set address_full

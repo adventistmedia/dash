@@ -26,7 +26,7 @@
         <div class="asset-image">
           <%= link_to "#", class: "unsplash-file-insert icon-link", data: {id: asset.external_id, callback_url: url_for(action: "unsplash_download")} do  %>
             <div class="img-choose">
-              <%= image_tag(asset.media.url(:thumb_square), class: "img-responsive") %>
+              <%= image_tag(asset.media.url(:thumb_landscape), class: "img-responsive") %>
             </div>
           <% end %>
         </div>
