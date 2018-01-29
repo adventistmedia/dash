@@ -26,18 +26,39 @@ $(document).on('click', '.file-btn-remove', function(e){
 $(document).on('click', '.chooser-file-insert', function(e){
   e.preventDefault();
   var assetId = $(this).data('asset-id');
+  fileInsert(asset_list[ assetId ], this);
+});
+$(document).on('click', '.unsplash-file-insert', function(e){
+  e.preventDefault();
+  var linkTrigger = this;
+  // download image and return
+  $.ajax({
+    url: $(this).data('callbackUrl'),
+    type: 'POST',
+    data: {
+      id: $(this).data('id'),
+    },
+    dataType: 'json',
+  }).done(function(asset) {
+    if(asset){
+      fileInsert(asset, linkTrigger);
+    }else{
+      alert("Unable to select image");
+    }
+  });
+});
+function fileInsert(asset, linkTrigger){
   var trigger = getFancboxTrigger();
   if( trigger == 'editor' ){
-    insertImageToEditor(asset_list[ assetId ], caption );
+    insertImageToEditor(asset, caption );
   }else{
     window.parent[trigger.data('callback')]({
       chooserTrigger: trigger,
-      object: asset_list[ assetId ],
-      linkTrigger: this,
+      object: asset,
+      linkTrigger: linkTrigger,
     });
   }
-});
-
+}
 //return timestamp as id
 function timestamp_id(){
   var time = new Date().getTime();

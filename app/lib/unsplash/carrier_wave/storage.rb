@@ -6,7 +6,7 @@ class Unsplash::CarrierWave::Storage < ::CarrierWave::Storage::Abstract
 
   # get identifier as is or from url write attribute
   def store!(filename)
-    if name = filename[/photo\-[a-zA-Z0-9\-]+/]
+    if name = filename[/photo\-[a-zA-Z0-9\_\-\.]+/]#filename[/(photo\-|reserve\/)[a-zA-Z0-9\_\-\.]+/]
       store_unsplash_identifier(name)
       name
     end

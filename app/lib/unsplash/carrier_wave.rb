@@ -1,5 +1,6 @@
 module Unsplash::CarrierWave
   #https://images.unsplash.com/photo-1469406396016-013bfae5d83e?fm=jpg&auto=format&fit=crop&w=400&h=50&q=80
+  #https://images.unsplash.com/reserve/ijl3tATFRpCjKWXwUoBz_DSCF7168.jpg?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjE5NjY2fQ&s=41611e083bc071aca8d5ba2f56c4e89c
   #https://docs.imgix.com/apis/url/size/rect
   def self.included(base)
     base.storage Unsplash::CarrierWave::Storage

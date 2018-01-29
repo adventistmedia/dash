@@ -156,7 +156,12 @@
 }
 
 // Table search
-
+.table-search-full-width{
+  width: 100%;
+  .search-input{
+    flex: auto;
+  }
+}
 .table-search{
   display: inline-block;
   border-radius: 3px;

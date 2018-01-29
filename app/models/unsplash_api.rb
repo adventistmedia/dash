@@ -1,4 +1,4 @@
-class Unsplash
+class UnsplashApi
 
   def self.search(term, options={})
     options.reverse_merge!(
@@ -9,12 +9,17 @@ class Unsplash
     get "/search/photos", options
   end
 
-  def self.download(image_id)
+  def self.photo(id)
+    get "/photos/#{id}"
+  end
+
+  def self.download(id)
+    get "/photos/#{id}/download"
   end
 
   private
 
-  def connection
+  def self.connection
     @connection ||= Faraday.new(
       url: "https://api.unsplash.com",
       headers: {
@@ -25,7 +30,7 @@ class Unsplash
     )
   end
 
-  def get(path, params)
+  def self.get(path, params={})
     response = connection.get path, params
 
     status_code = response.respond_to?(:status) ? response.status : response.code
@@ -39,7 +44,7 @@ class Unsplash
     JSON.parse(response.body)
   end
 
-  def utm_params
+  def self.utm_params
     {
       utm_source:   Unsplash.configuration.utm_source || "api_app",
       utm_medium:   "referral",

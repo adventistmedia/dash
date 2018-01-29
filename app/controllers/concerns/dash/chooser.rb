@@ -83,9 +83,16 @@ module Dash::Chooser
   # GET
   # Stock images
   def stock_images
-    @assets = Image.stock.paginate(params).filter(params[:filter], filter: StockImageFilter).order("created_at DESC").per(12)
-    @assets = @assets.search(params[:q], fuzzy: true) if params[:q].present?
-    return_assets
+    options = {}
+    options[:page] = params[:page] if params[:page].present?
+    @assets = UnsplashImage.search(params[:q], options)
+    render template: "/dash/chooser/stock_images"
+  end
+
+  # POST JSON
+  def unsplash_download
+    @asset = UnsplashImage.get_photo(params[:id], uploaded_asset_attributes)
+    render json: @asset ? @asset.chooser_json : nil
   end
 
   private

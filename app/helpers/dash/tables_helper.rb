@@ -22,11 +22,12 @@ module Dash::TablesHelper
 
   def table_paginate(scope, options={})
     return nil if scope.length.zero?
+    options.reverse_merge!(change_rows: true)
     first_entry = ((scope.current_page * scope.limit_value) - (scope.limit_value - 1))
     last_entry = first_entry + (scope.length-1)
     content_tag(:div, class: "table-pagination") do
       content_tag(:div) do
-        content_tag(:span, "Rows per page: #{per_page_dropdown(scope)}".html_safe) +
+        (options[:change_rows] ? content_tag(:span, "Rows per page: #{per_page_dropdown(scope)}".html_safe) : "".html_safe)  +
         content_tag(:span, "#{first_entry}-#{last_entry} of #{scope.total_count}", class: "pag-info") +
         content_tag(:span, class: "pag-links") do
           concat(link_to(content_tag(:i, "", class: "fa fa-chevron-left"), path_to_prev_page(scope), class: "pag-link pag-back")) unless scope.first_page?

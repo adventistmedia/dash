@@ -1,16 +1,38 @@
-<%= render "/dash/chooser/nav", menu: :stock_images  %>
+<%= render "/dash/chooser/nav", menu: :stock_images %>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <%= table_overview(filters: true, header_actions: [], search: true) %>
-      <%= table_filters(@assets, filters_show: true) %>
-      <div id="asset-image-list">
-        <%= render collection: @assets, partial: "/dash/chooser/image_asset", as: :asset %>
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <%= link_to "Unsplash", "#", class: "nav-link active" %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <div class="table-search table-search-full-width active">
+            <%= form_with url: url_for, method: :get, local: true do |f| %>
+              <div class="wrapper">
+                <%= button_tag(content_tag(:i, "", class: "fa fa-search"), class: "search-btn") %>
+                <%= f.text_field(:q, value: params[:q], placeholder: "Search", class: "search-input", autocomplete: "off") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <%= table_paginate @assets %>
+      <div id="asset-image-list">
+        <% @assets.each do |asset| %>
+        <div class="asset-image">
+          <%= link_to "#", class: "unsplash-file-insert icon-link", data: {id: asset.external_id, callback_url: url_for(action: "unsplash_download")} do  %>
+            <div class="img-choose">
+              <%= image_tag(asset.media.url(:fill_200), class: "img-responsive") %>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+      <%= table_paginate @assets, change_rows: false %>
     </div>
   </div>
 </div>
-<%= javascript_tag do %>
-var asset_list = <%= raw(@assets_for_json.to_json) %>;
-<% end %>
