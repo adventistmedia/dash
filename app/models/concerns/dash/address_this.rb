@@ -27,7 +27,7 @@ module Dash::AddressThis
           # send("#{prepend_name}region").present?)
       end
 
-      define_method("#{prepend_name}summary") do
+      define_method("#{prepend_name}address_summary") do
         [
           (send("#{prepend_name}city").present? ? send("#{prepend_name}city") : send("#{prepend_name}region")),
           send("#{prepend_name}country")
