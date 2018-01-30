@@ -75,6 +75,7 @@ $(document).on('click', '.table-search:not(.active) .search-btn', function(e){
   e.preventDefault();
   $('.table-search').addClass('active');
   $('.table-header').addClass('focus-search');
+  $('.search-input').focus();
 })
 $(document).on('click', '.table-search .search-close', function(e){
   if( $(this).data('reload') == '0' ){
