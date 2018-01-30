@@ -59,7 +59,7 @@ module Dash::AddressThis
         has_attribute?("#{prepend_name}lat")
       end
 
-      define_method("saved_change_to_#{prepend_name}address?") do
+      define_method("#{prepend_name}address_changed?") do
         send("saved_change_to_#{prepend_name}address_line1?") ||
         send("saved_change_to_#{prepend_name}address_line2?") ||
         send("saved_change_to_#{prepend_name}city?") ||
