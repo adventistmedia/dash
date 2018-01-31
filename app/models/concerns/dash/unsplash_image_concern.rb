@@ -23,13 +23,14 @@ module Dash::UnsplashImageConcern
     end
 
     def setup_image(external_id, options={})
+      options.reverse_merge!(external_id: external_id)
       photo = UnsplashApi.photo(external_id)
-      UnsplashImage.where(external_id: external_id).first_or_initialize do |s|
+      UnsplashImage.where(options).first_or_initialize do |s|
         s.width = photo["width"]
         s.height = photo["height"]
         s.name = photo["description"].present? ? photo["description"] : external_id
         s.credit = "#{photo["user"]["username"]} / Unsplash"
-        s.credit_url = "#{photo["user"]["links"]["html"]}?utm_source=#{Rails.application.secrets.unsplash_utm_source}&utm_medium=referral"
+        s.credit_url = "#{photo["user"]["links"]["html"]}?utm_source=adventistmedia&utm_medium=referral"
         s.media.add_photo(photo["urls"]["raw"])
         s.save
       end
