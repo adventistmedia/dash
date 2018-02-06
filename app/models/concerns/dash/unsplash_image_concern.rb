@@ -29,7 +29,7 @@ module Dash::UnsplashImageConcern
         s.width = photo["width"]
         s.height = photo["height"]
         s.name = photo["description"].present? ? photo["description"] : external_id
-        s.credit = "#{photo["user"]["username"]} / Unsplash"
+        s.credit = "#{photo["user"]["name"]} / Unsplash"
         s.credit_url = "#{photo["user"]["links"]["html"]}?utm_source=adventistmedia&utm_medium=referral"
         s.media.add_photo(photo["urls"]["raw"])
         s.save
