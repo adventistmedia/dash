@@ -34,7 +34,7 @@
           </li>
           <li>
             <div class="list-icon"><i class="fa fa-user-circle-o"></i></div>
-            <div class="list-body">When/Who <span class="subtitle"><%= "#{l(@audit.created_at)} by #{@audit.user&.name || @audit.username} " %></span></div>
+            <div class="list-body">When/Who <span class="subtitle"><%= "#{l(@audit.created_at)} by #{@audit.username || @audit.user&.name} " %></span></div>
           </li>
         </ul>
       </div>

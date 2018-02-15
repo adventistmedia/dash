@@ -8,7 +8,7 @@
       <%= content_tag(:i, "", class: "fa fa-#{audit_action_icon(audit.action)}") %>
     </div>
     <div class="list-body">
-      <%= audit_summary(audit) %> <span class="subtitle"><%= l(audit.created_at.to_date) %><%= " by #{audit.user&.name}" if audit.user %></span>
+      <%= audit_summary(audit) %> <span class="subtitle"><%= l(audit.created_at.to_date) %><%= " by #{audit.username || audit.user&.name}" if audit.user %></span>
     </div>
   </li>
   <% end %>
