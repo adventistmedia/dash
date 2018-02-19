@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency "audited", "4.6.0"
 
   # File Management
-  s.add_dependency  "carrierwave", "~> 1.0.0"
+  s.add_dependency  "carrierwave", "~> 1.2.0"
 
   s.add_dependency "faraday", "~> 0.13.1"
 
