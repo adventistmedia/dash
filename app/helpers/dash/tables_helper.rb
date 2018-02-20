@@ -226,6 +226,11 @@ module Dash::TablesHelper
     actions = []
     actions << link_to(content_tag(:i, "", class: "fa fa-pencil"), "#", class: "btn-icon btn-secondary", data: {toggle: "modal", target: "#tableBatchUpdateModal"}) if options[:batch].include?(:update)
     actions << link_to(content_tag(:i, "", class: "fa fa-trash"), "#", class: "btn-icon btn-secondary", data: {toggle: "modal", target: "#tableBatchDestroyModal"}) if options[:batch].include?(:destroy)
+    options[:batch].each do |item|
+      if item.is_a?(String)
+        actions << item
+      end
+    end
     actions = actions.join("")
     %{
       <div id="table-bulk-options">

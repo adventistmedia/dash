@@ -155,6 +155,11 @@ class InputAutocomplete {
     this.input.val( $(item).data("label") );
     if(target){
       $(target).val( $(item).data("value") );
+      // submit parent form and clear form
+      if(this.input.data("submit") == 1){
+        $(target).parents("form").submit();
+        this.input.val("");
+      }
     }else if(url){
       window.location.href = url;
     }
