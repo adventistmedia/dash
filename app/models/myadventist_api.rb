@@ -3,9 +3,9 @@ require "securerandom"
 class MyadventistApi
 
   def initialize(options={})
-    @client_id = Rails.application.secrets.myadventist_client_id
-    @client_secret = Rails.application.secrets.myadventist_client_secret
-    @redirect_host = options[:host] || Rails.application.secrets.myadventist_redirect_host
+    @client_id = Rails.application.credentials.env.dig(:myadventist, :client_id)
+    @client_secret = Rails.application.credentials.env.dig(:myadventist, :client_secret)
+    @redirect_host = options[:host] || Rails.application.credentials.env.dig(:myadventist, :redirect_host)
     @redirect_uri = "#{@redirect_host}/auth/myadventist/callback"
     @reset_password_redirect_uri = "#{@redirect_host}/passwords/reset"
     @state = SecureRandom.hex(10)

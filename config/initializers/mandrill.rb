@@ -1,4 +1,4 @@
 MandrillDm.configure do |config|
-  config.api_key = Rails.application.secrets.mandrill_api_key
+  config.api_key = Rails.application.credentials.dig(:mandrill, :api_key)
   # config.async = false
 end

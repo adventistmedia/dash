@@ -4,7 +4,7 @@ module Dash::MapsHelper
     content_for(:map_js) do
       javascript_tag do
         %Q{if(googleMapLoadCount == 0){
-        $.getScript("//maps.googleapis.com/maps/api/js?callback=#{callback}&key=#{Rails.application.secrets.google_browser_key}&language=#{I18n.locale}&libraries=places", function(){});
+        $.getScript("//maps.googleapis.com/maps/api/js?callback=#{callback}&key=#{Rails.application.credentials.google[:browser_key]}&language=#{I18n.locale}&libraries=places", function(){});
         googleMapLoadCount = 1;}else{#{callback}();}}.html_safe
       end
     end

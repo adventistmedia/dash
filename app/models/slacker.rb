@@ -1,9 +1,9 @@
 class Slacker
 
   def initialize(options={})
-    @webhook = options[:webhook] || Rails.application.secrets.slack_notification_webhook
-    @username = options[:username] || Rails.application.secrets.slack_bot_username.to_s
-    @enabled = Rails.application.secrets.slack_enabled.to_s == "1"
+    @webhook = options[:webhook] || Rails.application.credentials.env.dig(:slack, :notification_webhook)
+    @username = options[:username] || Rails.application.credentials.env.dig(:slack, :bot_username).to_s
+    @enabled = Rails.application.credentials.env.dig(:slack, :enabled).to_s == "1"
   end
 
   def self.post_message(message, options={})

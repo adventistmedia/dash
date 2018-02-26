@@ -8,7 +8,7 @@
           <p>or</p>
           <span class="btn btn-primary fileinput-button">
             <i class="fa fa-plus fa fa-white"></i> <span>Select Files</span>
-            <%= cl_image_upload_tag(:media_id, use_filename: true, folder: Rails.application.secrets.cloudinary_folder, html: {class: "image-fileupload"}) %>
+            <%= cl_image_upload_tag(:media_id, use_filename: true, folder: Rails.application.credentials.env.dig(:cloudinary, :folder), html: {class: "image-fileupload"}) %>
           </span>
         </div>
       <% end %>

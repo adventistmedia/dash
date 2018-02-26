@@ -25,7 +25,7 @@ class UnsplashApi
       headers: {
         "Content-Type" => "application/json",
         "Accept-Version" => "v1",
-        "Authorization" => "Client-ID #{Rails.application.secrets.unsplash_app_id}"
+        "Authorization" => "Client-ID #{Rails.application.credentials.dig(:unsplash, :app_id)}"
       }
     )
   end
