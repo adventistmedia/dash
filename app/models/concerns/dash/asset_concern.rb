@@ -10,6 +10,7 @@ module Dash::AssetConcern
 
     before_validation :set_published_on, on: :create
     validates :name, :type, :published_on, presence: true
+    validates :credit_url, url: true, allow_blank: true
 
     before_create :update_asset_attributes
   end

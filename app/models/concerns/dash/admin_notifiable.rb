@@ -8,6 +8,7 @@ module Dash::AdminNotifiable
     scope :ownerless, -> { where(owner: nil) }
 
     validates :title, :summary, presence: true
+    validates :url, url: true, allow_blank: true
     validate :valid_expires_at
 
     searchable on: [:title]

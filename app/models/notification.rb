@@ -11,6 +11,7 @@ class Notification < ApplicationRecord
   after_create :deliver_notification
 
   validates :user_id, :title, presence: true
+  validates :url, url: true, allow_blank: true
 
   # Set multiple notifications as read and update the users count
   def self.read!(user, notifications)
