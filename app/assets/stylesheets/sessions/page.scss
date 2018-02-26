@@ -12,10 +12,6 @@ body.layout-session{
 .footer-wrapper{
   padding: 1rem 1rem;
   display: flex;
-  // position: absolute;
-  // bottom: 0;
-  // left: 0;
-  // right: 0;
   .pf-right{
     flex: 1;
     text-align: right;
@@ -33,13 +29,11 @@ body.layout-session{
     padding-left: 0;
   }
 }
-
 .standout{
   text-align: center;
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
-
 .session-error{
   background-color: rgba(theme-color("danger"), 0.3);
   padding: 0.5rem;
@@ -48,7 +42,6 @@ body.layout-session{
   font-size: 0.9rem;
 }
 .card-session{
-
   .form-control:focus{
     background: none;
     border-bottom: 2px solid theme-color("primary");
@@ -58,4 +51,3 @@ body.layout-session{
     text-align: right;
   }
 }
-
