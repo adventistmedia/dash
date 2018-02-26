@@ -1,5 +1,5 @@
 <%= content_tag_for(:div, asset, class: "asset-image") do %>
-  <%= link_to "#", class: "chooser-file-insert icon-link", data: {asset_id: asset.id} do  %>
+  <%= link_to "#", class: "chooser-file-insert icon-link", data: asset.chooser_data do  %>
     <div class="img-choose">
       <%= image_tag(asset.media.url(:fill_200), class: "img-responsive") %>
       <div class="img-caption">

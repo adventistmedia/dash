@@ -46,14 +46,6 @@ module Dash::UnsplashImageConcern
       end
     end
 
-    def to_chooser_json(results)
-      assets_for_json = {}
-      assets.each do |asset|
-        assets_for_json[asset.id.to_s] = asset.chooser_json
-      end
-      assets_for_json
-    end
-
   end
 
   def url(size = :regular)
@@ -66,15 +58,6 @@ module Dash::UnsplashImageConcern
 
   def download
     UnsplashApi.delay.download(external_id)
-  end
-
-  def chooser_json
-    details = {url: media.url.to_s, id: id, title: name, filename: media_identifier.to_s}
-    if image?
-      [:thumb, :small, :regular].each{|s| details[s] = media.send(s).url.to_s }
-      details[:original] = media.url.to_s
-    end
-    details
   end
 
 end

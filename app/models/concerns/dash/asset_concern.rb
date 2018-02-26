@@ -17,19 +17,6 @@ module Dash::AssetConcern
 
   module ClassMethods
 
-    def to_chooser_json(assets)
-      assets_for_json = {}
-      assets.each do |asset|
-        details = {url: asset.media.url.to_s, id: asset.id, title: asset.name, filename: asset.media_identifier.to_s}
-        if asset.image?
-          [:thumb, :small, :regular].each{|s| details[s] = asset.media.send(s).url.to_s }
-          details[:original] = asset.media.url.to_s
-        end
-        assets_for_json[asset.id.to_s] = details
-      end
-      assets_for_json
-    end
-
     def generate_uniq_filename(url)
       name = url.to_s.split('/').last.split('.').first
       name.gsub!('%20','_')
@@ -37,6 +24,20 @@ module Dash::AssetConcern
       name.squeeze('_') + '_' + Time.now.to_i.to_s + SecureRandom.hex(5)
     end
 
+  end
+
+  def chooser_data
+    data = {
+      assettitle: name,
+      asseturl: media.url.to_s,
+      assetid: id,
+      assetfilename: media_identifier.to_s,
+    }
+    if image?
+      ["thumb", "small", "regular"].each{|s| data["asset#{s}".to_sym] = media.url(s).to_s }
+      data[:assetoriginal] = media.url.to_s
+    end
+    data
   end
 
   def file_format

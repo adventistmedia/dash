@@ -2,12 +2,12 @@
 // default asset inserter
 function assetInsertCallback(data){
   var parentElement = data.chooserTrigger.parents('.asset-selector').first();
-  parentElement.find('.file-value').val(data.object.id);
+  parentElement.find('.file-value').val(data.object.assetid);
   var preview = parentElement.find('.file-preview');
-  if( data.object.thumb ){
-    preview.html('<img src="'+data.object.thumb+'">');
+  if( data.object.assetthumb ){
+    preview.html('<img src="'+data.object.assetthumb+'">');
   }else{
-    preview.html("<span class='filename'>"+data.object.filename+"</span>");
+    preview.html("<span class='filename'>"+data.object.assetfilename+"</span>");
   }
   // this function already exists within the parent,
   // so don't try call window.parent.$.fancybox
@@ -25,8 +25,7 @@ $(document).on('click', '.file-btn-remove', function(e){
 // click on image to insert
 $(document).on('click', '.chooser-file-insert', function(e){
   e.preventDefault();
-  var assetId = $(this).data('asset-id');
-  fileInsert(asset_list[ assetId ], this);
+  fileInsert( $(this).data() , this);
 });
 $(document).on('click', '.unsplash-file-insert', function(e){
   e.preventDefault();
