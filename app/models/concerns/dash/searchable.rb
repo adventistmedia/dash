@@ -32,7 +32,7 @@ module Dash::Searchable
 
     def fuzy_search_conditions(term, options)
       ActiveRecord::Base.connection.execute("SELECT set_limit(0.2);")
-      rank = connection.quote_column_name('rank' + rand(100000000000000000).to_s)
+      rank = Arel.sql("rank#{rand(100000000000000000)}")
       query = search_conditions(term, "% ?", options)
       query = query.select("#{quoted_table_name + '.*,' if all.select_values.empty?} #{search_similarities_select(term, options).join(" + ")} AS #{rank}")
       query = query.order("#{rank} DESC")
