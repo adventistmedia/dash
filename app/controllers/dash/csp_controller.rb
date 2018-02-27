@@ -1,4 +1,4 @@
-class CspController < ApplicationController
+class Dash::CspController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
