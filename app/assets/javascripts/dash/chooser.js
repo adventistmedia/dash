@@ -166,13 +166,13 @@ function chooserUploader(){
     add: function (e, data) {
       var uploadErrors = [];
       var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
-      var maxSize = 307200; // 300kb
+      var maxSize = 1000000; // 1Mb
       data.files[0]['id'] = "u-"+timestamp_id();
       if(data.files[0]['type'].length && !acceptFileTypes.test(data.files[0]['type'])) {
           uploadErrors.push('Not an accepted file type');
       }
       if(data.files[0]['size'] > maxSize) {
-        uploadErrors.push('File size must be be less than 300Kb');
+        uploadErrors.push('File size must be be less than 1Mb');
       }
       if(uploadErrors.length > 0) {
         var status = uploadErrors.join("\n");
