@@ -61,7 +61,7 @@ module Dash::TablesHelper
       filters: false,
       filters_show: false,
       batch: [],
-      paginate: true,
+      paginate: scope.respond_to?(:current_page),
       batch_destroy_url: "#{request.path}/batch_destroy"
     )
     content_tag(:div, class: "table-features") do
