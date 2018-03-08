@@ -26,7 +26,7 @@ class UnsplashUploader < CarrierWave::Uploader::Base
   end
 
   version :regular_landscape do
-    process resize_to_fit: [1080, 540]
+    process resize_to_fill: [1000, 400]
   end
 
 end
