@@ -5,6 +5,7 @@
   a,span{
     display:inline-block;
     font-size: 0.9rem;
+    color: theme-color("primary");
   }
 }
 .breadcrumb-item+.breadcrumb-item::before{
@@ -13,4 +14,8 @@
   padding-left: 0.5rem;
   color: #818a91;
   content: "/";
+}
+.breadcrumb-item.active{
+  font-size: 0.9rem;
+  line-height: 1.7;
 }

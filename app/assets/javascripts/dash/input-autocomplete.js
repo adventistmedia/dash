@@ -9,6 +9,8 @@ class InputAutocomplete {
     this.minChars = 1;
     this.delay = 250;
     this.lastVal;
+    this.noResultsText = input.data("noResultsText") || "No results found.";
+    this.noResultsCallback = input.data("noResultsCallback");
     this.timer;
     this.input.on('keyup', function(){
       _this.search();
@@ -123,7 +125,8 @@ class InputAutocomplete {
   }
 
   noResults(){
-    return '<li class="no-result"><span>No results found.</span></li>';
+    var noResultText = this.noResultsCallback ? `<a href=''>${this.noResultsText}</a>` : this.noResultsText;
+    return `<li class="no-result"><span>${noResultText}</span></li>`;
   }
 
   renderItem(item){
