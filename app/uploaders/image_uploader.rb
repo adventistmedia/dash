@@ -6,6 +6,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [200, 200]
   end
 
+  version :thumb_landscape do
+    process resize_to_fill: [200, 120]
+  end
+
   version :thumb_square do
     process resize_to_fill: [200, 200]
   end
