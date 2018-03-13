@@ -52,7 +52,7 @@ module Dash::TablesHelper
   def dash_table(scope, options={}, &block)
     options.reverse_merge!(
       search: scope.respond_to?(:current_page),
-      table_overview: scope.respond_to?(:current_page),
+      table_overview: scope.respond_to?(:current_page) || block_given?,
       table_headers: [],
       header_actions: [],
       about: true,
