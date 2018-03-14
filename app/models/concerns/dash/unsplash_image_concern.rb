@@ -8,8 +8,12 @@ module Dash::UnsplashImageConcern
   module ClassMethods
 
     def search(term, options={})
-      return [] if term.blank?
-      response = UnsplashApi.search(term, options)
+      #return [] if term.blank?
+      if term.present?
+        response = UnsplashApi.search(term, options)
+      else
+        response = UnsplashApi.all_photos(options)
+      end
       results = []
       response["results"].each do |result|
         url = result["urls"]["raw"]

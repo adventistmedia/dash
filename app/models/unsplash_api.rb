@@ -9,6 +9,17 @@ class UnsplashApi
     get "/search/photos", options
   end
 
+  def self.all_photos(options={})
+    Rails.cache.fetch("unsplash/photos_curated/page-#{options[:page]}", expires_in: 12.hours) do
+      options.reverse_merge!(
+        page: 1,
+        per_page: 20
+      )
+      results = get "/photos/curated", options
+      {"results" => results, "total" => 1000}
+    end
+  end
+
   def self.photo(id)
     get "/photos/#{id}"
   end
