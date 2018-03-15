@@ -3,8 +3,5 @@
   <td><%= l(asset.created_at.to_date) %></td>
   <td>
     <%= link_to "Add", "#", class: "chooser-file-insert btn btn-secondary btn-sm", data: asset.chooser_data %>
-    <%= row_actions do %>
-      <%#= row_edit_link edit_dashboard_site_chooser_path(@site, asset), class: "dropdown-item", data: {callback: "updateDocumentItem"} %>
-    <% end %>
   </td>
 <% end %>
