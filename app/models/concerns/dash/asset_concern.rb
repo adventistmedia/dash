@@ -6,7 +6,7 @@ module Dash::AssetConcern
     belongs_to :uploaded_by, class_name: Dash.user_class, optional: true
 
     searchable on: [:name, :content_type]
-    searchable in: :tags, on: [:name]
+    # searchable in: :tags, on: [:name]
 
     before_validation :set_published_on, on: :create
     validates :name, :type, :published_on, presence: true
