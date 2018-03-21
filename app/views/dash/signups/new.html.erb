@@ -2,16 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <h2 class="standout"><%= "Create your myAdventist account" %></h2>
+      <p class="text-center">Already have a myAdventist account? <%= link_to "Sign in", main_app.signin_path, class: "link-highlight" %></p>
     </div>
   </div>
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6">
-      <p>A myAdventist account gets you into many Adventist sites.</p>
-    </div>
-    <div class="col-md-6">
+
       <div class="card card-session">
         <div class="card-body">
-          <p>Already have a myAdventist account? <%= link_to "Sign in", main_app.signin_path, class: "link-highlight" %></p>
           <% if @myadventist_user.errors[:base].any? %>
             <p class="session-error"><%= @myadventist_user.errors[:base].join(', ') %></p>
           <% end %>
@@ -20,7 +18,7 @@
             <%= f.input :last_name, placeholder: t("sessions.last_name_placeholder"), label: false, autofocus: true %>
             <%= f.input :email, placeholder: t("sessions.email_placeholder"), label: false %>
             <%= f.input :password, placeholder: t("sessions.password_placeholder"), label: false %>
-            <p>By signing up you agree to the <%= link_to "terms", "terms_legal_path", class: "link-highlight" %> of use.</p>
+            <p>By signing up you agree to the <%= link_to "terms of use", "/legal/terms", class: "link-highlight" %>.</p>
             <div class="actions">
               <%= f.submit t("sessions.sign_up"), class: "btn btn-primary" %>
             </div>
