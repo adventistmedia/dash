@@ -26,7 +26,12 @@ class Dash::SessionsController < ApplicationController
 
   def after_signin_success
     self.current_user = @signin_response.user
-    redirect_to dashboard_root_path
+    redirect_after_signin
+  end
+
+  def redirect_after_signin
+    redirect_to session[:after_signin_path] || dashboard_root_path
+    session.delete(:after_signin_path)
   end
 
   def already_signed_in

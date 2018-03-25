@@ -22,6 +22,7 @@ module Dash::CurrentUser
 
   def authenticate_user!
     unless signed_in?
+      store_location!
       redirect_to signin_path
     end
   end
@@ -29,6 +30,19 @@ module Dash::CurrentUser
   def signout_user
     session.delete(:user_id)
     @current_user = nil
+  end
+
+  # store location to redirect user after successful sign in
+  def store_location!
+    if request.url.present? && request.get? && !request.xhr?
+      if uri = URI.parse(request.url) rescue nil
+        path = [uri.path.sub(/\A\/+/, '/'), uri.query].compact.join('?')
+        path = [path, uri.fragment].compact.join('#')
+        session[:after_signin_path] = path
+        return
+      end
+    end
+    session[:after_signin_path] = nil
   end
 
 end
