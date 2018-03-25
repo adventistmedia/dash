@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files         = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 5.2.0.rc1"
+  s.add_dependency "rails", "~> 5.2.0.rc2"
   # UI
   s.add_dependency "bootstrap", "4.0.0.beta"
   s.add_dependency "kaminari", "~> 1.1.1"
@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "cancancan", "~> 2.1.2"
   s.add_dependency "worldly", "~> 1.0.2"
   # Auditing
-  s.add_dependency "audited", "4.6.0"
+  s.add_dependency "audited", "4.7.0"
 
   # File Management
   s.add_dependency  "carrierwave", "~> 1.2.0"
