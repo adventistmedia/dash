@@ -1,5 +1,24 @@
 $(document).on('click', 'tr[data-url] td:not(.bulk-selector-item):not(:last-child):not(a)', function(){
-  window.location = $(this).parents('tr').data('url');
+  var url = $(this).parents('tr').data('url');
+  var lightbox = $(this).parents('tr').data('lightbox');
+  if(lightbox){
+    $.fancybox.open({
+      type: 'iframe',
+      src: url,
+    	toolbar: true,
+    	smallBtn: false,
+    	iframe: {
+    		preload: false
+    	},
+      afterClose: function (instance) {
+        if(instance.$lastFocus.hasClass("lightbox-reload")){
+          parent.location.reload(true);
+        }
+      }
+    });
+  }else{
+    window.location = url;
+  }
 })
 
 $(document).on('show.bs.modal', '#tableAboutModal', function (e) {
