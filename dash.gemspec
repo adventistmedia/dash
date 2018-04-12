@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   # File Management
   s.add_dependency  "carrierwave", "~> 1.2.0"
 
-  s.add_dependency "faraday", "~> 0.13.1"
+  s.add_dependency "faraday", "~> 0.14.0"
 
   # Development
   s.add_development_dependency "sqlite3"
