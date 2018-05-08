@@ -67,7 +67,7 @@ module Dash::Chooser
   # GET
   # Uploaded documents accessible to user
   def documents
-    @assets = filtered_assets.where(type: "Document").page(params[:page]).order("created_at DESC").per(12)
+    @assets = filtered_assets.where(type: "Document").order("created_at DESC").paginate(params)
     @assets = @assets.search(params[:q], fuzzy: true) if params[:q].present?
     respond_to do |format|
       format.html do
@@ -82,7 +82,7 @@ module Dash::Chooser
   # GET
   # Uploaded images accessible to user
   def images
-    @assets = filtered_assets.where(type: "Image").page(params[:page]).order("created_at DESC").per(12)
+    @assets = filtered_assets.where(type: "Image").order("created_at DESC").paginate(params)
     @assets = @assets.search(params[:q], fuzzy: true) if params[:q].present?
     respond_to do |format|
       format.html do
