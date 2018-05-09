@@ -26,17 +26,39 @@
 }
 // Image list view
 #asset-image-list{
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  flex-wrap: wrap;
-  background: $white;
-  padding: 2rem 0;
-  border: 1px solid $gray-200;
+  margin: 2rem 0;
+  @include media-breakpoint-up(xs) {
+    column-count: 2;
+  }
+  @include media-breakpoint-up(sm) {
+    column-count: 3;
+  }
+  @include media-breakpoint-up(xl) {
+    column-count: 5;
+  }
+  -webkit-column-gap: 1.25rem;
+  -moz-column-gap: 1.25rem;
+  column-gap: 1.25rem;
+
+  img{
+    width: 100%;
+  }
   .asset-image{
-    padding: 0 1rem 2rem 1rem;
+    margin-bottom: 1rem;
   }
 }
+// #asset-image-list{
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: left;
+//   flex-wrap: wrap;
+//   background: $white;
+//   padding: 2rem 0;
+//   border: 1px solid $gray-200;
+//   .asset-image{
+//     padding: 0 1rem 2rem 1rem;
+//   }
+// }
 // File Uploader list
 #upload-list{
   .upload-item, .uploaded-item{

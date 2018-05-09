@@ -1,10 +1,7 @@
 <%= content_tag_for(:div, asset, class: "asset-image") do %>
   <%= link_to "#", class: "chooser-file-insert icon-link", data: asset.chooser_data do  %>
     <div class="img-choose">
-      <%= image_tag(asset.media.url(:fill_200), class: "img-responsive") %>
-      <div class="img-caption">
-        <%= truncate(asset.name, length: 25) %>
-      </div>
+      <%= image_tag(asset.media.url(:small), class: "img-responsive") %>
     </div>
   <% end %>
 <% end %>
