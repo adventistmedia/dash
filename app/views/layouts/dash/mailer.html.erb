@@ -160,7 +160,7 @@
 					<!-- start main heading -->
 					<tr>
 						<td bgcolor="#f5f5f5" align="left" style="padding: 30px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 24px;">
-							<h1 style="margin: 0; text-align: center; font-size: 26px; font-weight: 400; line-height: 36px;"><%= Dash.site_name %></h1>
+							<h1 style="margin: 0; text-align: center; font-size: 26px; font-weight: 400; line-height: 36px;"><%= @heading || Dash.site_name %></h1>
 						</td>
 					</tr>
 					<!-- end main heading -->
@@ -196,10 +196,13 @@
 					<!-- start unsubscribe -->
 					<tr>
 						<td align="center" bgcolor="#e8e8e8" style="padding: 12px 24px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20px; color: #666;">
+							<% if @footer_text %>
+							<p style="margin: 0;"><% @footer_text %></p>
+							<% end %>
               <% if @unsubscribe_url %>
 							<p style="margin: 0;">To stop receiving these emails, you can <a href="<%= @unsubscribe_url %>" target="_blank">unsubscribe</a> at any time.</p>
               <% end %>
-							<p style="margin: 0;">150 Fox Valley Rd, Wahroonga NSW 2076, Australia</p>
+							<p style="margin: 0;">Adventist Church. 150 Fox Valley Rd, Wahroonga NSW 2076, Australia</p>
 						</td>
 					</tr>
 					<!-- end unsubscribe -->
