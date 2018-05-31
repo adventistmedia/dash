@@ -19,6 +19,12 @@ module Dash
   mattr_accessor :site_name
   @@site_name = "Adventist Church"
 
+  mattr_accessor :document_upload_max_size
+  @@document_upload_max_size = 100.megabytes
+
+  mattr_accessor :image_upload_max_size
+  @@image_upload_max_size = 1.megabytes
+
   # Create user account automatically on successfull sign in
   mattr_accessor :create_user_on_signin
   @@create_user_on_signin = true

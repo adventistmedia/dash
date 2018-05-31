@@ -12,7 +12,7 @@
           </span>
         </div>
       <% end %>
-      <p>Maximum upload file size: 1Mb</p>
+      <p>Maximum upload file size: <%= number_to_human_size Dash.image_upload_max_size %></p>
       <div id="upload-list">
       </div>
     </div>

@@ -85,14 +85,14 @@ function chooserUploader(){
     add: function (e, data) {
 
       var uploadErrors = [];
-      var maxSize = 20000000; // 20MB
+      var maxSize = <%= Dash.document_upload_max_size %>;
       // var acceptFileTypes = /^application\/(pdf)$/i;
       data.files[0]['id'] = "u-"+timestamp_id();
       // if(data.files[0]['type'].length && !acceptFileTypes.test(data.files[0]['type'])) {
       //     uploadErrors.push('Not an accepted file type');
       // }
       if(data.files[0]['size'] > maxSize) {
-        uploadErrors.push('File size must be be less than 20MB');
+        uploadErrors.push('File size must be be less than <%= ApplicationController.helpers.number_to_human_size(Dash.document_upload_max_size) %>');
       }
       if(uploadErrors.length > 0) {
         var status = uploadErrors.join("\n");
@@ -166,13 +166,13 @@ function chooserUploader(){
     add: function (e, data) {
       var uploadErrors = [];
       var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
-      var maxSize = 1000000; // 1Mb
+      var maxSize = <%= Dash.image_upload_max_size %>;
       data.files[0]['id'] = "u-"+timestamp_id();
       if(data.files[0]['type'].length && !acceptFileTypes.test(data.files[0]['type'])) {
           uploadErrors.push('Not an accepted file type');
       }
       if(data.files[0]['size'] > maxSize) {
-        uploadErrors.push('File size must be be less than 1Mb');
+        uploadErrors.push('File size must be be less than <%= ApplicationController.helpers.number_to_human_size(Dash.image_upload_max_size) %>');
       }
       if(uploadErrors.length > 0) {
         var status = uploadErrors.join("\n");
