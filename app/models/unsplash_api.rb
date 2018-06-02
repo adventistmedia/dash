@@ -4,7 +4,8 @@ class UnsplashApi
     options.reverse_merge!(
       page: 1,
       per_page: 30,
-      query: term
+      query: term,
+      collections: options[:collection]
     )
     get "/search/photos", options
   end
@@ -14,10 +15,44 @@ class UnsplashApi
       page: 1,
       per_page: 30
     )
-    Rails.cache.fetch("unsplash/photos_curated/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do  
+    Rails.cache.fetch("unsplash/photos_curated/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do
       results = get "/photos/curated", options
       {"results" => results, "total" => 1000}
     end
+  end
+
+  def self.collections(options={})
+    options.reverse_merge!(
+      page: 1,
+      per_page: 30
+    )
+    Rails.cache.fetch("unsplash/user-collections/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do
+      response = get "/users/adventistmedia/collections", options
+    end
+  end
+
+  def self.collection_photos(collection_id, options={})
+    options.reverse_merge!(
+      page: 1,
+      per_page: 30
+    )
+    Rails.cache.fetch("unsplash/user-collection/#{collection_id}/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do
+      results = get "/collections/#{collection_id}/photos", options
+      {"results" => results, "total" => 1000}
+    end
+  end
+
+  def paginated(response)
+    results = []
+    response["results"].each do |result|
+      url = result["urls"]["raw"]
+      if url[/photo\-[a-zA-Z0-9\_\-\.]+/] # hack to get aroung issue with reserve urls
+        s = UnsplashImage.new(external_id: result["id"], name: result["description"])
+        s.media.add_photo(url)
+        results << s
+      end
+    end
+    Kaminari.paginate_array(results, total_count: response["total"]).page(options[:page]).per(options[:per_page])
   end
 
   def self.photo(id)
@@ -43,7 +78,6 @@ class UnsplashApi
 
   def self.get(path, params={})
     response = connection.get path, params
-
     status_code = response.respond_to?(:status) ? response.status : response.code
 
     if !(200..299).include?(status_code)

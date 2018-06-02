@@ -99,7 +99,9 @@ module Dash::Chooser
   def stock_images
     options = {}
     options[:page] = params[:page] if params[:page].present?
+    options[:collection] = params[:collection] if params[:collection].present?
     @assets = UnsplashImage.search(params[:q], options)
+    @collections = UnsplashApi.collections
     render template: "/dash/chooser/stock_images"
   end
 

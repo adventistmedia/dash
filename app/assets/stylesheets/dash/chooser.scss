@@ -82,3 +82,59 @@
     }
   }
 }
+
+// Stock Image Collections
+.colnav-wrapper{
+  height: 40px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+.colnav-scroller{
+  height: calc(100% + 15px);
+  box-sizing: content-box;
+  display: -webkit-box;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.colnav-item{
+  flex-basis: 120px;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  flex-shrink: 0;
+  max-width: 250px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.colnav-img {
+  overflow: hidden;
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  line-height: 1;
+  width: 100%;
+}
+.colnav-img a{
+  margin: 0;
+  text-shadow: 0 0 8px rgba(0,0,0,.3);
+  text-transform: capitalize;
+  display: block;
+  background-color: rgba(55,35,35,.3);
+  transition: background-color .15s ease-in-out;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.colnav-img a:hover{
+  background-color: rgba(55,35,35,.45);
+}

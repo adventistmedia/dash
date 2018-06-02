@@ -9,7 +9,9 @@ module Dash::UnsplashImageConcern
 
     def search(term, options={})
       #return [] if term.blank?
-      if term.present?
+      if term.blank? && options[:collection].present?
+        response = UnsplashApi.collection_photos(options.delete(:collection), options)
+      elsif term.present?
         response = UnsplashApi.search(term, options)
       else
         response = UnsplashApi.all_photos(options)
