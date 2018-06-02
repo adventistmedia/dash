@@ -7,7 +7,8 @@ class UnsplashApi
       query: term,
       collections: options[:collection]
     )
-    get "/search/photos", options
+    results = get("/search/photos", options)
+    results["body"]
   end
 
   def self.all_photos(options={})
@@ -17,7 +18,7 @@ class UnsplashApi
     )
     Rails.cache.fetch("unsplash/photos_curated/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do
       results = get "/photos/curated", options
-      {"results" => results, "total" => 1000}
+      {"results" => results["body"], "total" => results["headers"]["x-total"].to_i}
     end
   end
 
@@ -27,7 +28,8 @@ class UnsplashApi
       per_page: 30
     )
     Rails.cache.fetch("unsplash/user-collections/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do
-      response = get "/users/adventistmedia/collections", options
+      results = get "/users/adventistmedia/collections", options
+      results["body"]
     end
   end
 
@@ -38,29 +40,18 @@ class UnsplashApi
     )
     Rails.cache.fetch("unsplash/user-collection/#{collection_id}/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do
       results = get "/collections/#{collection_id}/photos", options
-      {"results" => results, "total" => 1000}
+      {"results" => results["body"], "total" => results["headers"]["x-total"].to_i}
     end
-  end
-
-  def paginated(response)
-    results = []
-    response["results"].each do |result|
-      url = result["urls"]["raw"]
-      if url[/photo\-[a-zA-Z0-9\_\-\.]+/] # hack to get aroung issue with reserve urls
-        s = UnsplashImage.new(external_id: result["id"], name: result["description"])
-        s.media.add_photo(url)
-        results << s
-      end
-    end
-    Kaminari.paginate_array(results, total_count: response["total"]).page(options[:page]).per(options[:per_page])
   end
 
   def self.photo(id)
-    get "/photos/#{id}"
+    results = get "/photos/#{id}"
+    results["body"]
   end
 
   def self.download(id)
-    get "/photos/#{id}/download"
+    results = get "/photos/#{id}/download"
+    results["body"]
   end
 
   private
@@ -86,7 +77,7 @@ class UnsplashApi
       Rails.logger.debug "Unsplash API request failed: #{response.status} code - #{response.body}"
       raise StandardError.new msg
     end
-    JSON.parse(response.body)
+    {"body" => JSON.parse(response.body), "headers" => response.headers}
   end
 
 end
