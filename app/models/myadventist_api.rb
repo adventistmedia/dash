@@ -78,12 +78,12 @@ class MyadventistApi
   private
 
   def post_request(path, options)
-    conn = Faraday.new(url: @api_host, headers: {"Content-Type" => "application/json"}) do |faraday|
-      faraday.adapter Faraday.default_adapter
-      faraday.use FaradayMiddleware::Instrumentation
-    end
+    conn = Faraday.new(url: @api_host, headers: {"Content-Type" => "application/json"})
     body = default_request_options.reverse_merge(options)
+    r_start = Time.now
     response = conn.post path, body.to_json
+    r_end = Time.now
+    Rails.logger.debug "MyAdventist request #{path}: #{(r_end-r_start).in_milliseconds.to_i}ms"
     unless response.success?
       Rails.logger.debug "MyAdventist API request failed: #{response.status} code"# - #{response.body}
     end
