@@ -14,9 +14,9 @@ module Dash::AuditsHelper
   def audit_summary(audit)
     case audit.action
     when "create"
-      "Created"
+      t("audits.audit_action.create")
     when "destroy"
-      "Deleted"
+      t("audits.audit_action.destroy")
     when "update"
       audit_update_summary(audit.audited_changes)
     end
@@ -26,9 +26,9 @@ module Dash::AuditsHelper
 
     if changes.length == 1
       name = changes.keys.first.gsub(/_id\Z/, "")
-      "#{name.titleize} changed"
+      t("audits.audit_action.update_summary", field: name.titleize)
     else
-      "Edited"
+      t("audits.audit_action.update")
     end
   end
 end

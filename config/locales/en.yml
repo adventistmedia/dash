@@ -1,4 +1,17 @@
 en:
+  about: About
+  archive: Archive
+  batch_update: Batch Update
+  edit: Edit
+  delete: Delete
+  search: Search
+  items_selected_html: "<span id='items-selected'>0</span> items selected"
+  image_selector:
+    label: Image
+  batch_destroy:
+    confirm: Please confirm you would like to delete all selected rows.
+  export:
+    export_to_csv: Export to CSV
   error:
     page_not_found:
       title: 404 - Page not found
@@ -22,6 +35,11 @@ en:
     save: Save
     saving: Saving...
     support: Support
+  btn:
+    cancel: Cancel
+    clear: Clear
+    delete_all: Delete All
+    update_all: Update All
   legal:
     privacy: Privacy
     terms: Terms
@@ -50,9 +68,12 @@ en:
     sign_up_title: Sign up to myAdventist
   audits:
     audit_action:
-      create: "Created"
-      update: "Updated"
-      destroy: "Deleted"
+      create: Created
+      update: Edited
+      update_summary: "%{field_name} changed"
+      destroy: Deleted
+  paginate:
+    rows_per_page: Rows per page
   myadventist_user:
     validations:
       password_complexity: requires one digit, symbol, uppercase & lowercase character

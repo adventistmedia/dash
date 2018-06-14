@@ -1,4 +1,4 @@
-function getFancboxTrigger(){
+function getFancyboxTrigger(){
   return window.parent.$.fancybox.getInstance().slides[0].opts.$orig;
 }
 

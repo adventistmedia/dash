@@ -11,7 +11,7 @@ module Dash::PageHelper
     @nav_visible = options.key?(:nav_visible) ? options[:nav_visible] : true
   end
 
-  def page_title(default = 'Adventist Church')
+  def page_title(default = "Adventist Church")
     content_for?(:title) ? "#{content_for(:title)} - #{default}" : default
   end
 

@@ -5,7 +5,7 @@ module Dash::FormsHelper
     options.reverse_merge!(sort: false)
     keys = f.object.class.send(column).keys
     keys.sort! if keys.sort
-    keys.collect{|c| [t("#{f.object.class.base_class.table_name}.#{column.to_s}.#{c}"), c]}
+    keys.collect{|c| [f.object.class.base_class.human_attribute_name("#{column.to_s.singularize}.#{c}"), c] }
   end
 
   def data_for_field(f, association, options={})
