@@ -54,6 +54,8 @@ en:
         or: or
         select_files: Select Files
       upload_to_server_failed: Failed to upload to server
+    notifications:
+      page_title: Notifications
     btn:
       cancel: Cancel
       clear: Clear
@@ -102,10 +104,6 @@ en:
       account_exists: Already have a myAdventist account?
       terms_agreement_html: "By signing up you agree to the %{link}"
       terms_of_use: terms of use
-    account:
-      subscriptions:
-        index:
-          page_title: Notifications
     audits:
       modal:
         by_user: "by %{name}"
