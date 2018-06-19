@@ -1,8 +1,8 @@
-<% page "Notifications", nav: :account, nav_active: :subscriptions %>
+<% page t(".page_title"), nav: :account, nav_active: :subscriptions %>
 <div class="page-header">
   <div class="content">
-    <h3>Notifications</h3>
+    <h3><%= t(".page_title") %></h3>
   </div>
 </div>
 
-<%= dash_table @subscription_notifications, table_headers: [[:name, "Name"]], partial: "/account/subscriptions/subscription_notification", paginate: false, table_overview: false %>
+<%= dash_table @subscription_notifications, table_headers: [[:name, SubscriptionNotification.human_attribute_name(:name)]], partial: "/account/subscriptions/subscription_notification", paginate: false, table_overview: false %>

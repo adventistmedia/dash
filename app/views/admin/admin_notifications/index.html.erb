@@ -5,5 +5,5 @@
   </div>
 </div>
 <%= dash_table @admin_notifications, table_headers: [[:title, "Title"], [:created_at, "Created At"]] do %>
-  <%= link_to(t("text.add"), new_admin_admin_notification_path, class: "btn btn-primary") if can?(:create, AdminNotification) %>
+  <%= link_to(t("dash.btn.add"), new_admin_admin_notification_path, class: "btn btn-primary") if can?(:create, AdminNotification) %>
 <% end %>

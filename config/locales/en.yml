@@ -1,25 +1,4 @@
 en:
-  about: About
-  archive: Archive
-  batch_update: Batch Update
-  edit: Edit
-  delete: Delete
-  search: Search
-  items_selected_html: "<span id='items-selected'>0</span> items selected"
-  image_selector:
-    label: Image
-  batch_destroy:
-    confirm: Please confirm you would like to delete all selected rows.
-  export:
-    export_to_csv: Export to CSV
-  error:
-    page_not_found:
-      title: 404 - Page not found
-      summary: Nothing to see here!
-    server_error:
-      title: 500 - Something went wrong
-      summary: Looks like you found a bug! We've been notified and will check it out.
-      urgent_help_html: If you require urgent help, visit our <a href="%{site}">support site</a>
   flash:
     create_success: Successfully added %{title}
     create_failed: Unable to add. Please review any error messages.
@@ -29,51 +8,117 @@ en:
     delete_failed: Unable to delete %{title}
     archive_success: Successfully archived %{title}
     archive_failed: Unable to archive %{title}
-  text:
-    cancel: Cancel
-    next: Next
-    save: Save
-    saving: Saving...
-    support: Support
-  btn:
-    cancel: Cancel
-    clear: Clear
-    delete_all: Delete All
-    update_all: Update All
-  legal:
-    privacy: Privacy
-    terms: Terms
-  passwords:
-    forgot_password: Forgot Password
-    email_placeholder: Email
-    reset_password: Reset Password
-    new_password: New Password
-    set_new_password: Set a new password for your Adventist Account
-    reset_request_failed: Unable to reset. Please check email is correct
-    reset_request_success: We've sent you an email with instructions to reset your password. Click the link in the email or paste the reset code below.
-    send_reset_email: Send reset email
-  sessions:
-    email_or_username_placeholder: Email or username
-    email_placeholder: Email
-    first_name_placeholder: First name
-    forgot_password: Forgot password?
-    last_name_placeholder: Last name
-    password_placeholder: Password
-    sign_in: Sign in
-    sign_in_title: Sign in with myAdventist
-    sign_in_failed: Email and password do not match.
-    sign_out: Sign out
-    sign_out_success: Successfully signed out
-    sign_up: Sign up
-    sign_up_title: Sign up to myAdventist
-  audits:
-    audit_action:
-      create: Created
-      update: Edited
-      update_summary: "%{field_name} changed"
-      destroy: Deleted
-  paginate:
-    rows_per_page: Rows per page
-  myadventist_user:
-    validations:
-      password_complexity: requires one digit, symbol, uppercase & lowercase character
+  active_record:
+    attributes:
+      subscription_notification:
+        name: Name
+  dash:
+    about: About
+    add: Add
+    all: All
+    archive: Archive
+    batch_update: Batch Update
+    delete: Delete
+    edit: Edit
+    items_selected_html: "<span id='items-selected'>0</span> items selected"
+    search: Search
+    image_selector:
+      label: Image
+    batch:
+      unable_to_complete: Unable to complete
+    batch_destroy:
+      confirm: Please confirm you would like to delete all selected rows.
+    export:
+      export_to_csv: Export to CSV
+    error:
+      page_not_found:
+        title: 404 - Page not found
+        summary: Nothing to see here!
+      server_error:
+        title: 500 - Something went wrong
+        summary: Looks like you found a bug! We've been notified and will check it out.
+        urgent_help_html: If you require urgent help, visit our <a href="%{site}">support site</a>
+    chooser:
+      documents:
+        upload_document: Upload Document
+      images:
+        upload_image: Upload Image
+      nav:
+        documents: Documents
+        images: My Images
+        stock_images: Stock Images
+        upload: Upload
+      uploader:
+        drop_file: Drop file here
+        max_upload_size: "Maximum upload file size: %{max_size}"
+        or: or
+        select_files: Select Files
+      upload_to_server_failed: Failed to upload to server
+    btn:
+      cancel: Cancel
+      clear: Clear
+      delete_all: Delete All
+      next: Next
+      save: Save
+      support: Support
+      update_all: Update All
+      disable:
+        saving: Saving...
+    legal:
+      privacy: Privacy
+      terms: Terms
+    passwords:
+      forgot_password: Forgot Password
+      email_placeholder: Email
+      reset_password: Reset Password
+      new_password: New Password
+      set_new_password: Set a new password for your Adventist Account
+      reset_request_failed: Unable to reset. Please check email is correct
+      reset_request_success: We've sent you an email with instructions to reset your password. Click the link in the email or paste the reset code below.
+      reset_sent: Successfully sent reset password email
+      reset_successfull: Successfully reset password
+      reset_failed: Unable to update password. Please check errors
+      send_reset_email: Send reset email
+    sessions:
+      page_title: Sign in to myAdventist
+      email_or_username_placeholder: Email or username
+      email_placeholder: Email
+      first_name_placeholder: First name
+      forgot_password: Forgot password?
+      last_name_placeholder: Last name
+      password_placeholder: Password
+      no_account: Don't have a myAdventist account?
+      sign_in: Sign in
+      sign_in_title: Sign in with myAdventist
+      sign_in_failed: Email and password do not match.
+      sign_out: Sign out
+      sign_out_success: Successfully signed out
+      sign_up: Sign up
+      sign_up_title: Sign up to myAdventist
+      disable:
+        sign_in: Signing In...
+    signups:
+      page_title: Create your myAdventist account
+      account_exists: Already have a myAdventist account?
+      terms_agreement_html: "By signing up you agree to the %{link}"
+      terms_of_use: terms of use
+    account:
+      subscriptions:
+        index:
+          page_title: Notifications
+    audits:
+      modal:
+        by_user: "by %{name}"
+        created: Created
+        recent_history: Recent History
+        updated: Updated
+      audit_action:
+        create: Created
+        update: Edited
+        update_summary: "%{field_name} changed"
+        destroy: Deleted
+    paginate:
+      rows_per_page: Rows per page
+    myadventist_user:
+      validations:
+        password_complexity: requires one digit, symbol, uppercase & lowercase character

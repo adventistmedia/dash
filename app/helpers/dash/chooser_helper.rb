@@ -10,7 +10,7 @@ module Dash::ChooserHelper
     namespace = options[:namespace] || "dashboard"
     path = "/" +[namespace, "chooser", "image"].join("/") + "?tabs=images,upload"
     options.reverse_merge!(
-      label: t("image_selector.label"),
+      label: t("dash.image_selector.label"),
       file_type: "image",
       path: path,
       attribute: :asset_id,

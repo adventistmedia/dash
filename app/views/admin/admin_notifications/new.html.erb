@@ -14,8 +14,8 @@
           <%= f.input :url %>
           <%= f.input :expires_at, as: :pick_date %>
           <div class="form-footer">
-            <%= f.submit t("text.save"), class: "btn btn-primary", data: { disable_with: t("text.saving") } %>
-            <%= link_to t("text.cancel"), admin_admin_notifications_path, class: "btn btn-secondary" %>
+            <%= f.submit t("dash.btn.save"), class: "btn btn-primary", data: { disable_with: t("dash.btn.disable.saving") } %>
+            <%= link_to t("dash.btn.cancel"), admin_admin_notifications_path, class: "btn btn-secondary" %>
           </div>
         <% end %>
       </div>

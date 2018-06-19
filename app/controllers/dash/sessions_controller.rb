@@ -18,7 +18,7 @@ class Dash::SessionsController < ApplicationController
   # Sign out
   def destroy
     signout_user
-    flash[:notice] = t("sessions.sign_out_success")
+    flash[:notice] = t("dash.sessions.sign_out_success")
     redirect_to signin_path
   end
 

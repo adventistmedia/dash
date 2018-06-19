@@ -131,7 +131,7 @@ module Dash::TablesHelper
       scope.applied_filter.filter_options.each do |_, filter|
         concat table_filter(scope.applied_filter, filter)
       end
-      concat link_to(t("btn.clear"), request.params.merge(filter: nil), class: "clear-filters")
+      concat link_to(t("dash.btn.clear"), request.params.merge(filter: nil), class: "clear-filters")
     end
   end
 
@@ -160,7 +160,7 @@ module Dash::TablesHelper
       form_with url: url_for, method: :get, local: true do |f|
         content_tag(:div, class: "wrapper") do
           concat button_tag(content_tag(:i, "", class: "fa fa-search"), class: "search-btn")
-          concat f.text_field(:q, value: params[:q], placeholder: t("search"), class: "search-input", autocomplete: "off")
+          concat f.text_field(:q, value: params[:q], placeholder: t("dash.search"), class: "search-input", autocomplete: "off")
           concat button_tag(content_tag(:i, "", class: "fa fa-times"), class: "search-close", data: {reload: params[:q].present? ? 1 : 0 })
         end
       end
@@ -170,7 +170,7 @@ module Dash::TablesHelper
   def export_link(options={})
     url = request.params.merge(format: "csv").except(:page, :per)
     options.reverse_merge!(class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-download") + t("export.export_to_csv"), url, options)
+    link_to(content_tag(:i, "", class: "fa fa-download") + t("dash.export.export_to_csv"), url, options)
   end
 
   def row_actions(options={}, &block)
@@ -189,22 +189,22 @@ module Dash::TablesHelper
 
   def row_about_link(url, options={})
     options.reverse_merge!(class: "dropdown-item", data: {toggle: "modal", target: "#tableAboutModal", title: options[:title]})
-    link_to(content_tag(:i, "", class: "fa fa-history") + t("about"), url, options)
+    link_to(content_tag(:i, "", class: "fa fa-history") + t("dash.about"), url, options)
   end
 
   def row_edit_link(url, options={})
     options.reverse_merge!(class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-pencil") + t("edit"), url, options)
+    link_to(content_tag(:i, "", class: "fa fa-pencil") + t("dash.edit"), url, options)
   end
 
   def row_delete_link(url, options={})
     options.reverse_merge!(method: :delete, remote: true, class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-trash") + t("delete"), url, options)
+    link_to(content_tag(:i, "", class: "fa fa-trash") + t("dash.delete"), url, options)
   end
 
   def row_archive_link(url, options={})
     options.reverse_merge!(method: :delete, remote: true, class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-archive") + t("archive"), url, options)
+    link_to(content_tag(:i, "", class: "fa fa-archive") + t("dash.archive"), url, options)
   end
 
   def bulk_selector_all(selected = false)
@@ -235,7 +235,7 @@ module Dash::TablesHelper
     %{
       <div id="table-bulk-options">
         <div class="info">
-          #{t("items_selected_html")}
+          #{t("dash.items_selected_html")}
         </div>
         <div class="actions">#{actions}</div>
       </div>
@@ -245,16 +245,16 @@ module Dash::TablesHelper
   def modal_batch_destroy(options={}, &block)
     default_body =
       simple_form_for(:batch, url: options[:url], remote: true) do |f|
-        content_tag(:p, t("batch_destroy.confirm")) +
+        content_tag(:p, t("dash.batch_destroy.confirm")) +
         f.input_field(:ids, as: :hidden, class: "batch-ids")
       end
     body = block_given? ? capture(&block) : default_body
-    options.reverse_merge!(id: "tableBatchDestroyModal", title: t("delete"), submit: t("btn.delete_all"), submit_class: "table-batch-submit", body: body)
+    options.reverse_merge!(id: "tableBatchDestroyModal", title: t("dash.delete"), submit: t("dash.btn.delete_all"), submit_class: "table-batch-submit", body: body)
     modal_html(options)
   end
 
   def modal_batch_update(options={}, &block)
-    options.reverse_merge!(id: "tableBatchUpdateModal", title: t("batch_update"), submit: t("btn.update_all"), submit_class: "table-batch-submit", body: capture(&block))
+    options.reverse_merge!(id: "tableBatchUpdateModal", title: t("dash.batch_update"), submit: t("dash.btn.update_all"), submit_class: "table-batch-submit", body: capture(&block))
     modal_html(options)
   end
 
@@ -273,7 +273,7 @@ module Dash::TablesHelper
               #{options[:body]}
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">#{t("btn.cancel")}</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">#{t("dash.btn.cancel")}</button>
               <button type="button" class="btn btn-primary #{options[:submit_class]}">#{options[:submit]}</button>
             </div>
           </div>

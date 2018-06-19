@@ -20,7 +20,7 @@ module Dash::TableSorting
       define_method(method_name) do
         default_column = options[:attributes].keys.first
         column = options[:attributes].keys.include?(params[:col]) ? params[:col] : default_column
-        direction = ['ASC', 'DESC'].detect{|d| params[:dir] == d } || options[:direction]
+        direction = ["ASC", "DESC"].detect{|d| params[:dir] == d } || options[:direction]
         attribute = options[:attributes][column]
         # set
         params[:col] = column

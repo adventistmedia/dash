@@ -2,5 +2,5 @@
 window.location.reload();
 <% else %>
 $('.table-batch-submit').prop('disabled', false);
-alert('Unable to complete');
+alert('<%= t("dash.batch.unable_to_complete") %>');
 <% end %>

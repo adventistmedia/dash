@@ -4,15 +4,15 @@
     <div class="col-12">
       <%= form_with(url: chooser_path(:complete_upload_image), method: :post, local: true) do %>
         <div id="dropzone">
-          <h1>Drop file here</h1>
-          <p>or</p>
+          <h1><%= t("dash.chooser.uploader.drop_file") %></h1>
+          <p><%= t("dash.chooser.uploader.or") %></p>
           <span class="btn btn-primary fileinput-button">
-            <i class="fa fa-plus fa fa-white"></i> <span>Select Files</span>
+            <i class="fa fa-plus fa fa-white"></i> <span><%= t("dash.chooser.uploader.selecte_files") %></span>
             <%= cl_image_upload_tag(:media_id, use_filename: true, folder: Rails.application.credentials.env.dig(:cloudinary, :folder), html: {class: "image-fileupload"}) %>
           </span>
         </div>
       <% end %>
-      <p>Maximum upload file size: <%= number_to_human_size Dash.image_upload_max_size %></p>
+      <p><%= t("dash.chooser.uploader.max_upload_size", max_size: number_to_human_size(Dash.image_upload_max_size)) %></p>
       <div id="upload-list">
       </div>
     </div>

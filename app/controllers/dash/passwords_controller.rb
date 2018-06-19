@@ -7,7 +7,7 @@ class Dash::PasswordsController < ApplicationController
   def create
     response = User.request_password_reset( params[:forgot_password][:email] )
     if response.success?
-      flash[:notice] = "Successfully sent reset password email"
+      flash[:notice] = t("dash.passwords.reset_sent")
       redirect_to reset_password_path(
         reset_token: response.data[:reset_token],
         email: params[:forgot_password][:email]
@@ -31,10 +31,10 @@ class Dash::PasswordsController < ApplicationController
   def update_password
     @myadventist_password = MyadventistPassword.new(myadventist_password_params)
     if @myadventist_password.save
-      flash[:notice] = "Successfully reset password"
+      flash[:notice] = t("dash.passwords.reset_successfull")
       redirect_to signin_path
     else
-      flash[:alert] = "Unable to update password. Please check errors"
+      flash[:alert] = t("dash.password.reset_failed")
       render :reset
     end
   end

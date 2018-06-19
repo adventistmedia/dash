@@ -1,5 +1,5 @@
 <% if @asset.persisted? %>
 $("<%= @dom_id %>").replaceWith("<%= j(render(partial: "/dash/chooser/uploaded_asset", locals: {asset: @asset}))%>");
 <% else %>
-$("<%= @dom_id %> .status").text("Failed to upload to server");
+$("<%= @dom_id %> .status").text("<%= t("dash.chooser.upload_to_server_failed") %>");
 <% end %>
