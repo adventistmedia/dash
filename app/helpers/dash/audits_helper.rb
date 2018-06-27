@@ -26,7 +26,7 @@ module Dash::AuditsHelper
 
     if changes.length == 1
       name = changes.keys.first.gsub(/_id\Z/, "")
-      t("dash.audits.audit_action.update_summary", field: name.titleize)
+      t("dash.audits.audit_action.update_summary", field_name: name.titleize)
     else
       t("dash.audits.audit_action.update")
     end
