@@ -119,4 +119,4 @@ en:
       rows_per_page: Rows per page
     myadventist_user:
       validations:
-        password_complexity: requires one digit, symbol, uppercase & lowercase character
+        password_complexity: requires 8 to 12 characters with one digit, symbol, uppercase & lowercase character

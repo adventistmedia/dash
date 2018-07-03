@@ -4,7 +4,7 @@ class MyadventistPassword
   validates :reset_code, :reset_token, :email, :password, presence: true
   validates :email, email: true
   # Password complexity: at least 1 digit, uppercase, lowercase, symbol
-  validates :password, length: {minimum: 8, maximum: 12}, format: { with: /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).*/, message: I18n.t("myadventist_user.validations.password_complexity") }
+  validates :password, length: {minimum: 8, maximum: 12}, format: { with: /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).*/, message: I18n.t("dash.myadventist_user.validations.password_complexity") }
 
   attr_accessor :reset_code, :reset_token, :email, :password
 

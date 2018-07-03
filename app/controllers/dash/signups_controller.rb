@@ -9,8 +9,10 @@ class Dash::SignupsController < ApplicationController
   def create
     @myadventist_user = MyadventistUser.new(myadventist_user_params)
     if @myadventist_user.save
-      redirect_to dashboard_root_path
+      flash[:notice] = "Successfully created account. Please sign in"
+      redirect_to signin_path
     else
+      flash[:alert] = "Unable to create account. Please review error messages."
       render :new
     end
   end
