@@ -2,7 +2,7 @@
 .trumbowyg-editor.trumbowyg-reset-css{
   a.btn{
     text-transform: none !important;
-    text-align: none; // this is required, otherwise text align center won't work
+    text-align: inherit; // this is required, otherwise text align center won't work
     text-decoration: none !important;
   }
   a.btn-primary{
