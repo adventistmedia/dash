@@ -18,6 +18,24 @@ $modal-reset-color: #EEE !default;
 $transition-duration: 150ms !default;
 $slow-transition-duration: 300ms !default;
 
+// Custom styles
+.trumbowyg-editor.trumbowyg-reset-css{
+  a.btn{
+    text-transform: none !important;
+    text-decoration: none !important;
+  }
+  a.btn-primary{
+    background-color: #007bff !important;
+    color: #fff !important;
+  }
+  a.btn-secondary{
+    border-color: #dee2e6 !important;
+    color: #343a40 !important;
+    background-color: #e9ecef;
+  }
+}
+
+//
 #trumbowyg-icons {
     overflow: hidden;
     visibility: hidden;
