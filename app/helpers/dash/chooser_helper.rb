@@ -30,7 +30,11 @@ module Dash::ChooserHelper
     id = "#{options[:attribute].to_s.tr("_","-")}-#{f.object.object_id}"
     errors = f.object.errors[options[:attribute].to_sym]
     preview = ""
-    preview = image_tag(asset.media.thumb.url.to_s) if asset.present?
+    if asset.present? && asset.image?
+      preview = image_tag(asset.media.thumb.url.to_s)
+    elsif asset.present? && !asset.image?
+      preview = asset.name
+    end
     div_class = "input string asset-selector"
     div_class += " required" if options[:required]
     div_class += " field_with_errors" if errors.any?
