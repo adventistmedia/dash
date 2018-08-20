@@ -13,8 +13,8 @@ module Dash::MenuHelper
   def menu_icon_link(key, title, url, options)
     options[:html][:class] = "nav-group-item #{'expandable' if options[:submenus].any?} #{'active' if key == @nav_active}"
     link_to(url, options[:html]) do
-      concat(content_tag(:i, "", class: "icon fa fa-#{options[:icon]}").html_safe + title)
-      concat content_tag(:i, '', class: 'fa fa-angle-down expand') if options[:submenus].any?
+      concat(content_tag(:i, "", class: "icon fas fa-#{options[:icon]}").html_safe + title)
+      concat content_tag(:i, "", class: "fas fa-angle-down expand") if options[:submenus].any?
     end
   end
 

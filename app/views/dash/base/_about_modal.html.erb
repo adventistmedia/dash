@@ -5,7 +5,7 @@
   <% @about_object.audits.reorder("audits.version DESC").includes(:user).limit(5).each do |audit| %>
   <li>
     <div class="list-icon">
-      <%= content_tag(:i, "", class: "fa fa-#{audit_action_icon(audit.action)}") %>
+      <%= content_tag(:i, "", class: "fas fa-#{audit_action_icon(audit.action)}") %>
     </div>
     <div class="list-body">
       <%= audit_summary(audit) %> <span class="subtitle"><%= l(audit.created_at.to_date) %> <%= t("dash.audits.modal.by_user", name: (audit.username || audit.user&.name)) if audit.user %></span>

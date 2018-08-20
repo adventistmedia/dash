@@ -135,7 +135,7 @@ class InputAutocomplete {
       logo = `<img src="${item.image}"/>`;
     }else{
       var icon = item.icon || 'square-o';
-      logo = `<i class="fa fa-${icon}"></i>`;
+      logo = `<i class="fas fa-${icon}"></i>`;
     }
     var label = item.label;
     if(item.subtitle){

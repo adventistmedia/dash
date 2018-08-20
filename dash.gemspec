@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
   s.add_dependency "slack-notifier", "~> 2.3"
   s.add_dependency "mandrill_dm", "~> 1.3.4"
   # Authentication and Authorization
-  s.add_dependency "cancancan", "~> 2.1.2"
   s.add_dependency "worldly", "~> 1.0.2"
   # Auditing
   s.add_dependency "audited", "4.7.1"

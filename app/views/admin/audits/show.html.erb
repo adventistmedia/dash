@@ -15,7 +15,7 @@
         <ul class="dash-list">
           <% @audit.audited_changes.each do |field,changes| %>
           <li>
-            <div class="list-icon"><i class="fa fa-sticky-note-o"></i></div>
+            <div class="list-icon"><i class="fas fa-sticky-note"></i></div>
             <div class="list-body"><%= field.titleize %> <span class="subtitle"><%= changes.is_a?(Array) ? changes.join(" > ") : changes %></span></div>
           </li>
           <% end %>
@@ -29,11 +29,11 @@
         <h4 class="card-title">Details</h3>
         <ul class="dash-list">
           <li>
-            <div class="list-icon"><i class="fa fa-cube"></i></div>
+            <div class="list-icon"><i class="fas fa-cube"></i></div>
             <div class="list-body">Audited <span class="subtitle"><%= "#{@audit.auditable_type} ##{@audit.auditable_id}: #{@audit.auditable&.auditable_title}" %></span></div>
           </li>
           <li>
-            <div class="list-icon"><i class="fa fa-user-circle-o"></i></div>
+            <div class="list-icon"><i class="fas fa-user-circle-o"></i></div>
             <div class="list-body">When/Who <span class="subtitle"><%= "#{l(@audit.created_at)} by #{@audit.username || @audit.user&.name} " %></span></div>
           </li>
         </ul>

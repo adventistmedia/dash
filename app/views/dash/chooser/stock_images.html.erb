@@ -14,7 +14,7 @@
           <div class="table-search table-search-full-width active">
             <%= form_with url: url_for, method: :get, local: true do |f| %>
               <div class="wrapper">
-                <%= button_tag(content_tag(:i, "", class: "fa fa-search"), class: "search-btn") %>
+                <%= button_tag(content_tag(:i, "", class: "fas fa-search"), class: "search-btn") %>
                 <%= f.text_field(:q, value: params[:q], placeholder: t("dash.search"), class: "search-input", autocomplete: "off") %>
               </div>
             <% end %>

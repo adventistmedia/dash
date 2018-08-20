@@ -39,13 +39,13 @@ function loadNotifications(){
                         }
                         var unread = '';
                         if(!item.read){
-                          unread = `<div class="unread"><i class="fa fa-circle"></i></div>`;
+                          unread = `<div class="unread"><i class="fas fa-circle"></i></div>`;
                         }
                         html += `
                           <li>
                             <div class="notification-item">
                               <div class="icon">
-                                <i class="fa fa-${icon}"></i>
+                                <i class="fas fa-${icon}"></i>
                               </div>
                               <div class="content">
                                 ${unread}

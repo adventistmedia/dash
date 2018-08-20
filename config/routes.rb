@@ -20,11 +20,4 @@ Rails.application.routes.draw do
   # concern :batch_destroy do
   #   post 'batch_destroy', on: :collection
   # end
-  # Sessions
-  # get 'signin', to: 'sessions#new', as: :signin
-  # post 'signin', to: 'sessions#create'
-  # delete 'signout', to: 'sessions#destroy', as: :signout
-  # # Sign up
-  # get 'signup', to: 'signups#new', as: :signup
-  # post 'signup', to: 'signups#create'
 end

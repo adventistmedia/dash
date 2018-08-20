@@ -1,14 +1,14 @@
 function calendarPickers() {
   var datetimeIcons = {
-    time: "fa fa-clock-o",
-    date: "fa fa-calendar",
-    up: "fa fa-arrow-up",
-    down: "fa fa-arrow-down",
-    previous: "fa fa-chevron-left",
-    next: "fa fa-chevron-right",
-    today: 'fa fa-dot-circle-o',
-    clear: 'fa fa-trash',
-    close: 'fa fa-close'
+    time: "fas fa-clock",
+    date: "fas fa-calendar-alt",
+    up: "fas fa-arrow-up",
+    down: "fas fa-arrow-down",
+    previous: "fas fa-chevron-left",
+    next: "fas fa-chevron-right",
+    today: "fas fa-dot-circle",
+    clear: "fas fa-trash-alt",
+    close: "fas fa-times"
   }
   // date time picker
   $.each( $(".datepicker"), function(i,item){

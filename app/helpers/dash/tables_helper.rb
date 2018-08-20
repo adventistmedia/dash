@@ -17,7 +17,7 @@ module Dash::TablesHelper
 
   def sort_caret(active_sort, column, dir)
     caret = dir == "ASC" ? "up" : "down"
-    active_sort ? content_tag(:span, "", class: "fa fa-angle-#{caret}") : ""
+    active_sort ? content_tag(:span, "", class: "fas fa-angle-#{caret}") : ""
   end
 
   def table_paginate(scope, options={})
@@ -30,8 +30,8 @@ module Dash::TablesHelper
         (options[:change_rows] ? content_tag(:span, "#{t('paginate.rows_per_page')}: #{per_page_dropdown(scope)}".html_safe) : "".html_safe)  +
         content_tag(:span, "#{first_entry}-#{last_entry} of #{scope.total_count}", class: "pag-info") +
         content_tag(:span, class: "pag-links") do
-          concat(link_to(content_tag(:i, "", class: "fa fa-chevron-left"), path_to_prev_page(scope), class: "pag-link pag-back")) unless scope.first_page?
-          concat(link_to(content_tag(:i, "", class: "fa fa-chevron-right"), path_to_next_page(scope), class: "pag-link pag-forward")) unless scope.last_page?
+          concat(link_to(content_tag(:i, "", class: "fas fa-chevron-left"), path_to_prev_page(scope), class: "pag-link pag-back")) unless scope.first_page?
+          concat(link_to(content_tag(:i, "", class: "fas fa-chevron-right"), path_to_next_page(scope), class: "pag-link pag-forward")) unless scope.last_page?
         end
       end
     end
@@ -40,7 +40,7 @@ module Dash::TablesHelper
   def per_page_dropdown(scope)
     max_per_options = [25, 50, 100]
     content_tag(:div, class: "dropdown per-page-dropdown") do
-      link_to(scope.limit_value.to_s.html_safe + content_tag(:i, "", class: "fa fa-angle-down"), "#", class: "dropdown-toggle", data: {toggle: "dropdown"}) +
+      link_to(scope.limit_value.to_s.html_safe + content_tag(:i, "", class: "fas fa-angle-down"), "#", class: "dropdown-toggle", data: {toggle: "dropdown"}) +
       content_tag(:div, class: "dropdown-menu dropdown-menu-right dropdown-menu-auto") do
         max_per_options.each do |per|
           concat link_to(per, request.params.merge(per: per), class: "dropdown-item")
@@ -80,7 +80,7 @@ module Dash::TablesHelper
       content_tag(:div, (block_given? ? capture(&block) : ""), class: "info")+
       content_tag(:div, class: "actions") do
         concat table_search if options[:search]
-        concat link_to(content_tag(:i, "", class: "fa fa-filter"), "#", class: "btn-icon btn-secondary table-filters-toggle") if options[:filters]
+        concat link_to(content_tag(:i, "", class: "fas fa-filter"), "#", class: "btn-icon btn-secondary table-filters-toggle") if options[:filters]
         concat row_actions{ options[:header_actions].join.html_safe } if options[:header_actions].any?
       end
     end
@@ -113,7 +113,7 @@ module Dash::TablesHelper
           <div class="modal-header modal-header-primary">
             <h5 class="modal-title"></h5>
             <button type="button" class="btn-icon btn-icon-light" data-dismiss="modal" aria-label="Close">
-              <i class="fa fa-times"></i>
+              <i class="fas fa-times"></i>
             </button>
           </div>
           <div class="modal-body">
@@ -139,11 +139,11 @@ module Dash::TablesHelper
     active_field = applied_filter.active_field(filter[:label])
     title = active_field ? active_field[:title] : filter[:title]
     content_tag(:div, class: "dropdown") do
-      link_to(title.html_safe + content_tag(:i, "", class: "fa fa-angle-down"), "#", class: "dropdown-toggle #{'active' if active_field}", data: {toggle: "dropdown"}) +
+      link_to(title.html_safe + content_tag(:i, "", class: "fas fa-angle-down"), "#", class: "dropdown-toggle #{'active' if active_field}", data: {toggle: "dropdown"}) +
       content_tag(:div, class: "dropdown-menu dropdown-menu-icons") do
-        concat link_to("#{content_tag(:i, "", class: "fa #{'fa-check' if applied_filter.field_active?(filter[:label], nil)}")}Any #{filter[:title]}".html_safe, filter_any_params(filter[:label]), class: "dropdown-item")
+        concat link_to("#{content_tag(:i, "", class: "#{'fa fa-check' if applied_filter.field_active?(filter[:label], nil)}")}Any #{filter[:title]}".html_safe, filter_any_params(filter[:label]), class: "dropdown-item")
         filter[:fields].each do |field|
-          concat link_to(content_tag(:i, "", class: "fa #{'fa-check' if applied_filter.field_active?(filter[:label], field[:value])}") + field[:title], request.params.deep_merge(filter: {filter[:label] => field[:value]}), class: "dropdown-item")
+          concat link_to(content_tag(:i, "", class: "#{'fa fa-check' if applied_filter.field_active?(filter[:label], field[:value])}") + field[:title], request.params.deep_merge(filter: {filter[:label] => field[:value]}), class: "dropdown-item")
         end
       end
     end
@@ -159,9 +159,9 @@ module Dash::TablesHelper
     content_tag(:div, class: "table-search #{'active' if params[:q].present?}") do
       form_with url: url_for, method: :get, local: true do |f|
         content_tag(:div, class: "wrapper") do
-          concat button_tag(content_tag(:i, "", class: "fa fa-search"), class: "search-btn")
+          concat button_tag(content_tag(:i, "", class: "fas fa-search"), class: "search-btn")
           concat f.text_field(:q, value: params[:q], placeholder: t("dash.search"), class: "search-input", autocomplete: "off")
-          concat button_tag(content_tag(:i, "", class: "fa fa-times"), class: "search-close", data: {reload: params[:q].present? ? 1 : 0 })
+          concat button_tag(content_tag(:i, "", class: "fas fa-times"), class: "search-close", data: {reload: params[:q].present? ? 1 : 0 })
         end
       end
     end
@@ -170,62 +170,62 @@ module Dash::TablesHelper
   def export_link(options={})
     url = request.params.merge(format: "csv").except(:page, :per)
     options.reverse_merge!(class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-download") + t("dash.export.export_to_csv"), url, options)
+    link_to(content_tag(:i, "", class: "fas fa-download") + t("dash.export.export_to_csv"), url, options)
   end
 
   def row_actions(options={}, &block)
     content_tag(:div, class: "dropdown table-actions-dropdown") do
-      link_to(content_tag(:i, "", class: "fa fa-ellipsis-v"), "#", class: "btn-icon btn-icon-secondary dropdown-toggle", data: {toggle: "dropdown"}) +
+      link_to(content_tag(:i, "", class: "fas fa-ellipsis-v"), "#", class: "btn-icon btn-icon-secondary dropdown-toggle", data: {toggle: "dropdown"}) +
       content_tag(:div, capture(&block), class: "dropdown-menu dropdown-menu-right dropdown-menu-icons")
     end
   end
 
   def settings_actions(options={}, &block)
     content_tag(:div, class: "dropdown #{options[:dropdown_class]}") do
-      link_to(content_tag(:i, "", class: "fa fa-ellipsis-v"), "#", class: "btn-icon btn-icon-secondary dropdown-toggle", data: {toggle: "dropdown"}) +
+      link_to(content_tag(:i, "", class: "fas fa-ellipsis-v"), "#", class: "btn-icon btn-icon-secondary dropdown-toggle", data: {toggle: "dropdown"}) +
       content_tag(:div, capture(&block), class: "dropdown-menu dropdown-menu-right dropdown-menu-icons")
     end
   end
 
   def row_about_link(url, options={})
     options.reverse_merge!(class: "dropdown-item", data: {toggle: "modal", target: "#tableAboutModal", title: options[:title]})
-    link_to(content_tag(:i, "", class: "fa fa-history") + t("dash.about"), url, options)
+    link_to(content_tag(:i, "", class: "fas fa-history") + t("dash.about"), url, options)
   end
 
   def row_edit_link(url, options={})
     options.reverse_merge!(class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-pencil") + t("dash.edit"), url, options)
+    link_to(content_tag(:i, "", class: "fas fa-pencil-alt") + t("dash.edit"), url, options)
   end
 
   def row_delete_link(url, options={})
     options.reverse_merge!(method: :delete, remote: true, class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-trash") + t("dash.delete"), url, options)
+    link_to(content_tag(:i, "", class: "fas fa-trash") + t("dash.delete"), url, options)
   end
 
   def row_archive_link(url, options={})
     options.reverse_merge!(method: :delete, remote: true, class: "dropdown-item")
-    link_to(content_tag(:i, "", class: "fa fa-archive") + t("dash.archive"), url, options)
+    link_to(content_tag(:i, "", class: "fas fa-archive") + t("dash.archive"), url, options)
   end
 
   def bulk_selector_all(selected = false)
     content_tag(:th, class: "bulk-selector-toggle bulk-selector-all") do
       check_box_tag("select_all", 1, selected) +
-      content_tag(:i, "", class: "fa fa-square-o")
+      content_tag(:i, "", class: "fas fa-square-o")
     end
   end
 
   def bulk_selector_item(object)
     content_tag(:td, class: "bulk-selector-toggle bulk-selector-item") do
       check_box_tag("selector", object.id, false) +
-      content_tag(:i, "", class: "fa fa-square-o")
+      content_tag(:i, "", class: "fas fa-square-o")
     end
   end
 
   def batch_pane(options={})
     options.reverse_merge!(batch: [:update, :destroy])
     actions = []
-    actions << link_to(content_tag(:i, "", class: "fa fa-pencil"), "#", class: "btn-icon btn-secondary", data: {toggle: "modal", target: "#tableBatchUpdateModal"}) if options[:batch].include?(:update)
-    actions << link_to(content_tag(:i, "", class: "fa fa-trash"), "#", class: "btn-icon btn-secondary", data: {toggle: "modal", target: "#tableBatchDestroyModal"}) if options[:batch].include?(:destroy)
+    actions << link_to(content_tag(:i, "", class: "fas fa-pencil-alt"), "#", class: "btn-icon btn-secondary", data: {toggle: "modal", target: "#tableBatchUpdateModal"}) if options[:batch].include?(:update)
+    actions << link_to(content_tag(:i, "", class: "fas fa-trash"), "#", class: "btn-icon btn-secondary", data: {toggle: "modal", target: "#tableBatchDestroyModal"}) if options[:batch].include?(:destroy)
     options[:batch].each do |item|
       if item.is_a?(String)
         actions << item
@@ -266,7 +266,7 @@ module Dash::TablesHelper
             <div class="modal-header modal-header-primary">
               <h5 class="modal-title">#{options[:title]}</h5>
               <button type="button" class="btn-icon btn-icon-light" data-dismiss="modal" aria-label="Close">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
               </button>
             </div>
             <div class="modal-body">

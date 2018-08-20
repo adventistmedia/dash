@@ -73,7 +73,7 @@ class PopScroller {
 
   startLoading(){
     this.loading = true;
-    var html = '<div class="loading"><i class="fa fa-spinner fa-spin"></i></div>';
+    var html = '<div class="loading"><i class="fas fa-spinner fa-spin"></i></div>';
     $(this.parent).append(html);
   }
 

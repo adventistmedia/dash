@@ -164,11 +164,11 @@ $(document).on('click', '.map-address-search', function(e){
       <div class="content">
         <span class="name">Wahroonga Church</span>
       </div>
-      <%= link_to content_tag(:i, "", class: "fa fa-angle-down"), "#", class: "team-toggle" %>
+      <%= link_to content_tag(:i, "", class: "fas fa-angle-down"), "#", class: "team-toggle" %>
     </div>
     <ul class="team-list nav-group">
-      <li><%= link_to content_tag(:i, "", class: "fa fa-fort-awesome icon").html_safe + "Fox Valley Church", "#", class: "nav-group-item" %></li>
-      <li><%= link_to content_tag(:i, "", class: "fa fa-fort-awesome icon").html_safe + "3am Church", "#", class: "nav-group-item" %></li>
+      <li><%= link_to content_tag(:i, "", class: "fas fa-fort-awesome icon").html_safe + "Fox Valley Church", "#", class: "nav-group-item" %></li>
+      <li><%= link_to content_tag(:i, "", class: "fas fa-fort-awesome icon").html_safe + "3am Church", "#", class: "nav-group-item" %></li>
     </ul>
   </div>
 </div>
