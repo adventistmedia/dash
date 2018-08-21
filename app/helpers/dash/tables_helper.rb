@@ -210,14 +210,14 @@ module Dash::TablesHelper
   def bulk_selector_all(selected = false)
     content_tag(:th, class: "bulk-selector-toggle bulk-selector-all") do
       check_box_tag("select_all", 1, selected) +
-      content_tag(:i, "", class: "fas fa-square-o")
+      content_tag(:i, "", class: "far fa-square")
     end
   end
 
   def bulk_selector_item(object)
     content_tag(:td, class: "bulk-selector-toggle bulk-selector-item") do
       check_box_tag("selector", object.id, false) +
-      content_tag(:i, "", class: "fas fa-square-o")
+      content_tag(:i, "", class: "far fa-square")
     end
   end
 

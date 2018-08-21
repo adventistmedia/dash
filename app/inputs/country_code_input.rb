@@ -13,6 +13,7 @@ class CountryCodeInput < SimpleForm::Inputs::CollectionSelectInput
     else
       input_html_options.reverse_merge!({data: {as: @builder.object_name}})
     end
+    input_html_options[:class] << "form-control"
     @builder.collection_select(attribute_name, collection,
       value_method, label_method,
       input_options, input_html_options

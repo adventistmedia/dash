@@ -43,13 +43,14 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
+  line-height: 30px;
   text-align: center;
   color: $gray-700;
   cursor: pointer;
 }
 .btn-icon:hover, .btn-icon.active{
-  background-color: $gray-400;
-  color: $gray-600;
+  background-color: $gray-400 !important;
+  color: $gray-600 !important;
 }
 .btn-icon:focus{
   box-shadow: none;

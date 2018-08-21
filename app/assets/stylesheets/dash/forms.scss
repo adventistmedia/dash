@@ -1,66 +1,33 @@
-.simple_form.compact{
-  .input{
-    margin-bottom: 0.5rem;
-  }
-}
 .simple_form{
   // Input wrapper
-  .input{
+  .form-group{
     margin-bottom: 2rem;
   }
   // Label
   label abbr[title]{
     text-decoration: none;
   }
-  label.control-label{
+
+  // Hint
+  .help{
     font-size: 0.9rem;
-    font-weight: bold;
-    color: $gray-700;
-    margin-bottom: 0.25rem;
   }
-  // Input
+  // Form control
   .form-control{
-    border-color: $gray-300;
-    border-width: 0 0 1px 0;
-    border-radius: 0;
+    border-radius: 0.125rem;
   }
-  .form-control:focus, .form-control.focus{
+  // Form control and validations
+  .form-control:focus{
+    border-color: $gray-300;
+    box-shadow:none;
     background-color: $gray-200;
   }
-  // Hint
-  .hint{
-    display: block;
-    font-size: 0.9rem;
+  .was-validated .form-control:valid, .form-control.is-valid, .was-validated .custom-select:valid, .custom-select.is-valid{
+    border-color: $gray-300;
   }
 
-  // Errors
-  .error{
-    font-size: 0.9rem;
-    color: theme-color("danger");
-  }
-
-  .field_with_errors .label.control-label{
-    color: theme-color("danger");
-  }
-  // Footer
-  .form-footer{
-    border-top: 1px solid $gray-200;
-    padding: 1.5rem 0 0.5rem 0;
-    .btn{
-      margin-right: 1rem;
-    }
-  }
-
-  // Disabled Input
-  .control-label.disabled{
-    color: $gray-500;
-  }
-  .form-control.disabled{
-    background-color: transparent;
-    border-style: dotted;
-    color: $gray-500;
-    background-image: none;
-    cursor: not-allowed;
+  .was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label{
+    color: inherit;
   }
 
   // Select
@@ -73,57 +40,153 @@
     background-position: 98% 50%;
     background-repeat: no-repeat;
   }
-  // Checkboxes
-  .boolean.form-control{
-    display: inline-block;
-    width: auto;
-    margin-right: 10px;
-  }
-  .boolean .hint{
-    display:block;
-  }
-  .checkbox{
-    display: block;
-    .form-control{
-      display: inline-block;
-      width: 25px;
-    }
-  }
 
-  // Textarea
+  // Text Area
   textarea.form-control{
     min-height: 150px;
   }
-}
 
-.form-toggle{
-  font-size: 1.5rem;
-}
-
-.input-group .input-group-addon {
-  border: none;
-  // border-bottom: 1px solid $gray-300;
-  border-bottom: none !important;
-  background: none;
-  border-radius: 0;
-}
-.label-with-link{
-  font-weight: normal !important;
-  font-size: 1rem !important;
-  a{
-    color: $link-color-primary;
+  // Asset selector
+  .asset-selector{
+    margin-bottom: 2rem;
+    .file-preview{
+      margin-right: 0.5rem;
+    }
+    .btn{
+      margin-right: 0.5rem;
+    }
   }
 }
 
-// Asset selector
-.asset-selector{
-  .file-preview{
-    margin-right: 0.5rem;
-  }
-  .error{
-    display: block;
-  }
+.form-footer{
+  // border-top: 1px solid $gray-200;
+  padding: 1.5rem 0 0.5rem 0;
   .btn{
-    margin-right: 0.5rem;
+    margin-right: 1rem;
   }
 }
+
+// .simple_form.compact{
+//   .input{
+//     margin-bottom: 0.5rem;
+//   }
+// }
+// .simple_form{
+//   // Input wrapper
+//   .input{
+//     margin-bottom: 2rem;
+//   }
+//   // Label
+//   label abbr[title]{
+//     text-decoration: none;
+//   }
+//   label.control-label{
+//     font-size: 0.9rem;
+//     font-weight: bold;
+//     color: $gray-700;
+//     margin-bottom: 0.25rem;
+//   }
+//   // Input
+//   .form-control{
+//     border-color: $gray-300;
+//     border-width: 0 0 1px 0;
+//     border-radius: 0;
+//   }
+//   .form-control:focus, .form-control.focus{
+//     background-color: $gray-200;
+//   }
+//   // Hint
+//   .hint{
+//     display: block;
+//     font-size: 0.9rem;
+//   }
+//
+//
+//   .field_with_errors .label.control-label{
+//     color: theme-color("danger");
+//   }
+//   // Footer
+//   .form-footer{
+//     border-top: 1px solid $gray-200;
+//     padding: 1.5rem 0 0.5rem 0;
+//     .btn{
+//       margin-right: 1rem;
+//     }
+//   }
+//
+//   // Disabled Input
+//   .control-label.disabled{
+//     color: $gray-500;
+//   }
+//   .form-control.disabled{
+//     background-color: transparent;
+//     border-style: dotted;
+//     color: $gray-500;
+//     background-image: none;
+//     cursor: not-allowed;
+//   }
+//
+//   // Select
+//   select.form-control{
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+//     -webkit-border-radius: 0px;
+//     background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='12' height='19' viewBox='0 0 9 14'><path d='M8.398 5.75q0 0.102-0.078 0.18l-3.641 3.641q-0.078 0.078-0.18 0.078t-0.18-0.078l-3.641-3.641q-0.078-0.078-0.078-0.18t0.078-0.18l0.391-0.391q0.078-0.078 0.18-0.078t0.18 0.078l3.070 3.070 3.070-3.070q0.078-0.078 0.18-0.078t0.18 0.078l0.391 0.391q0.078 0.078 0.078 0.18z'></path></svg>");
+//     background-position: 98% 50%;
+//     background-repeat: no-repeat;
+//   }
+//   // Checkboxes
+//   .boolean.form-control{
+//     display: inline-block;
+//     width: auto;
+//     margin-right: 10px;
+//   }
+//   .boolean .hint{
+//     display:block;
+//   }
+//   .checkbox{
+//     display: block;
+//     .form-control{
+//       display: inline-block;
+//       width: 25px;
+//     }
+//   }
+//
+//   // Textarea
+//   textarea.form-control{
+//     min-height: 150px;
+//   }
+// }
+//
+// .form-toggle{
+//   font-size: 1.5rem;
+// }
+//
+// .input-group .input-group-addon {
+//   border: none;
+//   // border-bottom: 1px solid $gray-300;
+//   border-bottom: none !important;
+//   background: none;
+//   border-radius: 0;
+// }
+// .label-with-link{
+//   font-weight: normal !important;
+//   font-size: 1rem !important;
+//   a{
+//     color: $link-color-primary;
+//   }
+// }
+//
+// // Asset selector
+// .asset-selector{
+//   .file-preview{
+//     margin-right: 0.5rem;
+//   }
+//   .error{
+//     display: block;
+//   }
+//   .btn{
+//     margin-right: 0.5rem;
+//   }
+// }
