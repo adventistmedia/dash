@@ -51,7 +51,8 @@ SimpleForm.setup do |config|
 
   config.wrapper_mappings = {
     boolean:       :vertical_boolean,
-    check_boxes:   :vertical_collection
+    check_boxes:   :vertical_collection,
+    radio_buttons: :vertical_collection
   }
 
   config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
