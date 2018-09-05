@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   # Authentication and Authorization
   s.add_dependency "worldly", "~> 1.0.2"
   # Auditing
-  s.add_dependency "audited", "4.7.1"
+  s.add_dependency "audited", "4.8"
 
   # File Management
   s.add_dependency  "carrierwave", "~> 1.2.0"
