@@ -4,7 +4,7 @@ module Dash::FormsHelper
   def enum_collection(f, column, options={})
     options.reverse_merge!(sort: false)
     keys = f.object.class.send(column).keys
-    keys.sort! if keys.sort
+    keys.sort! if options[:sort]
     keys.collect{|c| [f.object.class.base_class.human_attribute_name("#{column.to_s.singularize}.#{c}"), c] }
   end
 
