@@ -1,6 +1,11 @@
 .table-features .table{
   margin-bottom: 0;
 }
+.table .subtitle{
+  color: $text-muted;
+  font-size: 0.9rem;
+  display: block;
+}
 .table{
   border: 1px solid $gray-200;
   background: $white;
