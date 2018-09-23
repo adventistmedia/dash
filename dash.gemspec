@@ -32,8 +32,9 @@ Gem::Specification.new do |s|
 
   # File Management
   s.add_dependency  "carrierwave", "~> 1.2.0"
-
-  s.add_dependency "faraday", "~> 0.14.0"
+# faraday gem is a pain in that many other gems that use is require very specific versions.
+# Be flexiable and don't require version
+  s.add_dependency "faraday"#, "~> 0.14.0"
 
   # Development
   s.add_development_dependency "sqlite3"
