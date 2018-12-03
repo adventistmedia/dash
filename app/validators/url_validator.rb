@@ -1,3 +1,8 @@
+# NOTE: Make sure you've added the URL inflection for this class name to work
+# ActiveSupport::Inflector.inflections(:en) do |inflect|
+#   inflect.acronym "URL"
+# end
+
 class URLValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
