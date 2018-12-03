@@ -29,7 +29,7 @@ class UnsplashApi
     )
     Rails.cache.fetch("unsplash/user-collections/page-#{options[:page]}-#{options[:per_page]}", expires_in: 12.hours) do
       results = get "/users/adventistmedia/collections", options
-      results["body"]
+      results["body"].select{|r| r["total_photos"] > 0 }
     end
   end
 
