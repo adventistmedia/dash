@@ -16,13 +16,13 @@ module Dash::Dashable
       exporter.new(self).to_csv
     end
 
-    def filter(filter_params, options={})
+    def filtering(filter_params, options={})
       # set the filter class
       filter_class = options[:filter]
       filter_class ||= "#{self.name}Filter".constantize
 
       # set the applied filter to the scope for use in views
-      self.applied_filter = filter_class.new(self, filter_params, options[:locals])
+      self.applied_filter = filter_class.new(self, filter_params)
 
       # no need to query if params empty
       return all if filter_params.nil?
