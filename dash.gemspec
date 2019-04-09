@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "audited", "4.8"
 
   # File Management
-  s.add_dependency  "carrierwave", "~> 1.2.0"
+  s.add_dependency  "carrierwave", "~> 1.3.1"
 # faraday gem is a pain in that many other gems that use is require very specific versions.
 # Be flexiable and don't require version
   s.add_dependency "faraday"#, "~> 0.14.0"
