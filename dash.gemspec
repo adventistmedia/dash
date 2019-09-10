@@ -7,7 +7,7 @@ require "dash/version"
 Gem::Specification.new do |s|
   s.name          = "dash"
   s.version       = Dash::VERSION
-  s.authors       = ["danlewis"]
+  s.authors       = ["adventistmedia"]
   s.email         = ["webmaster@adventistmedia.org.au"]
   s.summary       = %q{A dashboard for Adventist apps }
   s.description   = %q{A dashboard for Adventist apps }
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files         = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", ">= 5.2.1.1", "< 5.3.0"
+  s.add_dependency "rails", ">= 5.2.1.1"
   # UI
   s.add_dependency "bootstrap", "4.3.1"
   s.add_dependency "kaminari", "~> 1.1.1"
@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   # Email and Notifications
   s.add_dependency "slack-notifier", "~> 2.3"
   s.add_dependency "mandrill_dm", "~> 1.3.4"
-  # Authentication and Authorization
+  # Address
   s.add_dependency "worldly", "~> 1.0.2"
   # Auditing
   s.add_dependency "audited", "4.9"
