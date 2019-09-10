@@ -1,6 +1,6 @@
 require 'action_view/record_identifier'
 
-module RecordTagHelper
+module Dash::RecordTagHelper
   include ActionView::RecordIdentifier
 
   # Produces a wrapper DIV element with id and class parameters that
