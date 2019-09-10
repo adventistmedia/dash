@@ -8,7 +8,7 @@
           <p><%= t("dash.chooser.uploader.or") %></p>
           <span class="btn btn-primary fileinput-button">
             <i class="fas fa-plus fa fa-white"></i> <span><%= t("dash.chooser.uploader.select_files") %></span>
-            <%= cl_image_upload_tag(:media_id, use_filename: true, folder: Rails.application.credentials.env.dig(:cloudinary, :folder), html: {class: "image-fileupload"}) %>
+            <%= cl_image_upload_tag(:media_id, use_filename: true, folder: Rails.application.credentials.dig(:cloudinary, :folder), html: {class: "image-fileupload"}) %>
           </span>
         </div>
       <% end %>
