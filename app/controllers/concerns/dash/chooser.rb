@@ -14,7 +14,7 @@ module Dash::Chooser
   end
 
   def update
-    @success = @asset.update_attributes( asset_params )
+    @success = @asset.update( asset_params )
     if params[:inline] == "1"
       render template: "/dash/chooser/update_inline"
     else

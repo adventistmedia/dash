@@ -26,7 +26,7 @@ module Dash::Tableize
     @success = true
     ActiveRecord::Base.transaction do
       @selected.each do |selected|
-        unless selected.update_attributes(batch_update_params)
+        unless selected.update(batch_update_params)
           @success = false
           raise ActiveRecord::Rollback
         end
