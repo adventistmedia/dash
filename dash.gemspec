@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 5.2.1.1"
   # UI
   s.add_dependency "bootstrap", "4.3.1"
-  s.add_dependency "kaminari", "~> 1.1.1"
+  s.add_dependency "kaminari", "~> 1.2.1"
   s.add_dependency "simple_form", "~> 5.0"
   #s.add_dependency "record_tag_helper", "~> 1.0" added as helper manually as they haven't released a new version to support Rails 6
   # Email and Notifications
