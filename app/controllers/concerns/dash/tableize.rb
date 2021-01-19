@@ -10,14 +10,14 @@ module Dash::Tableize
   ## About card showing audit history if one exists and other basic details
   def about
     @about_object = instance_variable_get("@#{controller_name.singularize}")
-    render file: "/dash/base/about"
+    render template: "/dash/base/about"
   end
 
   # POST
   # delete multiple objects
   def batch_destroy
     @success = @selected.destroy_all
-    render file: "/dash/base/batch_destroy"
+    render template: "/dash/base/batch_destroy"
   end
 
   # POST
@@ -32,7 +32,7 @@ module Dash::Tableize
         end
       end
     end
-    render file: "/dash/base/batch_update"
+    render template: "/dash/base/batch_update"
   end
 
   private
