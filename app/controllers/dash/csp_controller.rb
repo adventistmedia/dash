@@ -3,10 +3,10 @@ class Dash::CspController < ApplicationController
 
   def create
     report = JSON.parse(request.body.read)['csp-report'] rescue {}
-    report_formatted = report.collect{|k,v| "#{k}: #{v}"}.join("\n")
+    report_formatted = report.collect{|k,v| "#{k}: #{v}"}.join("   \n")
 
     logger.debug report_formatted
-    Slacker.post_message report_formatted
+    MsteamsNotifier::Message.quick_message report_formatted
 
     head :ok
   end

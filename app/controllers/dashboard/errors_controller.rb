@@ -8,7 +8,7 @@ class Dashboard::ErrorsController < ApplicationController
   # the cause of the 500 error
   def server_error
     messages = ["Captain!", "Man overboard!", "Ekk!"]
-    Slacker.post_message("#{messages.sample} We've had a 500 error at #{request.referrer}")
+    MsteamsNotifier::Message.quick_message "#{messages.sample} We've had a 500 error at #{request.referrer}"
     render status: 500, layout: "dash/error"
   end
 end

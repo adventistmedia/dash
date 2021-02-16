@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "simple_form", "~> 5.0"
   #s.add_dependency "record_tag_helper", "~> 1.0" added as helper manually as they haven't released a new version to support Rails 6
   # Email and Notifications
-  s.add_dependency "slack-notifier", "~> 2.3"
+  s.add_dependency "msteams_notifier", "~> 0.1.0"
   s.add_dependency "mandrill_dm", "~> 1.3.4"
   # Address
   s.add_dependency "worldly", "~> 1.0.2"
