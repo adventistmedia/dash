@@ -9,7 +9,6 @@ require "audited"
 #require "record_tag_helper"
 require "worldly"
 require "faraday"
-require "slack-notifier"
 require "carrierwave"
 
 module Dash
