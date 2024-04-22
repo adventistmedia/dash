@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   # Address
   s.add_dependency "worldly", "~> 1.0.2"
   # Auditing
-  s.add_dependency "audited", "4.10"
+  s.add_dependency "audited", "5.3.3"
 
   # File Management
   s.add_dependency  "carrierwave", "~> 2.0"
